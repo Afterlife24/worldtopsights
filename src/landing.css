@@ -365,3 +365,8 @@
 .pl-credits summary:hover { color: #fff; }
 .pl-credits ul { position: absolute; right: 0; bottom: calc(100% + 10px); z-index: 2; width: min(420px, 90vw); padding: 14px 16px; border-radius: 4px; background: #0F1729; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); line-height: 1.6; }
 .pl-credits a { text-decoration: underline; }
+
+/* Mobile: keep the Eiffel Tower (right side of the hero photo) in view. */
+@media (max-width: 720px) {
+  .ph-img { object-position: 74% 40%; }
+}

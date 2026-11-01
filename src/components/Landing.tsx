@@ -1,331 +1,313 @@
-import { useEffect, useRef, useState, type MouseEvent, type ReactNode, type RefObject } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Clock3, Star } from 'lucide-react';
-import { booking, categoriesOf, destinations, images, tourPath, toursFor } from '@/data/content';
-
-const parisTours = toursFor('paris');
-const parisCategories = categoriesOf(parisTours);
-import { AnimatedCounter } from './AnimatedCounter';
-import { BookingButton, CTABand, Eyebrow, SectionHead } from './Blocks';
-import { cssVars } from '@/lib/cssVars';
+import { useEffect, useState, type FormEvent } from 'react';
+import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Clock, Gem, Heart, Minus, Plus, Star, Users } from 'lucide-react';
+import { allTours, categories, destinationCards, faqs, featured, landingImages, reasons, reviews, type LandingTour } from '@/data/landing';
+import { tours } from '@/data/tours';
+import { A } from './Chrome';
 import '@/landing.css';
 
-// Placeholder reviews — replace with real guest reviews before going live.
-const testimonials = [
-  { quote: 'Our sommelier made every glass feel like a story. The best evening of our whole trip.', name: 'Sarah J.', tour: 'The Grand Wine & Cheese Experience' },
-  { quote: 'We found corners of Montmartre we would never have discovered on our own. Pure magic.', name: 'Emma P.', tour: 'Montmartre Artists & Breakfast Walk' },
-  { quote: 'Versailles without the queues, and a guide who brought every room to life.', name: 'Michael C.', tour: 'Versailles Palace Private Day Trip' },
-];
+/* ---------------- shared bits ---------------- */
 
-const marqueeItems = ['Wine & Cheese', 'Montmartre', 'Seine River', 'The Louvre', 'Versailles', 'Eiffel Tower'];
-
-/** Exposes scroll position as the --sy CSS variable (used for the hero parallax). */
-function useScrollVar(rootRef: RefObject<HTMLElement>) {
-  useEffect(() => {
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      rootRef.current?.style.setProperty('--sy', String(window.scrollY));
-    };
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      cancelAnimationFrame(frame);
-    };
-  }, [rootRef]);
-}
-
-function Hero() {
-  const featured = parisTours[0];
+function Rating({ tour }: { tour: LandingTour }) {
   return (
-    <section className="lp-hero wrap">
-      <div className="lp-hero-grid">
-        <div>
-          <Eyebrow>Paris Top Sights Tours</Eyebrow>
-          <h1 className="display lp-title">
-            <span style={cssVars({ '--d': '0ms' })}><span>See</span></span>
-            <span className="clip" style={cssVars({ '--d': '120ms', '--clip-img': `url(${images.heroParisEiffel})` })}><span>Paris</span></span>
-            <span className="ital" style={cssVars({ '--d': '240ms' })}><span>like a local.</span></span>
-          </h1>
-          <p className="lede">
-            Handcrafted walking tours, wine tastings and skip-the-line experiences, led by guides who call this city home.
-          </p>
-          <div className="actions">
-            <a href="#tours" className="btn btn-solid">Find your tour <ArrowRight size={18} /></a>
-            <Link to="/contact" className="btn btn-ghost">Plan a private day</Link>
-          </div>
-        </div>
-
-        <div className="lp-media-wrap">
-          <div className="lp-media">
-            <img src={images.heroParisEiffel} alt="The Eiffel Tower in Paris" />
-          </div>
-          <div className="lp-badge" aria-hidden="true">
-            <svg viewBox="0 0 200 200">
-              <defs>
-                <path id="lp-circle" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0" />
-              </defs>
-              <circle cx="100" cy="100" r="99" />
-              <text textLength="495">
-                <textPath href="#lp-circle">Viator Experience Award · Paris Top Sights ·</textPath>
-              </text>
-            </svg>
-            <span className="lp-badge-core"><Star size={22} fill="currentColor" /></span>
-          </div>
-          <Link to={tourPath(featured)} className="lp-float">
-            <img src={featured.image} alt="" />
-            <span>
-              <small><Star size={12} fill="currentColor" /> {featured.rating} · 389 reviews</small>
-              <strong>{featured.title}</strong>
-            </span>
-          </Link>
-        </div>
-      </div>
-
-      <div className="lp-hero-foot">
-        <span className="lp-scroll"><i aria-hidden="true" /> Scroll to explore</span>
-        <span>Walking tours · Food & wine · Museums · Day trips</span>
-      </div>
-    </section>
+    <p className="pl-meta">
+      <span><Star size={12} className="pl-star" fill="currentColor" strokeWidth={0} /> {tour.rating} ({tour.reviews})</span>
+      <span><Clock size={12} /> {tour.duration}</span>
+    </p>
   );
 }
 
-function DestinationPanels() {
-  const [active, setActive] = useState(0);
+function SectionTitle({ title, link }: { title: string; link?: { label: string; to: string } }) {
   return (
-    <section className="wrap lp-dest">
-      <SectionHead
-        eyebrow="Beyond the city"
-        title="Three faces"
-        accent="of France"
-        aside={(
-          <p className="note">
-            <span className="hover-only">Hover a destination to open it up.</span>
-            <span className="touch-only">Swipe to explore.</span>
-          </p>
-        )}
-      />
-      <div className="lp-panels" data-reveal>
-        {destinations.map((dest, i) => (
-          <Link
-            key={dest.title}
-            to={dest.to}
-            className={`lp-panel ${i === active ? 'is-active' : ''}`}
-            style={cssVars({ '--img': `url(${dest.image})` })}
-            onMouseEnter={() => setActive(i)}
-            onFocus={() => setActive(i)}
-          >
-            <span className="lp-panel-num">0{i + 1}</span>
-            <div className="lp-panel-body">
-              <p className="lp-panel-eyebrow">{dest.eyebrow}</p>
-              <h3>{dest.title}</h3>
-              <p className="lp-panel-desc">{dest.description}</p>
-              <span className="lp-panel-cta">Explore <ArrowRight size={16} /></span>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Marquee() {
-  const items = [...marqueeItems, ...marqueeItems];
-  return (
-    <div className="lp-marquee" aria-hidden="true">
-      <div className="lp-marquee-track">
-        {items.map((item, i) => <span key={`${item}-${i}`}>{item}</span>)}
-      </div>
+    <div className="pl-head">
+      <h2>{title}</h2>
+      {link && <A to={link.to} className="pl-more">{link.label} <ArrowRight size={13} /></A>}
     </div>
   );
 }
 
-function TourIndex() {
-  const [filter, setFilter] = useState('All');
-  const [activeId, setActiveId] = useState<string | null>(null);
-  const previewRef = useRef<HTMLDivElement>(null);
-  const visible = filter === 'All' ? parisTours : parisTours.filter((tour) => tour.category === filter);
+/* ---------------- hero ---------------- */
 
-  // Move the floating preview with the cursor without re-rendering.
-  const handleMove = (event: MouseEvent<HTMLElement>) => {
-    if (previewRef.current) {
-      previewRef.current.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
-    }
-  };
-
+function Hero() {
   return (
-    <section id="tours" className="wrap section" onMouseMove={handleMove}>
-      <SectionHead
-        eyebrow="The collection"
-        title="Six ways to"
-        accent="fall for Paris"
-        aside={(
-          <div className="chips scroll-x" role="group" aria-label="Filter tours by category">
-            {['All', ...parisCategories].map((item) => (
-              <button key={item} type="button" className="chip" aria-pressed={filter === item} onClick={() => setFilter(item)}>
-                {item}
-              </button>
-            ))}
-          </div>
-        )}
-      />
-
-      <ol className="lp-list" key={filter} onMouseLeave={() => setActiveId(null)}>
-        {visible.map((tour, i) => (
-          <li key={tour.id} style={cssVars({ '--d': `${i * 70}ms` })}>
-            <Link
-              to={tourPath(tour)}
-              className="lp-row"
-              onMouseEnter={() => setActiveId(tour.id)}
-              onFocus={() => setActiveId(tour.id)}
-              onBlur={() => setActiveId(null)}
-            >
-              <span className="lp-row-num">{String(i + 1).padStart(2, '0')}</span>
-              <img className="lp-row-thumb" src={tour.image} alt="" loading="lazy" />
-              <span className="lp-row-title">{tour.title}</span>
-              <span className="lp-row-meta">{tour.category}</span>
-              <span className="lp-row-meta"><Clock3 size={15} /> {tour.duration}</span>
-              <span className="lp-row-price">{tour.price}</span>
-              <ArrowUpRight className="lp-row-arrow" size={26} />
-            </Link>
-          </li>
+    <section id="top" className="ph">
+      <div className="ph-top">
+      <img className="ph-img" src={landingImages.heroSeine} alt="The Eiffel Tower and a bridge over the Seine" fetchPriority="high" />
+      <div className="pl-wrap ph-inner">
+        <p className="ph-eyebrow">Iconic places. Authentic experiences.</p>
+        <h1>Discover France,<br />Beyond the Ordinary</h1>
+        <p className="ph-lede">Curated tours and exclusive experiences in Paris, the South of France and Galeries Lafayette, designed for curious travellers.</p>
+        <A to="/tours" className="pl-btn pl-btn-caps">Explore Tours <ArrowRight size={14} /></A>
+        <p className="ph-script" aria-hidden="true">“More than a trip,<br />a deeper connection<br />to France.”</p>
+      </div>
+      </div>
+      <div className="pl-wrap ph-cards">
+        {destinationCards.map((d) => (
+          <article key={d.title} className="ph-card">
+            <img src={d.image} alt={d.alt} loading="lazy" />
+            <div>
+              <h2>{d.title}</h2>
+              <p>{d.text}</p>
+              <A to={d.to} className="ph-link">{d.cta} <ArrowRight size={14} /></A>
+            </div>
+          </article>
         ))}
-      </ol>
-
-      <div className="lp-index-foot">
-        <Link to="/paris-tours" className="btn btn-ghost">See every tour <ArrowRight size={18} /></Link>
-      </div>
-
-      <div ref={previewRef} className={`lp-preview ${activeId ? 'is-on' : ''}`} aria-hidden="true">
-        <div className="lp-preview-frame">
-          {parisTours.map((tour) => (
-            <img key={tour.id} src={tour.image} alt="" className={tour.id === activeId ? 'on' : ''} />
-          ))}
-        </div>
       </div>
     </section>
   );
 }
 
-function Proof() {
+/* ---------------- categories ---------------- */
+
+function Categories() {
   return (
-    <section className="band-sand">
-      <div className="wrap section">
-        <SectionHead eyebrow="Why travellers choose us" title="Small groups," accent="big memories" />
-        <div className="lp-stats">
-          <div className="lp-stat" data-reveal style={cssVars({ '--d': '0ms' })}>
-            <strong><AnimatedCounter end={389} /></strong>
-            <span>Reviews on our signature wine tour</span>
-          </div>
-          <div className="lp-stat" data-reveal style={cssVars({ '--d': '100ms' })}>
-            <strong>4.9</strong>
-            <span>Average guest rating</span>
-          </div>
-          <div className="lp-stat" data-reveal style={cssVars({ '--d': '200ms' })}>
-            <strong><AnimatedCounter end={45} suffix="+" /></strong>
-            <span>Attractions with the GO CITY pass</span>
-          </div>
-          <div className="lp-stat" data-reveal style={cssVars({ '--d': '300ms' })}>
-            <strong><AnimatedCounter end={50} suffix="%" /></strong>
-            <span>Maximum savings on top sights</span>
-          </div>
-        </div>
-
-        <div className="lp-pass">
-          <CTABand
-            eyebrow="In partnership with GO CITY"
-            title="One pass for Paris’s"
-            accent="greatest sights."
-            text="Choose the All-Inclusive or Explorer pass and save up to 50% at more than 45 attractions, tours and experiences, from the Eiffel Tower to the Louvre."
-            actions={<BookingButton href={booking.paris} className="btn btn-solid">Get the Paris Pass <ArrowUpRight size={18} /></BookingButton>}
-          />
-        </div>
+    <section id="categories" className="pl-wrap pl-section">
+      <div className="pl-head">
+        <h2>Browse by Category</h2>
+        <p className="pl-head-note">Find the perfect Paris experience for your interests.</p>
+      </div>
+      <div className="pl-cats">
+        {categories.map((cat) => (
+          <A key={cat.label} to={cat.to} className="pl-cat">
+            <img src={cat.image} alt="" loading="lazy" />
+            <span>{cat.label} <ArrowRight size={15} /></span>
+          </A>
+        ))}
       </div>
     </section>
   );
 }
 
-function Testimonials() {
+/* ---------------- tour cards ---------------- */
+
+function FeaturedCard({ tour }: { tour: LandingTour }) {
+  return (
+    <article className="pl-card">
+      <A to={tour.to} className="pl-card-img" tabIndex={-1} aria-hidden="true">
+        <img src={tour.image} alt="" loading="lazy" />
+        {tour.badge && <span className="pl-badge">{tour.badge}</span>}
+      </A>
+      <div className="pl-card-body">
+        <h3><A to={tour.to}>{tour.title[0]}<br />{tour.title[1]}</A></h3>
+        <Rating tour={tour} />
+        <p className="pl-card-text">{tour.text}</p>
+        <div className="pl-card-foot">
+          <p className="pl-price"><small>From</small> {tour.price}</p>
+          <A to={tour.to} className="pl-btn pl-btn-sm" aria-label={`View tour: ${tour.title.join(' ')}`}>View Tour <ArrowRight size={13} /></A>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function Featured() {
+  return (
+    <section className="pl-wrap pl-section pl-featured">
+      <SectionTitle title="Featured Paris Experiences" link={{ label: 'View All Paris Tours', to: '/tours' }} />
+      <div className="pl-grid4">
+        {featured.map((tour) => <FeaturedCard key={tour.title.join()} tour={tour} />)}
+      </div>
+    </section>
+  );
+}
+
+function AllTours() {
+  return (
+    <section id="tours" className="pl-wrap pl-section">
+      <SectionTitle title={`All Paris Tours (${tours.length})`} link={{ label: `Browse All ${tours.length} Paris Tours`, to: '/tours' }} />
+      <div className="pl-grid4">
+        {allTours.map((tour) => (
+          <A key={tour.title.join()} to={tour.to} className="pl-card pl-card-mini">
+            <span className="pl-card-img"><img src={tour.image} alt="" loading="lazy" /></span>
+            <span className="pl-card-body">
+              <h3>{tour.title[0]}<br />{tour.title[1]}</h3>
+              <Rating tour={tour} />
+              <span className="pl-card-foot">
+                <span className="pl-price"><small>From</small> {tour.price}</span>
+                <ArrowRight size={14} className="pl-card-arrow" />
+              </span>
+            </span>
+          </A>
+        ))}
+      </div>
+      <div className="pl-more-band">
+        <p>And {tours.length - allTours.length} more incredible tours waiting for you…</p>
+        <A to="/tours" className="pl-btn">Browse All Paris Tours <ArrowRight size={15} /></A>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- why us ---------------- */
+
+const reasonIcons = { gem: Gem, users: Users, star: Star, heart: Heart };
+
+function WhyUs() {
+  return (
+    <section id="why" className="pl-wrap pl-section">
+      <SectionTitle title="Why Choose Our Paris Tours" />
+      <div className="pl-reasons">
+        {reasons.map((item) => {
+          const Icon = reasonIcons[item.icon];
+          return (
+            <div key={item.title} className="pl-reason">
+              <Icon size={30} strokeWidth={1.1} />
+              <h3>{item.title}</h3>
+              <p>{item.text[0]}<br />{item.text[1]}</p>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- reviews ---------------- */
+
+function Reviews() {
   const [index, setIndex] = useState(0);
-  const total = testimonials.length;
+  const total = reviews.length;
+  const go = (step: number) => setIndex((i) => (i + step + total) % total);
 
   useEffect(() => {
-    const id = window.setInterval(() => setIndex((i) => (i + 1) % total), 7000);
+    const id = window.setInterval(() => setIndex((i) => (i + 1) % total), 8000);
     return () => window.clearInterval(id);
-  }, [total]);
+  }, [index, total]);
 
-  const current = testimonials[index];
+  const review = reviews[index];
   return (
-    <section className="wrap section lp-quotes" data-reveal>
-      <Eyebrow>Traveller notes</Eyebrow>
-      <div aria-live="polite">
-        <blockquote key={index} className="lp-quote">
-          <p>“{current.quote}”</p>
-          <footer><strong>{current.name}</strong> · {current.tour}</footer>
-        </blockquote>
+    <section id="reviews" className="pl-wrap pl-section">
+      <SectionTitle title="What Our Guests Say" link={{ label: 'Read All Reviews', to: '#reviews' }} />
+      <div className="pl-review">
+        <button type="button" className="pl-arrow pl-arrow-l" aria-label="Previous review" onClick={() => go(-1)}><ChevronLeft size={16} /></button>
+        <div className="pl-review-card" aria-live="polite">
+          <blockquote key={index} className="pl-review-text">
+            <p>“{review.quote}”</p>
+            <span className="pl-stars" aria-label="5 out of 5 stars">
+              {Array.from({ length: 5 }, (_, i) => <Star key={i} size={15} fill="currentColor" strokeWidth={0} />)}
+            </span>
+            <footer><strong>{review.name}</strong> <span>{review.place}</span></footer>
+          </blockquote>
+          <div className="pl-review-media"><img key={review.image} src={review.image} alt="" loading="lazy" /></div>
+        </div>
+        <button type="button" className="pl-arrow pl-arrow-r" aria-label="Next review" onClick={() => go(1)}><ChevronRight size={16} /></button>
       </div>
-      <div className="lp-quote-nav">
-        <button type="button" className="icon-btn" aria-label="Previous review" onClick={() => setIndex((index - 1 + total) % total)}>
-          <ArrowLeft size={20} />
+    </section>
+  );
+}
+
+/* ---------------- FAQ ---------------- */
+
+function Faq() {
+  const [open, setOpen] = useState<boolean[]>(() => faqs.map(() => false));
+  const allOpen = open.every(Boolean);
+  const toggle = (i: number) => setOpen((list) => list.map((v, j) => (j === i ? !v : v)));
+
+  return (
+    <section id="faq" className="pl-wrap pl-section pl-faq-section">
+      <div className="pl-head">
+        <h2>Frequently Asked Questions</h2>
+        <button type="button" className="pl-more" onClick={() => setOpen(faqs.map(() => !allOpen))}>
+          {allOpen ? 'Collapse All' : 'Expand All'} {allOpen ? <Minus size={14} /> : <Plus size={14} />}
         </button>
-        <span>{String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
-        <button type="button" className="icon-btn" aria-label="Next review" onClick={() => setIndex((index + 1) % total)}>
-          <ArrowRight size={20} />
-        </button>
+      </div>
+      <div className="pl-faq">
+        {faqs.map((item, i) => (
+          <div key={item.q} className={`pl-faq-item ${open[i] ? 'is-open' : ''}`}>
+            <h3>
+              <button type="button" aria-expanded={open[i]} aria-controls={`faq-${i}`} id={`faq-q-${i}`} onClick={() => toggle(i)}>
+                {item.q} <ChevronDown size={15} />
+              </button>
+            </h3>
+            <div id={`faq-${i}`} role="region" aria-labelledby={`faq-q-${i}`} className="pl-faq-a" hidden={!open[i]}>
+              <p>{item.a}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
 }
 
-function MagneticLink({ to, children }: { to: string; children: ReactNode }) {
-  const ref = useRef<HTMLAnchorElement>(null);
-  const handleMove = (event: MouseEvent<HTMLAnchorElement>) => {
-    const el = ref.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const x = event.clientX - rect.left - rect.width / 2;
-    const y = event.clientY - rect.top - rect.height / 2;
-    el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-  };
-  const reset = () => {
-    if (ref.current) ref.current.style.transform = '';
-  };
+/* ---------------- newsletter ---------------- */
+
+function SketchLeft() {
   return (
-    <Link ref={ref} to={to} className="lp-magnet" onMouseMove={handleMove} onMouseLeave={reset}>
-      {children}
-    </Link>
+    <svg className="pl-sketch pl-sketch-l" viewBox="0 0 220 120" fill="none" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" aria-hidden="true">
+      <path d="M0 118h220" />
+      {/* Notre-Dame style towers */}
+      <path d="M20 118V50h18v68M48 118V50h18v68M38 118V72h10v46M20 50l4-6h10l4 6M48 50l4-6h10l4 6M25 60h8M53 60h8M25 70h8M53 70h8M39 90a4 6 0 0 1 8 0v28" />
+      <circle cx="43" cy="80" r="4" />
+      {/* trees and lamp */}
+      <path d="M90 118V95M84 98c-6-2-8-10-2-14 0-8 12-10 14-2 7 1 8 12 0 15-4 2-8 2-12 1zM120 118V78M116 78h8M118 74h4l-2-5-2 5zM150 118v-20M144 100c-6-3-6-12 1-13 2-7 12-6 12 1 6 2 5 11-2 12-3 1-7 1-11 0z" />
+      <path d="M170 118V88h40v30M170 88l20-12 20 12M178 96h6v8h-6zM196 96h6v8h-6z" />
+    </svg>
   );
 }
 
-function FinalCall() {
+function SketchRight() {
   return (
-    <section className="wrap section lp-final">
-      <h2 data-reveal>Your Paris<br /><em>starts here.</em></h2>
-      <div className="lp-final-actions" data-reveal>
-        <MagneticLink to="/paris-tours">Book a<br />tour</MagneticLink>
-        <Link to="/contact" className="text-link">or ask us anything</Link>
+    <svg className="pl-sketch pl-sketch-r" viewBox="0 0 120 150" fill="none" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M0 148h120M60 4v12M56 16h8M57 16l-6 40-22 92M63 16l6 40 22 92M49 56h22M41 92h38M44 148c3-20 9-30 16-30s13 10 16 30M51 56l9 36 9-36M45 92l15 18 15-18M54 34h12M55 26h10" />
+      <path d="M8 148v-16M4 134c-4-2-4-9 1-10 1-5 8-5 9 0 4 1 4 8-1 10-3 1-6 1-9 0zM108 148v-20M103 130c-5-2-5-10 1-11 1-6 9-6 10 0 5 1 5 9-1 11-3 1-7 1-10 0z" />
+    </svg>
+  );
+}
+
+function Newsletter() {
+  const [email, setEmail] = useState('');
+  const [agree, setAgree] = useState(false);
+  const [state, setState] = useState<'idle' | 'error' | 'done'>('idle');
+
+  const submit = (event: FormEvent) => {
+    event.preventDefault();
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+    // TODO: connect to your email provider. For now the form only confirms on screen.
+    setState(valid && agree ? 'done' : 'error');
+  };
+
+  return (
+    <section className="pl-news">
+      <SketchLeft />
+      <div className="pl-wrap pl-news-inner">
+        <div>
+          <h2>Be the First to Know</h2>
+          <p>Get exclusive access to new tours, special offers and travel inspiration from Paris.</p>
+        </div>
+        {state === 'done' ? (
+          <p className="pl-news-done" role="status">Merci! You’re on the list.</p>
+        ) : (
+          <form className="pl-news-form" onSubmit={submit} noValidate>
+            <div className="pl-news-row">
+              <label htmlFor="pl-email" className="sr-only">Email address</label>
+              <input id="pl-email" type="email" autoComplete="email" placeholder="Your email address" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <button type="submit" className="pl-btn">Subscribe <ArrowRight size={14} /></button>
+            </div>
+            <label className="pl-check">
+              <input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} />
+              I agree to receive travel inspiration and special offers.
+            </label>
+            {state === 'error' && <p className="pl-news-error" role="alert">Please enter a valid email and tick the box to subscribe.</p>}
+          </form>
+        )}
       </div>
+      <SketchRight />
     </section>
   );
 }
+
+/* ---------------- page ---------------- */
 
 export function Landing() {
-  const rootRef = useRef<HTMLDivElement>(null);
-  useScrollVar(rootRef);
-
   return (
-    <div ref={rootRef}>
+    <div className="pl">
       <Hero />
-      <DestinationPanels />
-      <Marquee />
-      <TourIndex />
-      <Proof />
-      <Testimonials />
-      <FinalCall />
+      <Categories />
+      <Featured />
+      <AllTours />
+      <WhyUs />
+      <Reviews />
+      <Faq />
+      <Newsletter />
     </div>
   );
 }

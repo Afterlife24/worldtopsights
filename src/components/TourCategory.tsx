@@ -1,0 +1,335 @@
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { Navigate, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { ArrowRight, BookOpen, ChevronDown, ChevronRight, Clock, Compass, Footprints, MapPin, Heart, Search, ShoppingBag, SlidersHorizontal, Star, Ticket, User, Users, Wine, X } from 'lucide-react';
+import {
+  categoryBySlug, categoryList, durationFilters, experienceTypes, formatHours, inDestination, priceFilters, sortOptions, tourPath, tours, toursIn,
+  type Category, type ExperienceType, type SortId, type Tour,
+} from '@/data/tours';
+import { destinationBySlug, destinationList, destinationPath, toursPath, type Destination } from '@/data/destinations';
+import { A } from './Chrome';
+import '@/tours.css';
+
+/** Hero used for /tours (no category picked). */
+const allCategory: Omit<Category, 'slug' | 'tile'> = {
+  label: 'All Tours', noun: 'tours', title: 'All Tours',
+  lede: 'Walking tours, food and wine, skip-the-line tickets, private guides and more, in Paris and the South of France. Every experience we offer, in one place.',
+  script: ['Toujours', 'Paris'], hero: categoryList[0].hero, heroAlt: 'A Paris street at dusk',
+};
+
+const categoryIcons = {
+  'walking-tours': Footprints, 'food-wine-tours': Wine, 'attractions-tickets': Ticket,
+  'private-tours': User, 'themed-tours': BookOpen, 'shopping-luxury': ShoppingBag,
+};
+
+type Filters = { q: string; duration: string[]; types: ExperienceType[]; price: string[] };
+const emptyFilters: Filters = { q: '', duration: [], types: [], price: [] };
+
+const toggle = <T,>(list: T[], value: T) => (list.includes(value) ? list.filter((v) => v !== value) : [...list, value]);
+
+function applyFilters(list: Tour[], f: Filters, sort: SortId) {
+  const q = f.q.trim().toLowerCase();
+  const durations = durationFilters.filter((d) => f.duration.includes(d.id));
+  const prices = priceFilters.filter((p) => f.price.includes(p.id));
+  const out = list.filter((t) =>
+    (!q || `${t.title} ${t.text}`.toLowerCase().includes(q))
+    && (!durations.length || durations.some((d) => d.test(t.hours)))
+    && (!prices.length || prices.some((p) => p.test(t.price)))
+    && (!f.types.length || f.types.some((type) => t.types.includes(type))));
+  const by: Record<SortId, (a: Tour, b: Tour) => number> = {
+    recommended: (a, b) => Number(!!b.featured) - Number(!!a.featured) || b.reviews - a.reviews,
+    'price-asc': (a, b) => a.price - b.price,
+    'price-desc': (a, b) => b.price - a.price,
+    rating: (a, b) => b.rating - a.rating || b.reviews - a.reviews,
+    duration: (a, b) => a.hours - b.hours,
+  };
+  return [...out].sort(by[sort]);
+}
+
+const groupLabel = (t: Tour) => (t.types.includes('Private') ? 'Private' : 'Small group');
+
+function Meta({ tour }: { tour: Tour }) {
+  return (
+    <p className="tp-meta">
+      <span><Clock size={13} className="tp-ic" /> {formatHours(tour.hours)}</span>
+      <span><Star size={13} className="tp-ic" fill="currentColor" strokeWidth={0} /> {tour.rating.toFixed(1)} ({tour.reviews.toLocaleString('en')})</span>
+      <span>{tour.types.includes('Private') ? <User size={13} /> : <Users size={13} />} {groupLabel(tour)}</span>
+    </p>
+  );
+}
+
+/* ---------------- sidebar ---------------- */
+
+function CheckGroup({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <fieldset className="tp-group">
+      <legend>{title}</legend>
+      {children}
+    </fieldset>
+  );
+}
+
+function Check({ label, checked, onChange }: { label: string; checked: boolean; onChange: () => void }) {
+  return (
+    <label className="tp-check">
+      <input type="checkbox" checked={checked} onChange={onChange} />
+      <span>{label}</span>
+    </label>
+  );
+}
+
+function Sidebar({ category, dest, filters, setFilters, open, onClose, searchRef }: {
+  category?: Category; dest?: Destination; filters: Filters; setFilters: (f: Filters) => void; open: boolean; onClose: () => void; searchRef: React.RefObject<HTMLInputElement>;
+}) {
+  const navigate = useNavigate();
+  const noun = category?.noun ?? (dest ? `${dest.name} tours` : 'tours');
+  // Each dropdown counts tours within the other dropdown's current choice.
+  const inDest = tours.filter((t) => inDestination(t, dest?.slug));
+  const inCat = toursIn(category?.slug);
+  const catCount = (slug: string) => inDest.filter((t) => t.category === slug).length;
+  const destCount = (d: Destination) => inCat.filter((t) => inDestination(t, d.slug)).length;
+
+  return (
+    <aside className={`tp-side ${open ? 'is-open' : ''}`} aria-label="Refine your search">
+      <div className="tp-side-head">
+        <h2>Refine Your Search</h2>
+        <button type="button" className="tp-clear" onClick={() => setFilters(emptyFilters)}>Clear All</button>
+        <button type="button" className="tp-side-close" aria-label="Close filters" onClick={onClose}><X size={18} /></button>
+      </div>
+
+      <div className="tp-group">
+        <label className="tp-label" htmlFor="search">Search Tours</label>
+        <div className="tp-search">
+          <input
+            ref={searchRef}
+            id="search"
+            type="search"
+            placeholder={`Search ${noun}…`}
+            value={filters.q}
+            onChange={(e) => setFilters({ ...filters, q: e.target.value })}
+          />
+          <Search size={15} aria-hidden="true" />
+        </div>
+      </div>
+
+      <div className="tp-group">
+        <label className="tp-label" htmlFor="tp-dest">Destination</label>
+        <div className="tp-select">
+          <select id="tp-dest" value={dest?.slug ?? ''} onChange={(e) => navigate(toursPath(destinationBySlug(e.target.value)?.slug, category?.slug))}>
+            <option value="">All destinations ({inCat.length})</option>
+            {destinationList.map((d) => <option key={d.slug} value={d.slug}>{d.parent ? '— ' : ''}{d.name} ({destCount(d)})</option>)}
+          </select>
+          <ChevronDown size={14} aria-hidden="true" />
+        </div>
+      </div>
+
+      <div className="tp-group">
+        <label className="tp-label" htmlFor="tp-cat">Category</label>
+        <div className="tp-select">
+          <select id="tp-cat" value={category?.slug ?? ''} onChange={(e) => navigate(toursPath(dest?.slug, e.target.value || undefined))}>
+            <option value="">All categories ({inDest.length})</option>
+            {categoryList.map((c) => <option key={c.slug} value={c.slug}>{c.label} ({catCount(c.slug)})</option>)}
+          </select>
+          <ChevronDown size={14} aria-hidden="true" />
+        </div>
+      </div>
+
+      <CheckGroup title="Duration">
+        {durationFilters.map((d) => (
+          <Check key={d.id} label={d.label} checked={filters.duration.includes(d.id)} onChange={() => setFilters({ ...filters, duration: toggle(filters.duration, d.id) })} />
+        ))}
+      </CheckGroup>
+      <CheckGroup title="Experience Type">
+        {experienceTypes.map((t) => (
+          <Check key={t} label={t} checked={filters.types.includes(t)} onChange={() => setFilters({ ...filters, types: toggle(filters.types, t) })} />
+        ))}
+      </CheckGroup>
+      <CheckGroup title="Price">
+        {priceFilters.map((p) => (
+          <Check key={p.id} label={p.label} checked={filters.price.includes(p.id)} onChange={() => setFilters({ ...filters, price: toggle(filters.price, p.id) })} />
+        ))}
+      </CheckGroup>
+
+      <button type="button" className="pl-btn tp-side-done" onClick={onClose}>Show results</button>
+    </aside>
+  );
+}
+
+/* ---------------- cards ---------------- */
+
+function FeaturedCard({ tour }: { tour: Tour }) {
+  return (
+    <article className="tp-fcard">
+      <img src={tour.image} alt="" loading="lazy" />
+      <div className="tp-fcard-body">
+        <div>
+          <h3><A to={tourPath(tour)}>{tour.title}</A></h3>
+          <Meta tour={tour} />
+        </div>
+        <A to={tourPath(tour)} className="tp-go" aria-label={`View tour: ${tour.title}`}><ArrowRight size={16} /></A>
+      </div>
+    </article>
+  );
+}
+
+export function TourCard({ tour, saved, onSave }: { tour: Tour; saved: boolean; onSave: () => void }) {
+  return (
+    <article className="tp-card">
+      <div className="tp-card-img">
+        <img src={tour.image} alt="" loading="lazy" />
+        <button type="button" className={`tp-heart ${saved ? 'is-on' : ''}`} aria-pressed={saved} aria-label={`${saved ? 'Remove' : 'Save'} ${tour.title}`} onClick={onSave}>
+          <Heart size={14} fill={saved ? 'currentColor' : 'none'} />
+        </button>
+      </div>
+      <div className="tp-card-body">
+        <h3><A to={tourPath(tour)}>{tour.title}</A></h3>
+        <p className="tp-card-text">{tour.text}</p>
+        <Meta tour={tour} />
+        <div className="tp-card-foot">
+          <p className="pl-price"><small>From</small> €{tour.price}</p>
+          <A to={tourPath(tour)} className="pl-btn pl-btn-sm" aria-label={`View tour: ${tour.title}`}>View Tour <ArrowRight size={13} /></A>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/* ---------------- page ---------------- */
+
+export function TourCategory() {
+  const { category: slug } = useParams();
+  const { hash } = useLocation();
+  const category = categoryBySlug(slug);
+  const [params] = useSearchParams();
+  const dest = destinationBySlug(params.get('destination'));
+  const info = {
+    ...(category ?? allCategory),
+    ...(dest && !category ? { title: dest.title, lede: dest.lede, hero: dest.hero, heroAlt: dest.heroAlt, script: dest.script, noun: `${dest.name} tours` } : {}),
+    ...(dest && category ? { title: `${dest.name} ${category.label}` } : {}),
+  };
+
+  const [filters, setFilters] = useState<Filters>(emptyFilters);
+  const [sort, setSort] = useState<SortId>('recommended');
+  const [saved, setSaved] = useState<string[]>([]);
+  const [panelOpen, setPanelOpen] = useState(false);
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  const list = useMemo(() => toursIn(category?.slug).filter((t) => inDestination(t, dest?.slug)), [category, dest]);
+  const visible = useMemo(() => applyFilters(list, filters, sort), [list, filters, sort]);
+  const featured = useMemo(() => {
+    const picks = list.filter((t) => t.featured);
+    return (category ? picks : [...picks].sort((a, b) => b.reviews - a.reviews)).slice(0, 3);
+  }, [list, category]);
+  const others = categoryList.filter((c) => c.slug !== category?.slug && tours.some((t) => t.category === c.slug && inDestination(t, dest?.slug)));
+  const activeCount = filters.duration.length + filters.types.length + filters.price.length + (filters.q.trim() ? 1 : 0);
+
+  useEffect(() => {
+    document.title = `${info.title} | Paris Top Sights Tours`;
+  }, [info.title]);
+
+  // The header search icon links to "#search": focus the box.
+  useEffect(() => {
+    if (hash === '#search') searchRef.current?.focus({ preventScroll: true });
+  }, [hash]);
+
+  if (slug && !category) return <Navigate to="/tours" replace />;
+
+  const short = category ? category.label : dest ? `${dest.name} Tours` : 'Tours';
+  const Icon = category ? categoryIcons[category.slug] : dest ? MapPin : Compass;
+  const parent = destinationBySlug(dest?.parent);
+
+  return (
+    <div className="pl tp">
+      <section className="tp-hero">
+        <img className="tp-hero-img" src={info.hero} alt={info.heroAlt} />
+        <div className="pl-wrap tp-hero-inner">
+          <nav className="pl-crumbs" aria-label="Breadcrumb">
+            <A to="/">Home</A><ChevronRight size={11} />
+            {parent && <><A to={destinationPath(parent.slug)}>{parent.name}</A><ChevronRight size={11} /></>}
+            {dest && <><A to={destinationPath(dest.slug)}>{dest.name}</A><ChevronRight size={11} /></>}
+            {!dest && category && <><A to="/tours">Tours</A><ChevronRight size={11} /></>}
+            <span aria-current="page">{category ? category.label : 'All Tours'}</span>
+          </nav>
+          <h1>{info.title}</h1>
+          <p className="tp-lede">{info.lede}</p>
+          <p className="tp-count">
+            <Icon size={18} className="tp-ic" />
+            <strong>{list.length} {short}</strong>
+            {(category || dest) && <><span className="tp-sep" aria-hidden="true" /><span>Part of our <A to="/tours">{tours.length} tours</A></span></>}
+          </p>
+          <p className="tp-script" aria-hidden="true">{info.script[0]}<br /><span>{info.script[1]} <Heart size={20} strokeWidth={1.2} /></span></p>
+        </div>
+      </section>
+
+      <div className="pl-wrap tp-layout">
+        <Sidebar category={category} dest={dest} filters={filters} setFilters={setFilters} open={panelOpen} onClose={() => setPanelOpen(false)} searchRef={searchRef} />
+        {panelOpen && <button type="button" className="tp-scrim" aria-label="Close filters" onClick={() => setPanelOpen(false)} />}
+
+        <div className="tp-main">
+          {featured.length > 0 && (
+            <section className="tp-featured" aria-labelledby="tp-feat">
+              <div className="tp-head">
+                <div>
+                  <h2 id="tp-feat">Featured {category || dest ? info.title : 'Tours'}</h2>
+                  <p>Our most popular {info.noun}, chosen by travellers for their unforgettable experiences.</p>
+                </div>
+                <a href="#all" className="pl-more">View All {short} <ArrowRight size={13} /></a>
+              </div>
+              <div className="tp-fgrid">
+                {featured.map((t) => <FeaturedCard key={t.id} tour={t} />)}
+              </div>
+            </section>
+          )}
+
+          <section id="all" className="tp-all" aria-labelledby="tp-all-h">
+            <div className="tp-head tp-head-all">
+              <h2 id="tp-all-h">All {category || dest ? info.title : 'Tours'} ({visible.length})</h2>
+              <div className="tp-tools">
+                <button type="button" className="tp-filter-btn" onClick={() => setPanelOpen(true)}>
+                  <SlidersHorizontal size={15} /> Filters{activeCount ? ` (${activeCount})` : ''}
+                </button>
+                <label className="tp-sort">
+                  <span>Sort by</span>
+                  <span className="tp-select">
+                    <select value={sort} onChange={(e) => setSort(e.target.value as SortId)}>
+                      {sortOptions.map((o) => <option key={o.id} value={o.id}>{o.label}</option>)}
+                    </select>
+                    <ChevronDown size={14} aria-hidden="true" />
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <p className="sr-only" aria-live="polite">{visible.length} tours match your filters.</p>
+            {visible.length ? (
+              <div className="tp-grid">
+                {visible.map((t) => (
+                  <TourCard key={t.id} tour={t} saved={saved.includes(t.id)} onSave={() => setSaved((s) => toggle(s, t.id))} />
+                ))}
+              </div>
+            ) : (
+              <div className="tp-empty">
+                <p>No {info.noun} match these filters.</p>
+                <button type="button" className="pl-btn pl-btn-sm" onClick={() => setFilters(emptyFilters)}>Clear all filters</button>
+              </div>
+            )}
+          </section>
+        </div>
+      </div>
+
+      <section className="pl-wrap tp-others" aria-labelledby="tp-others-h">
+        <div className="tp-head">
+          <h2 id="tp-others-h">{category ? 'Explore Other Categories' : 'Browse by Category'}{dest ? ` in ${dest.name}` : ''}</h2>
+          {(category || dest) && <A to="/tours" className="pl-more">View All {tours.length} Tours <ArrowRight size={13} /></A>}
+        </div>
+        <div className={`tp-tiles ${others.length === 6 ? 'is-six' : ''}`}>
+          {others.map((c) => (
+            <A key={c.slug} to={toursPath(dest?.slug, c.slug)} className="tp-tile">
+              <img src={c.tile} alt="" loading="lazy" />
+              <span>{c.label} <ArrowRight size={13} /></span>
+            </A>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}

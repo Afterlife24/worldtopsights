@@ -1,0 +1,55 @@
+/* ==========================================================
+   DESTINATION PAGES ("dp-"). Builds on the tp- styles in tours.css.
+   ========================================================== */
+.dp-hero { height: 440px; }
+.dp-eyebrow { display: block; margin-top: 30px; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pl-gold); }
+.dp-hero h1 { margin-top: 10px; }
+.dp-cta { margin-top: 24px; }
+.dp-section { padding-top: 40px; }
+.dp-last { padding-bottom: 48px; }
+
+.dp-cats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; }
+.dp-cat { aspect-ratio: 1.9; }
+.dp-cat small { font-size: 12px; opacity: 0.85; }
+
+.dp-grid { grid-template-columns: repeat(3, 1fr); }
+.dp-more { display: flex; justify-content: center; margin-top: 24px; }
+
+.dp-feature { display: grid; grid-template-columns: 1.1fr 1fr; overflow: hidden; border: 1px solid var(--pl-line); border-radius: 4px; background: #fff; transition: box-shadow 0.25s; }
+.dp-feature:hover { box-shadow: 0 12px 28px rgba(29, 36, 51, 0.1); }
+.dp-feature img { width: 100%; height: 100%; min-height: 240px; object-fit: cover; }
+.dp-feature-body { display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 28px 34px; }
+.dp-feature-body .dp-eyebrow { margin-top: 0; }
+.dp-feature-body h2 { font-family: var(--pl-serif); font-weight: 500; font-size: 30px; }
+.dp-feature-body > span:not(.dp-eyebrow):not(.pl-more) { font-size: 14px; line-height: 1.6; color: var(--pl-text); }
+.dp-feature .pl-more { align-self: flex-start; margin-top: 4px; }
+
+.dp-about { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.dp-about h2 { font-family: var(--pl-serif); font-weight: 500; font-size: 28px; line-height: 1.2; }
+.dp-about p { margin-top: 12px; font-size: 14.5px; line-height: 1.7; color: var(--pl-text); }
+.dp-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; overflow: hidden; border: 1px solid var(--pl-line); border-radius: 4px; background: var(--pl-line); }
+.dp-facts > div { padding: 16px 18px; background: #fff; }
+.dp-facts dt { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: var(--pl-ink); }
+.dp-facts dt svg { color: var(--pl-gold); }
+.dp-facts dd { margin: 6px 0 0; font-size: 12.5px; line-height: 1.55; color: var(--pl-text); }
+
+.dp-faqs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; align-items: start; }
+
+.dp-others { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.dp-other { aspect-ratio: 2.6; }
+.dp-other span { font-size: 16px; font-family: var(--pl-serif); }
+
+@media (max-width: 1000px) {
+  .dp-grid { grid-template-columns: repeat(2, 1fr); }
+  .dp-about { grid-template-columns: 1fr; gap: 24px; }
+}
+
+@media (max-width: 720px) {
+  .dp-hero { min-height: 460px; }
+  .dp-grid, .dp-faqs, .dp-facts { grid-template-columns: 1fr; }
+  .dp-cats { grid-template-columns: repeat(2, 1fr); }
+  .dp-feature { grid-template-columns: 1fr; }
+  .dp-feature img { min-height: 0; aspect-ratio: 2; }
+  .dp-feature-body { padding: 20px; }
+  .dp-feature-body h2 { font-size: 26px; }
+}

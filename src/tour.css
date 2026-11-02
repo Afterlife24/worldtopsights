@@ -91,6 +91,32 @@
 .td-assure { display: grid; gap: 8px; margin-top: 16px; font-size: 12.5px; color: var(--pl-text); }
 .td-assure li { display: flex; align-items: center; gap: 8px; }
 .td-assure svg { color: #3F7D4E; }
+.td-child { display: flex; align-items: center; gap: 7px; margin-top: 10px; font-size: 13px; color: var(--pl-text); }
+.td-child svg { color: #3F7D4E; }
+.td-book .td-book-btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; margin-top: 16px; }
+.td-book-note { margin-top: 10px; font-size: 12px; line-height: 1.45; color: var(--pl-muted); }
+
+/* ---------- tour description and highlights ---------- */
+.td-main { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: 40px; align-items: start; padding-top: 24px; }
+.td-details { margin-top: 26px; }
+.td-hl { position: sticky; top: calc(var(--header-h) + 64px); }
+.td-hl-btn { margin-top: 16px; }
+.td-prose { margin-top: 10px; font-size: 13.5px; line-height: 1.7; color: var(--pl-text); overflow-wrap: anywhere; }
+.td-prose > * + * { margin-top: 10px; }
+.td-prose h3 { margin-top: 22px; font-family: var(--pl-serif); font-weight: 600; font-size: 19px; line-height: 1.3; color: var(--pl-ink); }
+.td-prose h4 { margin-top: 18px; font-weight: 600; font-size: 14px; color: var(--pl-ink); }
+.td-prose > :first-child { margin-top: 0; }
+.td-prose ul, .td-prose ol { padding-left: 20px; }
+.td-prose ul { list-style: disc; }
+.td-prose ol { list-style: decimal; }
+.td-prose li + li { margin-top: 4px; }
+.td-prose strong { font-weight: 600; color: var(--pl-ink); }
+.td-prose a { color: var(--pl-gold-dark); text-decoration: underline; text-underline-offset: 2px; }
+.td-bottom.td-bottom-single { grid-template-columns: 1fr; }
+@media (max-width: 960px) {
+  .td-main { grid-template-columns: 1fr; gap: 24px; }
+  .td-hl { position: static; }
+}
 
 /* ---------- tabs ---------- */
 .td-tabs { position: sticky; top: var(--header-h); z-index: 50; margin-top: 28px; border-bottom: 1px solid var(--pl-line); background: rgba(248, 244, 238, 0.97); backdrop-filter: blur(8px); }

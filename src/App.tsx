@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { SiteFooter, SiteHeader } from '@/components/Chrome';
 import { Landing } from '@/components/Landing';
 import { TourCategory } from '@/components/TourCategory';
@@ -17,6 +17,12 @@ function ScrollManager() {
   return null;
 }
 
+/** Older links of the form /tours/<category>/<tour> go to the tour's page. */
+function OldTourLink() {
+  const { tour } = useParams();
+  return <Navigate to={`/tour/${tour}`} replace />;
+}
+
 function App() {
   return (
     <BrowserRouter>
@@ -28,7 +34,8 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/tours" element={<TourCategory />} />
           <Route path="/tours/:category" element={<TourCategory />} />
-          <Route path="/tours/:category/:tour" element={<TourPage />} />
+          <Route path="/tour/:tour" element={<TourPage />} />
+          <Route path="/tours/:category/:tour" element={<OldTourLink />} />
           <Route path="/destinations/:destination" element={<DestinationPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

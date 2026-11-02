@@ -1,11 +1,14 @@
-import { landingImages as img } from './landing';
-import { southImages, type DestinationSlug } from './tours';
+import siteImages from '@/content/site-images.json';
+import type { DestinationSlug } from './tours';
 
 /*
-  One record per destination. To add a destination: add its slug to
-  DestinationSlug in tours.ts, add a record here, and tag its tours.
+  One record per destination. Photos come from src/content/site-images.json.
+  To add a destination: add its slug to DestinationSlug in tours.ts, add a
+  record here and in site-images.json, and set "destination" on its tours.
   Draft copy: review the text, tips and FAQs before going live.
 */
+
+const img = siteImages.destinations;
 
 export type Destination = {
   slug: DestinationSlug;
@@ -31,9 +34,9 @@ export const destinationList: Destination[] = [
     title: 'Paris Tours & Experiences',
     lede: 'The Eiffel Tower, the Louvre, Montmartre and the Seine. Walking tours, food and wine, skip-the-line tickets and private guides across the City of Light.',
     script: ['Toujours', 'Paris'],
-    hero: img.hero,
+    hero: img.paris.hero,
     heroAlt: 'Paris rooftops and the Eiffel Tower',
-    tile: img.destParis,
+    tile: img.paris.tile,
     about: {
       title: 'Why discover Paris with us',
       paragraphs: [
@@ -49,9 +52,9 @@ export const destinationList: Destination[] = [
     ],
     faqs: [
       { q: 'Do I need to book Paris tours in advance?', a: 'Yes, especially from April to October. Small-group tours and skip-the-line tickets often sell out a few days ahead.' },
-      { q: 'Which tour is best for a first visit?', a: 'The Paris Highlights Walking Tour or the Eiffel Tower Summit & Seine River Cruise give you the classic sights in one go.' },
-      { q: 'Are the tours suitable for children?', a: 'Many are. Look for the Family Friendly filter on the tours page.' },
-      { q: 'Can I book a private guide?', a: 'Yes. All Private Tours are just for your group, and we can plan a custom route with you.' },
+      { q: 'Which tour is best for a first visit?', a: 'See 30+ Paris Sights – Fun Local Guide shows you the classic sights in one day. If you have less time, try See 15+ or See 10+ Top Paris Sights.' },
+      { q: 'Are the tours suitable for children?', a: 'Many are, and on several tours kids go free. Each tour page shows the child price where there is one.' },
+      { q: 'Can I book a private guide?', a: 'Yes. Contact us and we can plan a private tour around your interests.' },
     ],
   },
   {
@@ -61,9 +64,9 @@ export const destinationList: Destination[] = [
     title: 'South of France Tours',
     lede: 'Nice, Monaco, the hill villages of the Riviera and the lavender fields of Provence. Food and wine, day trips and private tours under the southern sun.',
     script: ['Bienvenue', 'dans le Sud'],
-    hero: southImages.lavender,
+    hero: img['south-of-france'].hero,
     heroAlt: 'A lavender field in Provence at sunset',
-    tile: img.destSouth,
+    tile: img['south-of-france'].tile,
     about: {
       title: 'Why discover the South of France with us',
       paragraphs: [
@@ -81,7 +84,6 @@ export const destinationList: Destination[] = [
       { q: 'Where do South of France tours start?', a: 'Riviera tours start in Nice. Provence tours start in Avignon or Aix-en-Provence. Each tour page shows the exact meeting point.' },
       { q: 'When can I see the lavender in bloom?', a: 'Usually from late June to early August. The Lavender Fields tour runs only in that season.' },
       { q: 'Can I visit Monaco and Provence on the same trip?', a: 'Yes, but they are about three hours apart. We suggest a few nights in Nice and a few in Avignon or Aix.' },
-      { q: 'Do wine tours include transport?', a: 'Yes. All our wine tours include transport between estates, so nobody has to drive.' },
     ],
   },
   {
@@ -92,9 +94,9 @@ export const destinationList: Destination[] = [
     title: 'Galeries Lafayette Experiences',
     lede: 'Personal shoppers, VIP salons, the art nouveau dome, the rooftop view and the gourmet food hall of Paris’s most famous department store.',
     script: ['Très', 'chic'],
-    hero: img.destLafayette,
+    hero: img['galeries-lafayette'].hero,
     heroAlt: 'The glass dome of Galeries Lafayette',
-    tile: img.destLafayette,
+    tile: img['galeries-lafayette'].tile,
     about: {
       title: 'Why discover Galeries Lafayette with us',
       paragraphs: [
@@ -111,7 +113,7 @@ export const destinationList: Destination[] = [
     faqs: [
       { q: 'Is the rooftop free?', a: 'Yes. The rooftop terrace is free to visit. Our Dome & Rooftop tour adds the history and the best photo spots.' },
       { q: 'Do I have to buy anything on a personal shopping tour?', a: 'No. Your stylist helps you find pieces you love, but there is no minimum spend.' },
-      { q: 'Can I combine shopping with a Paris tour?', a: 'Yes. Many guests pair it with the Golden Triangle Luxury Shopping Tour or a private Paris tour.' },
+      { q: 'Can I combine shopping with a Paris tour?', a: 'Yes. Paris Luxury: Galeries Lafayette, Perfume Making & Alain Ducasse and Paris Grand Tour: 30+ Sights, Opera & Rooftop Champagne both include Galeries Lafayette.' },
       { q: 'Is it busy?', a: 'Weekends and December are the busiest. Weekday mornings are the calmest time to visit.' },
     ],
   },

@@ -1,0 +1,72 @@
+[
+  {
+    "slug": "paris-walking-tours",
+    "label": "Paris Walking Tours",
+    "title": "Paris Walking Tours",
+    "lede": "See the landmarks, neighbourhoods and hidden corners of Paris on foot and by metro, with fun local guides who bring every street to life.",
+    "script": ["Explore", "Paris on foot"],
+    "hero": "https://images.unsplash.com/photo-1471623432079-b009d30b6729?w=1800&q=75&auto=format&fit=crop",
+    "heroAlt": "A Paris street at dusk",
+    "tile": "https://images.unsplash.com/photo-1503917988258-f87a78e3c995?w=900&q=75&auto=format&fit=crop"
+  },
+  {
+    "slug": "paris-food-tours",
+    "label": "Paris Food Tours",
+    "title": "Paris Food Tours",
+    "lede": "French wine, cheese, pastries and chocolate, from tasting rooms and masterclasses to sightseeing tours that end at the table.",
+    "script": ["Bon", "appétit"],
+    "hero": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=75&auto=format&fit=crop",
+    "heroAlt": "A table set with French dishes and wine",
+    "tile": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=900&q=75&auto=format&fit=crop"
+  },
+  {
+    "slug": "paris-attraction-tickets",
+    "label": "Paris Attraction Tickets",
+    "title": "Paris Attraction Tickets",
+    "lede": "Tours that include your tickets for the Louvre, the Arc de Triomphe, the Opéra Garnier, Paris museums and more.",
+    "script": ["Skip", "the line"],
+    "hero": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1800&q=75&auto=format&fit=crop",
+    "heroAlt": "The Eiffel Tower over the Seine",
+    "tile": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Louvre_Museum_Wikimedia_Commons.jpg/1280px-Louvre_Museum_Wikimedia_Commons.jpg"
+  },
+  {
+    "slug": "paris-themed-tours",
+    "label": "Paris Themed Tours",
+    "title": "Paris Themed Tours",
+    "lede": "Harry Potter, perfume, opera, art and history. Tours that follow one story through the city.",
+    "script": ["Every street", "tells a story"],
+    "hero": "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1800&q=75&auto=format&fit=crop",
+    "heroAlt": "Pont Alexandre III at dusk",
+    "tile": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Le_sacre_coeur.jpg/1280px-Le_sacre_coeur.jpg"
+  },
+  {
+    "slug": "private-paris-tours",
+    "label": "Private Paris Tours",
+    "title": "Private Paris Tours",
+    "lede": "We understand that each traveller has unique preferences, so we offer customizable private tours tailored to your specific interests. Whether you want to focus on photography, fashion, literature, or any other aspect of Parisian culture, our team will curate an unforgettable experience just for you.",
+    "script": ["Just", "for you"],
+    "hero": "https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?w=1800&q=75&auto=format&fit=crop",
+    "heroAlt": "A Paris street leading to the Eiffel Tower",
+    "tile": "https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?w=900&q=75&auto=format&fit=crop"
+  },
+  {
+    "slug": "paris-tour-packages-with-attraction-tickets",
+    "label": "Paris Tour Packages with Attraction Tickets",
+    "title": "Paris Tour Packages with Attraction Tickets",
+    "lede": "See 30+ Paris sights with a local guide, then visit the museum, monument or experience of your choice with the ticket included.",
+    "script": ["All in", "one day"],
+    "hero": "https://images.unsplash.com/photo-1509439581779-6298f75bf6e5?w=1800&q=75&auto=format&fit=crop",
+    "heroAlt": "The Arc de Triomphe",
+    "tile": "https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=900&q=75&auto=format&fit=crop"
+  },
+  {
+    "slug": "beyond-paris",
+    "label": "Beyond Paris",
+    "title": "Beyond Paris",
+    "lede": "Tours that go beyond the classic sights, with extra visits to add to your day in Paris.",
+    "script": ["Beyond", "the classics"],
+    "hero": "https://images.unsplash.com/photo-1550340499-a6c60fc8287c?w=1800&q=75&auto=format&fit=crop",
+    "heroAlt": "Paris rooftops and the Eiffel Tower",
+    "tile": "https://images.unsplash.com/photo-1550340499-a6c60fc8287c?w=900&q=75&auto=format&fit=crop"
+  }
+]

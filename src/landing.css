@@ -154,6 +154,8 @@
 
 /* ---------- categories ---------- */
 .pl-cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.pl-cats.is-seven { grid-template-columns: repeat(4, 1fr); } /* 7 categories: rows of 4 + 3 */
+@media (max-width: 1000px) { .pl-cats.is-seven { grid-template-columns: repeat(3, 1fr); } }
 .pl-cat { position: relative; aspect-ratio: 1.88; overflow: hidden; border-radius: 4px; background: var(--pl-band); }
 .pl-cat img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .pl-cat::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(10, 12, 20, 0.62)); }
@@ -175,7 +177,7 @@
 .pl-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 8px; color: var(--pl-muted); font-size: 12px; }
 .pl-meta span { display: inline-flex; align-items: center; gap: 5px; }
 .pl-star { color: var(--pl-star); }
-.pl-card-text { margin-top: 12px; color: var(--pl-muted); font-size: 12.5px; line-height: 1.55; }
+.pl-card-text { margin-top: 12px; color: var(--pl-muted); font-size: 12.5px; line-height: 1.55; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; }
 .pl-card-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: auto; padding-top: 18px; }
 .pl-price { font-size: 19px; font-weight: 600; color: var(--pl-ink); }
 .pl-price small { margin-right: 2px; font-size: 12px; font-weight: 400; color: var(--pl-text); }
@@ -330,7 +332,7 @@
   .pl-section { padding-top: 44px; }
   .pl-head { flex-direction: column; align-items: flex-start; gap: 6px; }
   .pl-head h2 { font-size: 28px; }
-  .pl-cats { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pl-cats, .pl-cats.is-seven { grid-template-columns: 1fr 1fr; gap: 12px; }
   .pl-cat span { left: 12px; bottom: 10px; font-size: 13px; }
   .pl-grid4 { gap: 14px; }
   .pl-review-card { grid-template-columns: 1fr; }
@@ -351,7 +353,7 @@
   .pl-logo small { display: none; }
   .pl-grid4, .pl-reasons { grid-template-columns: 1fr; }
   .pl-reason + .pl-reason { border-left: 0; border-top: 1px solid var(--pl-line); padding-top: 24px; }
-  .pl-cats { grid-template-columns: 1fr; }
+  .pl-cats, .pl-cats.is-seven { grid-template-columns: 1fr; }
   .pl-more-band { flex-direction: column; text-align: center; }
 }
 

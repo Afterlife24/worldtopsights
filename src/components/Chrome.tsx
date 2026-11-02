@@ -5,11 +5,14 @@ import { BOOKING, footerCols, landingNav, photoCredits, type NavItem } from '@/d
 import { useLockBody } from '@/hooks/useLockBody';
 import '@/landing.css';
 
-/** One link component: "/..." uses the router, "#..." scrolls, "http..." opens a new tab. */
-export function A({ to, children, ...rest }: { to: string } & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>) {
+/**
+ * One link component: "/..." uses the router, "#..." scrolls, "http..." opens a new tab.
+ * Pass sameTab to open an outside link (e.g. the Rezdy booking page) in the same tab.
+ */
+export function A({ to, children, sameTab = false, ...rest }: { to: string; sameTab?: boolean } & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>) {
   if (to.startsWith('/')) return <Link to={to} {...rest}>{children}</Link>;
-  const external = /^https?:/.test(to);
-  return <a href={to} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} {...rest}>{children}</a>;
+  const newTab = /^https?:/.test(to) && !sameTab;
+  return <a href={to} {...(newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {})} {...rest}>{children}</a>;
 }
 
 export function EiffelMark({ className = '' }: { className?: string }) {

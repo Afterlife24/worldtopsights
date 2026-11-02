@@ -1,20 +1,26 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Clock, Gem, Heart, Minus, Plus, Star, Users } from 'lucide-react';
-import { allTours, categories, destinationCards, faqs, featured, landingImages, reasons, reviews, type LandingTour } from '@/data/landing';
-import { tours } from '@/data/tours';
+import { destinationCards, faqs, reasons, reviews, siteImages } from '@/data/landing';
+import { byPopularity, formatHours, mainImage, topTours, tourPath, tours, usedCategories, type Tour } from '@/data/tours';
+import { toursPath } from '@/data/destinations';
 import { A } from './Chrome';
 import '@/landing.css';
 
 /* ---------------- shared bits ---------------- */
 
-function Rating({ tour }: { tour: LandingTour }) {
+function Rating({ tour }: { tour: Tour }) {
   return (
     <p className="pl-meta">
-      <span><Star size={12} className="pl-star" fill="currentColor" strokeWidth={0} /> {tour.rating} ({tour.reviews})</span>
-      <span><Clock size={12} /> {tour.duration}</span>
+      <span><Star size={12} className="pl-star" fill="currentColor" strokeWidth={0} /> {tour.rating.toFixed(1)} ({tour.reviews.toLocaleString('en')})</span>
+      {tour.duration !== null && <span><Clock size={12} /> {formatHours(tour.duration)}</span>}
     </p>
   );
 }
+
+/** Real Paris tours only (no demo tours) for the home page lists. */
+const parisTours = tours.filter((t) => t.destination === 'paris' && !t.demo);
+const homeTop = topTours().filter((t) => !t.demo).slice(0, 4);
+const homeMore = [...parisTours].filter((t) => !homeTop.includes(t)).sort(byPopularity).slice(0, 4);
 
 function SectionTitle({ title, link }: { title: string; link?: { label: string; to: string } }) {
   return (
@@ -31,7 +37,7 @@ function Hero() {
   return (
     <section id="top" className="ph">
       <div className="ph-top">
-      <img className="ph-img" src={landingImages.heroSeine} alt="The Eiffel Tower and a bridge over the Seine" fetchPriority="high" />
+      <img className="ph-img" src={siteImages.homeHero} alt="The Eiffel Tower and a bridge over the Seine" fetchPriority="high" />
       <div className="pl-wrap ph-inner">
         <p className="ph-eyebrow">Iconic places. Authentic experiences.</p>
         <h1>Discover France,<br />Beyond the Ordinary</h1>
@@ -65,10 +71,10 @@ function Categories() {
         <h2>Browse by Category</h2>
         <p className="pl-head-note">Find the perfect Paris experience for your interests.</p>
       </div>
-      <div className="pl-cats">
-        {categories.map((cat) => (
-          <A key={cat.label} to={cat.to} className="pl-cat">
-            <img src={cat.image} alt="" loading="lazy" />
+      <div className={`pl-cats ${usedCategories('paris').length === 7 ? 'is-seven' : ''}`}>
+        {usedCategories('paris').map((cat) => (
+          <A key={cat.slug} to={toursPath('paris', cat.slug)} className="pl-cat">
+            <img src={cat.tile} alt="" loading="lazy" />
             <span>{cat.label} <ArrowRight size={15} /></span>
           </A>
         ))}
@@ -79,32 +85,34 @@ function Categories() {
 
 /* ---------------- tour cards ---------------- */
 
-function FeaturedCard({ tour }: { tour: LandingTour }) {
+function TopCard({ tour }: { tour: Tour }) {
+  const to = tourPath(tour);
   return (
     <article className="pl-card">
-      <A to={tour.to} className="pl-card-img" tabIndex={-1} aria-hidden="true">
-        <img src={tour.image} alt="" loading="lazy" />
-        {tour.badge && <span className="pl-badge">{tour.badge}</span>}
+      <A to={to} className="pl-card-img" tabIndex={-1} aria-hidden="true">
+        <img src={mainImage(tour)} alt="" loading="lazy" />
+        <span className="pl-badge">Top Tour</span>
       </A>
       <div className="pl-card-body">
-        <h3><A to={tour.to}>{tour.title[0]}<br />{tour.title[1]}</A></h3>
+        <h3><A to={to}>{tour.title}</A></h3>
         <Rating tour={tour} />
-        <p className="pl-card-text">{tour.text}</p>
+        <p className="pl-card-text">{tour.summary}</p>
         <div className="pl-card-foot">
-          <p className="pl-price"><small>From</small> {tour.price}</p>
-          <A to={tour.to} className="pl-btn pl-btn-sm" aria-label={`View tour: ${tour.title.join(' ')}`}>View Tour <ArrowRight size={13} /></A>
+          <p className="pl-price"><small>From</small> €{tour.price}</p>
+          <A to={to} className="pl-btn pl-btn-sm" aria-label={`View tour: ${tour.title}`}>View Tour <ArrowRight size={13} /></A>
         </div>
       </div>
     </article>
   );
 }
 
-function Featured() {
+function TopTours() {
+  if (!homeTop.length) return null;
   return (
-    <section className="pl-wrap pl-section pl-featured">
-      <SectionTitle title="Featured Paris Experiences" link={{ label: 'View All Paris Tours', to: '/tours' }} />
+    <section id="top-tours" className="pl-wrap pl-section pl-featured">
+      <SectionTitle title="Top Paris Tours" link={{ label: 'View All Paris Tours', to: toursPath('paris') }} />
       <div className="pl-grid4">
-        {featured.map((tour) => <FeaturedCard key={tour.title.join()} tour={tour} />)}
+        {homeTop.map((tour) => <TopCard key={tour.slug} tour={tour} />)}
       </div>
     </section>
   );
@@ -113,26 +121,28 @@ function Featured() {
 function AllTours() {
   return (
     <section id="tours" className="pl-wrap pl-section">
-      <SectionTitle title={`All Paris Tours (${tours.length})`} link={{ label: `Browse All ${tours.length} Paris Tours`, to: '/tours' }} />
+      <SectionTitle title={`All Paris Tours (${parisTours.length})`} link={{ label: `Browse All ${parisTours.length} Paris Tours`, to: toursPath('paris') }} />
       <div className="pl-grid4">
-        {allTours.map((tour) => (
-          <A key={tour.title.join()} to={tour.to} className="pl-card pl-card-mini">
-            <span className="pl-card-img"><img src={tour.image} alt="" loading="lazy" /></span>
+        {homeMore.map((tour) => (
+          <A key={tour.slug} to={tourPath(tour)} className="pl-card pl-card-mini">
+            <span className="pl-card-img"><img src={mainImage(tour)} alt="" loading="lazy" /></span>
             <span className="pl-card-body">
-              <h3>{tour.title[0]}<br />{tour.title[1]}</h3>
+              <h3>{tour.title}</h3>
               <Rating tour={tour} />
               <span className="pl-card-foot">
-                <span className="pl-price"><small>From</small> {tour.price}</span>
+                <span className="pl-price"><small>From</small> €{tour.price}</span>
                 <ArrowRight size={14} className="pl-card-arrow" />
               </span>
             </span>
           </A>
         ))}
       </div>
-      <div className="pl-more-band">
-        <p>And {tours.length - allTours.length} more incredible tours waiting for you…</p>
-        <A to="/tours" className="pl-btn">Browse All Paris Tours <ArrowRight size={15} /></A>
-      </div>
+      {parisTours.length > homeTop.length + homeMore.length && (
+        <div className="pl-more-band">
+          <p>And {parisTours.length - homeTop.length - homeMore.length} more incredible tours waiting for you…</p>
+          <A to={toursPath('paris')} className="pl-btn">Browse All Paris Tours <ArrowRight size={15} /></A>
+        </div>
+      )}
     </section>
   );
 }
@@ -302,7 +312,7 @@ export function Landing() {
     <div className="pl">
       <Hero />
       <Categories />
-      <Featured />
+      <TopTours />
       <AllTours />
       <WhyUs />
       <Reviews />

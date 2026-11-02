@@ -1,0 +1,22 @@
+{
+  "homeHero": "/site-images/home-hero.png",
+  "destinations": {
+    "paris": {
+      "hero": "https://images.unsplash.com/photo-1550340499-a6c60fc8287c?w=2000&q=75&auto=format&fit=crop",
+      "tile": "https://images.unsplash.com/photo-1431274172761-fca41d930114?w=700&q=75&auto=format&fit=crop"
+    },
+    "south-of-france": {
+      "hero": "https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=1800&q=75&auto=format&fit=crop",
+      "tile": "https://images.pexels.com/photos/105950/pexels-photo-105950.jpeg?auto=compress&cs=tinysrgb&w=900"
+    },
+    "galeries-lafayette": {
+      "hero": "https://images.pexels.com/photos/37392050/pexels-photo-37392050.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "tile": "https://images.pexels.com/photos/37392050/pexels-photo-37392050.jpeg?auto=compress&cs=tinysrgb&w=1600"
+    }
+  },
+  "homeReviews": [
+    "https://images.unsplash.com/photo-1431274172761-fca41d930114?w=1200&q=75&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=1200&q=75&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1550340499-a6c60fc8287c?w=1200&q=75&auto=format&fit=crop"
+  ]
+}

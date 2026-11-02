@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { ArrowRight, ChevronDown, ChevronRight, Heart, MapPin } from 'lucide-react';
-import { categoryList, inDestination, tours } from '@/data/tours';
+import { byPopularity, inDestination, tours, usedCategories } from '@/data/tours';
 import { destinationBySlug, destinationList, destinationPath, toursPath } from '@/data/destinations';
 import { A } from './Chrome';
 import { TourCard } from './TourCategory';
@@ -17,14 +17,11 @@ export function DestinationPage() {
   const [saved, setSaved] = useState<string[]>([]);
 
   const list = useMemo(() => tours.filter((t) => inDestination(t, dest?.slug)), [dest]);
-  const featured = useMemo(
-    () => [...list].sort((a, b) => Number(!!b.featured) - Number(!!a.featured) || b.reviews - a.reviews).slice(0, 6),
-    [list],
-  );
+  const featured = useMemo(() => [...list].sort(byPopularity).slice(0, 6), [list]);
   // Only categories that have tours here.
   const cats = useMemo(
-    () => categoryList.map((c) => ({ ...c, count: list.filter((t) => t.category === c.slug).length })).filter((c) => c.count > 0),
-    [list],
+    () => (dest ? usedCategories(dest.slug).map((c) => ({ ...c, count: list.filter((t) => t.categories.includes(c.slug)).length })) : []),
+    [list, dest],
   );
 
   useEffect(() => {
@@ -54,11 +51,11 @@ export function DestinationPage() {
         </div>
       </section>
 
-      <section className="pl-wrap dp-section" aria-labelledby="dp-cats">
+      {cats.length > 0 && <section className="pl-wrap dp-section" aria-labelledby="dp-cats">
         <div className="tp-head">
           <div>
             <h2 id="dp-cats">Explore by Category</h2>
-            <p>Every kind of {dest.name} experience, from walking tours to private guides.</p>
+            <p>Every kind of {dest.name} experience, from walking tours to food and attraction tickets.</p>
           </div>
         </div>
         <div className="dp-cats">
@@ -69,7 +66,7 @@ export function DestinationPage() {
             </A>
           ))}
         </div>
-      </section>
+      </section>}
 
       <section className="pl-wrap dp-section" aria-labelledby="dp-feat">
         <div className="tp-head">
@@ -80,7 +77,7 @@ export function DestinationPage() {
           <A to={toursPath(dest.slug)} className="pl-more">View All {list.length} Tours <ArrowRight size={13} /></A>
         </div>
         <div className="tp-grid dp-grid">
-          {featured.map((t) => <TourCard key={t.id} tour={t} saved={saved.includes(t.id)} onSave={() => setSaved((s) => toggle(s, t.id))} />)}
+          {featured.map((t) => <TourCard key={t.slug} tour={t} saved={saved.includes(t.slug)} onSave={() => setSaved((s) => toggle(s, t.slug))} />)}
         </div>
         <div className="dp-more">
           <A to={toursPath(dest.slug)} className="pl-btn">Browse All {dest.name} Tours <ArrowRight size={15} /></A>

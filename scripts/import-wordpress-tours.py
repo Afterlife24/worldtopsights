@@ -31,6 +31,7 @@ PHOTO_URL = '/tours/photos'
 MAX_SIDE = 1400  # px, longest side
 QUALITY = 72     # JPEG quality
 BOOKING_SITE = 'https://www.paristopsightstours.com/'
+TRIPADVISOR_LOGO = '/site-images/tripadvisor-logo.png'
 
 # WordPress tour categories, in the order the website lists them.
 CATEGORY_ORDER = [
@@ -71,6 +72,11 @@ class Cleaner(HTMLParser):
         if tag == 'br':
             self.out.append('<br>')
             return
+        if tag == 'img':
+            # Keep only the TripAdvisor logo (the old site's clickable "reviews" badge), as a local file.
+            if 'tripadvisor_logo' in (dict(attrs).get('src') or '').lower():
+                self.out.append(f'<img src="{TRIPADVISOR_LOGO}" alt="Read our reviews on TripAdvisor" class="td-ta-logo">')
+            return
         t = self.MAP.get(tag)
         self.stack.append(t)
         if not t:
@@ -106,6 +112,7 @@ def clean_html(raw):
     s = ''.join(c.out)
     s = re.sub(r'[ \t\r\n]+', ' ', s)
     s = re.sub(r'\s*<br>\s*(?=</(p|li|h3|h4)>)', '', s)          # trailing <br> in a block
+    s = re.sub(r'<a [^>]*>\s*</a>', '', s)                        # links with nothing to click
     for _ in range(4):                                            # empty tags, nested empties
         s = re.sub(r'<(p|h3|h4|li|strong|em|ul|ol)>(\s|<br>)*</\1>', '', s)
     s = re.sub(r'\s*(</?(p|h3|h4|ul|ol|li)>)\s*', r'\1', s)
@@ -178,7 +185,9 @@ def download(url, dest):
         return True
     time.sleep(0.2)
     try:
-        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (worldtopsights photo import)'})
+        # Encode characters such as "©" or "é" in the file name, keeping the URL structure.
+        safe_url = urllib.parse.quote(url, safe=':/?&=%#')
+        req = urllib.request.Request(safe_url, headers={'User-Agent': 'Mozilla/5.0 (worldtopsights photo import)'})
         with urllib.request.urlopen(req, timeout=60) as r, tempfile.NamedTemporaryFile(suffix=Path(url).suffix, delete=False) as f:
             f.write(r.read())
             tmp = Path(f.name)

@@ -363,6 +363,13 @@ def main():
         t['categories'] = list(dict.fromkeys(slugify(c) for c in t['categories']))
 
     tours = keep + new
+    # a category photo that no longer exists (its tour was removed): use a photo of one of its tours
+    for c in old_cats.values():
+        if c['tile'].startswith('/') and not (ROOT / 'public' / c['tile'].lstrip('/')).exists():
+            pick = next((t for t in sorted(tours, key=lambda t: not t['topTour']) if c['slug'] in [slugify(x) for x in t['categories']] and t['images']), None)
+            if pick:
+                c['hero'] = c['tile'] = pick['images'][0]
+                c['heroAlt'] = pick['title']
     # categories in use, most tours first
     count = lambda s: sum(s in t['categories'] for t in tours)
     cats = sorted((c for c in old_cats.values() if count(c['slug'])), key=lambda c: -count(c['slug']))

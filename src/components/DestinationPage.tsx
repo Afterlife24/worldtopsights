@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { ArrowRight, ChevronDown, ChevronRight, Heart, MapPin } from 'lucide-react';
 import { byPopularity, inDestination, tours, usedCategories } from '@/data/tours';
@@ -9,12 +9,9 @@ import '@/tours.css';
 import '@/tour.css';
 import '@/destinations.css';
 
-const toggle = (list: string[], id: string) => (list.includes(id) ? list.filter((v) => v !== id) : [...list, id]);
-
 export function DestinationPage() {
   const { destination: slug } = useParams();
   const dest = destinationBySlug(slug);
-  const [saved, setSaved] = useState<string[]>([]);
 
   const list = useMemo(() => tours.filter((t) => inDestination(t, dest?.slug)), [dest]);
   const featured = useMemo(() => [...list].sort(byPopularity).slice(0, 6), [list]);
@@ -77,7 +74,7 @@ export function DestinationPage() {
           <A to={toursPath(dest.slug)} className="pl-more">View All {list.length} Tours <ArrowRight size={13} /></A>
         </div>
         <div className="tp-grid dp-grid">
-          {featured.map((t) => <TourCard key={t.slug} tour={t} saved={saved.includes(t.slug)} onSave={() => setSaved((s) => toggle(s, t.slug))} />)}
+          {featured.map((t) => <TourCard key={t.slug} tour={t} />)}
         </div>
         <div className="dp-more">
           <A to={toursPath(dest.slug)} className="pl-btn">Browse All {dest.name} Tours <ArrowRight size={15} /></A>

@@ -176,14 +176,11 @@ function TopCard({ tour }: { tour: Tour }) {
   );
 }
 
-export function TourCard({ tour, saved, onSave }: { tour: Tour; saved: boolean; onSave: () => void }) {
+export function TourCard({ tour }: { tour: Tour }) {
   return (
     <article className="tp-card">
       <div className="tp-card-img">
         <img src={mainImage(tour)} alt="" loading="lazy" />
-        <button type="button" className={`tp-heart ${saved ? 'is-on' : ''}`} aria-pressed={saved} aria-label={`${saved ? 'Remove' : 'Save'} ${tour.title}`} onClick={onSave}>
-          <Heart size={14} fill={saved ? 'currentColor' : 'none'} />
-        </button>
       </div>
       <div className="tp-card-body">
         <h3><A to={tourPath(tour)}>{tour.title}</A></h3>
@@ -215,7 +212,6 @@ export function TourCategory() {
 
   const [filters, setFilters] = useState<Filters>(emptyFilters);
   const [sort, setSort] = useState<SortId>('recommended');
-  const [saved, setSaved] = useState<string[]>([]);
   const [panelOpen, setPanelOpen] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -306,7 +302,7 @@ export function TourCategory() {
             {visible.length ? (
               <div className="tp-grid">
                 {visible.map((t) => (
-                  <TourCard key={t.slug} tour={t} saved={saved.includes(t.slug)} onSave={() => setSaved((s) => toggle(s, t.slug))} />
+                  <TourCard key={t.slug} tour={t} />
                 ))}
               </div>
             ) : (

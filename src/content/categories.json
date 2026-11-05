@@ -1,72 +1,80 @@
 [
   {
-    "slug": "paris-walking-tours",
-    "label": "Paris Walking Tours",
-    "title": "Paris Walking Tours",
-    "lede": "See the landmarks, neighbourhoods and hidden corners of Paris on foot and by metro, with fun local guides who bring every street to life.",
-    "script": ["Explore", "Paris on foot"],
-    "hero": "https://images.unsplash.com/photo-1471623432079-b009d30b6729?w=1800&q=75&auto=format&fit=crop",
-    "heroAlt": "A Paris street at dusk",
-    "tile": "https://images.unsplash.com/photo-1503917988258-f87a78e3c995?w=900&q=75&auto=format&fit=crop"
+    "slug": "french-riviera-tours",
+    "label": "French Riviera Tours",
+    "title": "French Riviera Tours",
+    "lede": "Nice, Cannes, Antibes, Monaco, Èze and Grasse: walking tours, food and wine, perfume, yoga, islands and day trips on the Côte d’Azur.",
+    "script": [
+      "Bienvenue",
+      "dans le Sud"
+    ],
+    "hero": "/tours/not-displayed-on-the-inspected-product-page/01.jpg",
+    "heroAlt": "Not displayed on the inspected product page",
+    "tile": "/tours/not-displayed-on-the-inspected-product-page/01.jpg"
   },
   {
-    "slug": "paris-food-tours",
-    "label": "Paris Food Tours",
-    "title": "Paris Food Tours",
-    "lede": "French wine, cheese, pastries and chocolate, from tasting rooms and masterclasses to sightseeing tours that end at the table.",
-    "script": ["Bon", "appétit"],
-    "hero": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=75&auto=format&fit=crop",
-    "heroAlt": "A table set with French dishes and wine",
-    "tile": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=900&q=75&auto=format&fit=crop"
+    "slug": "paris-tours",
+    "label": "Paris Tours",
+    "title": "Paris Tours",
+    "lede": "Walking tours, food, Opéra Garnier, perfume and the Seine. Every way to discover the City of Light with a local guide.",
+    "script": [
+      "Toujours",
+      "Paris"
+    ],
+    "hero": "/tours/paris-10-sights-montmartre-sacre-coeur-walking-tour/01.jpg",
+    "heroAlt": "Paris 10+ Sights: Montmartre & Sacré-Coeur Walking Tour",
+    "tile": "/tours/paris-10-sights-montmartre-sacre-coeur-walking-tour/01.jpg"
   },
   {
-    "slug": "paris-attraction-tickets",
-    "label": "Paris Attraction Tickets",
-    "title": "Paris Attraction Tickets",
-    "lede": "Tours that include your tickets for the Louvre, the Arc de Triomphe, the Opéra Garnier, Paris museums and more.",
-    "script": ["Skip", "the line"],
-    "hero": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1800&q=75&auto=format&fit=crop",
-    "heroAlt": "The Eiffel Tower over the Seine",
-    "tile": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Louvre_Museum_Wikimedia_Commons.jpg/1280px-Louvre_Museum_Wikimedia_Commons.jpg"
+    "slug": "top-selling-tours",
+    "label": "Top Selling Tours",
+    "title": "Top Selling Tours",
+    "lede": "Our most booked Paris experiences, loved by travellers for their sights, stories and fun local guides.",
+    "script": [
+      "Our",
+      "favourites"
+    ],
+    "hero": "/tours/paris-10-sights-montmartre-sacre-coeur-walking-tour/01.jpg",
+    "heroAlt": "Paris 10+ Sights: Montmartre & Sacré-Coeur Walking Tour",
+    "tile": "/tours/paris-10-sights-montmartre-sacre-coeur-walking-tour/01.jpg"
   },
   {
-    "slug": "paris-themed-tours",
-    "label": "Paris Themed Tours",
-    "title": "Paris Themed Tours",
-    "lede": "Harry Potter, perfume, opera, art and history. Tours that follow one story through the city.",
-    "script": ["Every street", "tells a story"],
-    "hero": "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1800&q=75&auto=format&fit=crop",
-    "heroAlt": "Pont Alexandre III at dusk",
-    "tile": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Le_sacre_coeur.jpg/1280px-Le_sacre_coeur.jpg"
+    "slug": "opera-garnier",
+    "label": "Opera Garnier",
+    "title": "Opera Garnier",
+    "lede": "Step inside the Palais Garnier, one of the most beautiful opera houses in the world, on its own or with food, perfume and sightseeing.",
+    "script": [
+      "Bravo",
+      "Garnier"
+    ],
+    "hero": "/tours/paris-30-sights-opera-perfume-workshop-galeries-lafayette/01.jpg",
+    "heroAlt": "Paris: 30+ Sights, Opéra, Perfume Workshop & Galeries Lafayette",
+    "tile": "/tours/paris-30-sights-opera-perfume-workshop-galeries-lafayette/01.jpg"
   },
   {
-    "slug": "private-paris-tours",
-    "label": "Private Paris Tours",
-    "title": "Private Paris Tours",
-    "lede": "We understand that each traveller has unique preferences, so we offer customizable private tours tailored to your specific interests. Whether you want to focus on photography, fashion, literature, or any other aspect of Parisian culture, our team will curate an unforgettable experience just for you.",
-    "script": ["Just", "for you"],
-    "hero": "https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?w=1800&q=75&auto=format&fit=crop",
-    "heroAlt": "A Paris street leading to the Eiffel Tower",
-    "tile": "https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?w=900&q=75&auto=format&fit=crop"
+    "slug": "galeries-lafayette",
+    "label": "Galeries Lafayette",
+    "title": "Galeries Lafayette",
+    "lede": "Fashion shows, perfume, chocolate, macarons and Christmas lights at Paris’s most famous department store.",
+    "script": [
+      "Très",
+      "chic"
+    ],
+    "hero": "/tours/paris-christmas-lights-chocolate-bites-the-grand-tour/01.jpg",
+    "heroAlt": "Paris Christmas Lights & Chocolate Bites — The Grand Tour",
+    "tile": "/tours/paris-christmas-lights-chocolate-bites-the-grand-tour/01.jpg"
   },
   {
-    "slug": "paris-tour-packages-with-attraction-tickets",
-    "label": "Paris Tour Packages with Attraction Tickets",
-    "title": "Paris Tour Packages with Attraction Tickets",
-    "lede": "See 30+ Paris sights with a local guide, then visit the museum, monument or experience of your choice with the ticket included.",
-    "script": ["All in", "one day"],
-    "hero": "https://images.unsplash.com/photo-1509439581779-6298f75bf6e5?w=1800&q=75&auto=format&fit=crop",
-    "heroAlt": "The Arc de Triomphe",
-    "tile": "https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=900&q=75&auto=format&fit=crop"
-  },
-  {
-    "slug": "beyond-paris",
-    "label": "Beyond Paris",
-    "title": "Beyond Paris",
-    "lede": "Tours that go beyond the classic sights, with extra visits to add to your day in Paris.",
-    "script": ["Beyond", "the classics"],
-    "hero": "https://images.unsplash.com/photo-1550340499-a6c60fc8287c?w=1800&q=75&auto=format&fit=crop",
-    "heroAlt": "Paris rooftops and the Eiffel Tower",
-    "tile": "https://images.unsplash.com/photo-1550340499-a6c60fc8287c?w=900&q=75&auto=format&fit=crop"
+    "slug": "perfume-paris",
+    "label": "Perfume Paris",
+    "title": "Perfume Paris",
+    "lede": "Discover the art of French perfume and create your own fragrance to take home.",
+    "script": [
+      "L’art du",
+      "parfum"
+    ],
+    "hero": "/tours/paris-30-sights-opera-perfume-workshop-galeries-lafayette/01.jpg",
+    "heroAlt": "Paris: 30+ Sights, Opéra, Perfume Workshop & Galeries Lafayette",
+    "tile": "/tours/paris-30-sights-opera-perfume-workshop-galeries-lafayette/01.jpg"
   }
 ]

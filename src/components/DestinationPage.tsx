@@ -68,7 +68,7 @@ export function DestinationPage() {
         </div>
       </section>}
 
-      <section className="pl-wrap dp-section" aria-labelledby="dp-feat">
+      {featured.length > 0 && <section className="pl-wrap dp-section" aria-labelledby="dp-feat">
         <div className="tp-head">
           <div>
             <h2 id="dp-feat">Popular {dest.name} Experiences</h2>
@@ -82,7 +82,7 @@ export function DestinationPage() {
         <div className="dp-more">
           <A to={toursPath(dest.slug)} className="pl-btn">Browse All {dest.name} Tours <ArrowRight size={15} /></A>
         </div>
-      </section>
+      </section>}
 
       {children.length > 0 && (
         <section className="pl-wrap dp-section" aria-labelledby="dp-inside">

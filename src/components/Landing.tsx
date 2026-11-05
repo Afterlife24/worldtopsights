@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Clock, Gem, Heart, Minus, Plus, Star, Users } from 'lucide-react';
 import { destinationCards, faqs, reasons, reviews, siteImages } from '@/data/landing';
-import { byPopularity, formatHours, mainImage, topTours, tourPath, tours, usedCategories, type Tour } from '@/data/tours';
+import { byPopularity, euro, formatHours, hasRating, mainImage, topTours, tourPath, tours, usedCategories, type Tour } from '@/data/tours';
 import { toursPath } from '@/data/destinations';
 import { A } from './Chrome';
 import '@/landing.css';
@@ -11,7 +11,7 @@ import '@/landing.css';
 function Rating({ tour }: { tour: Tour }) {
   return (
     <p className="pl-meta">
-      <span><Star size={12} className="pl-star" fill="currentColor" strokeWidth={0} /> {tour.rating.toFixed(1)} ({tour.reviews.toLocaleString('en')})</span>
+      {hasRating(tour) && <span><Star size={12} className="pl-star" fill="currentColor" strokeWidth={0} /> {tour.rating.toFixed(1)}{tour.reviews ? ` (${tour.reviews.toLocaleString('en')})` : ''}</span>}
       {tour.duration !== null && <span><Clock size={12} /> {formatHours(tour.duration)}</span>}
     </p>
   );
@@ -71,7 +71,7 @@ function Categories() {
         <h2>Browse by Category</h2>
         <p className="pl-head-note">Find the perfect Paris experience for your interests.</p>
       </div>
-      <div className={`pl-cats ${usedCategories('paris').length === 7 ? 'is-seven' : ''}`}>
+      <div className={`pl-cats ${[4, 7, 8].includes(usedCategories('paris').length) ? 'is-seven' : ''}`}>
         {usedCategories('paris').map((cat) => (
           <A key={cat.slug} to={toursPath('paris', cat.slug)} className="pl-cat">
             <img src={cat.tile} alt="" loading="lazy" />
@@ -98,7 +98,7 @@ function TopCard({ tour }: { tour: Tour }) {
         <Rating tour={tour} />
         <p className="pl-card-text">{tour.summary}</p>
         <div className="pl-card-foot">
-          <p className="pl-price"><small>From</small> €{tour.price}</p>
+          <p className="pl-price"><small>From</small> {euro(tour.price)}</p>
           <A to={to} className="pl-btn pl-btn-sm" aria-label={`View tour: ${tour.title}`}>View Tour <ArrowRight size={13} /></A>
         </div>
       </div>
@@ -119,6 +119,7 @@ function TopTours() {
 }
 
 function AllTours() {
+  if (!parisTours.length) return null; // no Paris tours yet: hide the section
   return (
     <section id="tours" className="pl-wrap pl-section">
       <SectionTitle title={`All Paris Tours (${parisTours.length})`} link={{ label: `Browse All ${parisTours.length} Paris Tours`, to: toursPath('paris') }} />
@@ -130,7 +131,7 @@ function AllTours() {
               <h3>{tour.title}</h3>
               <Rating tour={tour} />
               <span className="pl-card-foot">
-                <span className="pl-price"><small>From</small> €{tour.price}</span>
+                <span className="pl-price"><small>From</small> {euro(tour.price)}</span>
                 <ArrowRight size={14} className="pl-card-arrow" />
               </span>
             </span>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { ArrowRight, Check, ChevronLeft, ChevronRight, Clock, Gem, Heart, Images, MapPin, Star, Users, X } from 'lucide-react';
-import { categoryBySlug, formatHours, mainImage, tourBySlug, tourPath, type Tour } from '@/data/tours';
+import { categoryBySlug, euro, formatHours, hasRating, mainImage, tourBySlug, tourPath, type Tour } from '@/data/tours';
 import { relatedTours, tourReviews } from '@/data/tourDetails';
 import { destinationBySlug, destinationPath, toursPath } from '@/data/destinations';
 import { useLockBody } from '@/hooks/useLockBody';
@@ -83,11 +83,13 @@ function Summary({ tour, label }: { tour: Tour; label: string }) {
       <p className="td-eyebrow">{label}</p>
       <h1>{tour.title}</h1>
       <p className="td-lede">{intro(tour.summary)}</p>
-      <a href="#reviews" className="td-rating">
-        <Stars value={tour.rating} />
-        <strong>{tour.rating.toFixed(1)}</strong>
-        <span>{tour.reviews.toLocaleString('en')} reviews</span>
-      </a>
+      {hasRating(tour) && (
+        <a href="#reviews" className="td-rating">
+          <Stars value={tour.rating} />
+          <strong>{tour.rating.toFixed(1)}</strong>
+          {tour.reviews ? <span>{tour.reviews.toLocaleString('en')} reviews</span> : null}
+        </a>
+      )}
       <ul className="td-facts">
         {tour.duration !== null && <li><Clock size={16} /> {formatHours(tour.duration)}</li>}
         {dest && <li><MapPin size={16} /> {dest.name}</li>}
@@ -102,17 +104,19 @@ function Summary({ tour, label }: { tour: Tour; label: string }) {
 }
 
 function childPriceText(tour: Tour) {
-  if (tour.childPrice === null) return null;
-  return tour.childPrice === 'Free' ? 'Kids go free' : `Children from €${tour.childPrice}`;
+  if (tour.childPrice == null) return null;
+  return tour.childPrice === 'Free' ? 'Kids go free' : `Children from ${euro(tour.childPrice)}`;
 }
 
 function BookingCard({ tour }: { tour: Tour }) {
   const child = childPriceText(tour);
   return (
     <aside className="td-book" aria-label="Book this tour">
-      <p className="td-from">From <strong>€{tour.price}</strong></p>
+      <p className="td-from">From <strong>{euro(tour.price)}</strong></p>
       <p className="td-per">{tour.priceNote ?? 'per adult'}</p>
       {child && <p className="td-child"><Check size={14} /> {child}</p>}
+      {tour.youthPrice != null && <p className="td-child"><Check size={14} /> Youth / teenager from {euro(tour.youthPrice)}</p>}
+      {tour.startTimes && <p className="td-child td-times"><Clock size={14} /> Start times: {tour.startTimes}</p>}
       <A to={tour.bookingUrl} sameTab className="pl-btn td-book-btn">Book Now <ArrowRight size={16} /></A>
       <p className="td-book-note">Choose your date and number of guests on the next page.</p>
     </aside>
@@ -129,7 +133,7 @@ function Ticks({ items }: { items: string[] }) {
   );
 }
 
-function Reviews({ tour }: { tour: Tour }) {
+function Reviews({ tour }: { tour: Tour & { rating: number } }) {
   const [i, setI] = useState(0);
   const r = tourReviews[i];
   const go = (step: number) => setI((n) => (n + step + tourReviews.length) % tourReviews.length);
@@ -142,7 +146,7 @@ function Reviews({ tour }: { tour: Tour }) {
       <div className="td-rev-body">
         <div className="td-score">
           <p><Star size={30} fill="currentColor" strokeWidth={0} className="td-star" /> <strong>{tour.rating.toFixed(1)}</strong></p>
-          <span>Based on {tour.reviews.toLocaleString('en')} reviews</span>
+          <span>{tour.reviews ? `Based on ${tour.reviews.toLocaleString("en")} reviews` : "Average rating"}</span>
         </div>
         <div className="td-quote">
           <button type="button" aria-label="Previous review" onClick={() => go(-1)}><ChevronLeft size={16} /></button>
@@ -176,10 +180,10 @@ function Related({ tour }: { tour: Tour }) {
               <h3><A to={tourPath(t)}>{t.title}</A></h3>
               <p className="td-rel-meta">
                 {t.duration !== null && <span><Clock size={12} /> {formatHours(t.duration)}</span>}
-                <span><Star size={12} fill="currentColor" strokeWidth={0} className="td-star" /> {t.rating.toFixed(1)} ({t.reviews.toLocaleString('en')})</span>
+                {hasRating(t) && <span><Star size={12} fill="currentColor" strokeWidth={0} className="td-star" /> {t.rating.toFixed(1)}{t.reviews ? ` (${t.reviews.toLocaleString('en')})` : ''}</span>}
               </p>
               <div className="td-rel-foot">
-                <p className="pl-price"><small>From</small> €{t.price}</p>
+                <p className="pl-price"><small>From</small> {euro(t.price)}</p>
                 <A to={tourPath(t)} className="pl-btn pl-btn-sm" aria-label={`View tour: ${t.title}`}>View Tour <ArrowRight size={13} /></A>
               </div>
             </div>
@@ -209,7 +213,7 @@ export function TourPage() {
     { id: 'overview', label: 'Overview' },
     ...(tour.highlights.length ? [{ id: 'highlights', label: 'Highlights' }] : []),
     { id: 'details', label: 'Tour Details' },
-    { id: 'reviews', label: 'Reviews' },
+    ...(hasRating(tour) ? [{ id: "reviews", label: "Reviews" }] : []),
     { id: 'related', label: 'Similar Tours' },
   ];
 
@@ -261,14 +265,16 @@ export function TourPage() {
         )}
       </div>
 
-      <div className="pl-wrap td-bottom td-bottom-single">
-        <Reviews tour={tour} />
-      </div>
+      {hasRating(tour) && (
+        <div className="pl-wrap td-bottom td-bottom-single">
+          <Reviews tour={tour} />
+        </div>
+      )}
 
       <Related tour={tour} />
 
       <div className="td-mbar">
-        <p><small>From</small> <strong>€{tour.price}</strong> <small>per adult</small></p>
+        <p><small>From</small> <strong>{euro(tour.price)}</strong> <small>{tour.priceNote ? tour.priceNote.split(" · ")[0] : "per adult"}</small></p>
         <A to={tour.bookingUrl} sameTab className="pl-btn pl-btn-sm">Book Now <ArrowRight size={13} /></A>
       </div>
     </div>

@@ -21,15 +21,18 @@ Open `src/content/tours.json`, find the tour with Cmd+F (search its title), and 
 | `price` | `50` | Adult price in €, a number with no quotes |
 | `priceNote` | `"159 per person for groups of 8."` or `null` | Replaces "per adult" |
 | `childPrice` | `"Free"`, `14` or `null` | `null` hides it |
+| `youthPrice` | `15` or `null` | Youth / teenager price. `null` hides it |
+| `startTimes` | `"09:30, 10:00, 11:00"` or `null` | Shown in the booking box |
 | `duration` | `5`, `2.5` or `null` | Hours. `null` = no time shown anywhere |
-| `rating`, `reviews` | `5`, `3291` | |
+| `rating`, `reviews` | `4.9`, `320` or `null` | `null` hides the stars and the Reviews section |
 | `bookingUrl` | `"https://tstgroup.rezdy.com/564607/..."` | Where Book Now goes |
 | `summary` | short text | Shown on tour cards and at the top of the tour page |
 | `highlights` | `["...", "..."]` | One line per bullet point |
 | `description` | simple HTML | `<p>`, `<h3>`, `<h4>`, `<ul><li>`, `<strong>`, `<a href="...">` |
 | `topTour` | `true` / `false` | `true` = shown under "Top Tours" |
 | `categories` | `["paris-walking-tours"]` | Slugs from `categories.json`. The first one is the main category |
-| `destination` | `"paris"` | `paris`, `south-of-france` or `galeries-lafayette` |
+| `destination` | `"paris"` | `paris`, `south-of-france` or `galeries-lafayette`. The main one, used in the breadcrumb |
+| `alsoIn` | `["galeries-lafayette"]` | Also list the tour on these destination pages |
 | `relatedTours` | `["see-10-paris-sights-fun-local-guide"]` | The `slug` of other tours. Up to 4 are shown |
 | `slug` | `"see-30-paris-sights-fun-local-guide"` | The web address `/tour/<slug>`. Only a-z, 0-9 and `-`. Changing it breaks old links |
 | `demo` | `true` / `false` | `true` = sample tour |
@@ -40,14 +43,14 @@ The `images` list of a tour, first photo = main photo:
 
 ```json
 "images": [
-  "/tours/photos/my-main-photo.jpg",
-  "/tours/photos/second.jpg",
+  "/tours/<slug>/01.jpg",
+  "/tours/<slug>/02.jpg",
   "https://example.com/a-photo-on-the-web.jpg"
 ]
 ```
 
-- **Replace a photo:** put the new file in `public/tours/photos/` and change its line. Or overwrite the file, keeping the same name.
-- **Add a photo:** copy it into `public/tours/photos/` and add a line.
+- **Replace a photo:** put the new file in the tour's folder `public/tours/<slug>/` and change its line. Or overwrite the file, keeping the same name.
+- **Add a photo:** copy it into `public/tours/<slug>/` and add a line.
 - **Remove a photo:** delete its line.
 - **Reorder:** move the lines.
 - Use file names with no spaces or special characters (`©`, `é`). Keep photos under about 500 KB, 1400 px wide.
@@ -66,12 +69,17 @@ JSON is strict: text in double quotes, commas between items, no comma after the 
 If the file has a mistake, the local preview shows a message naming the tour and the field,
 for example `tours.json, tour 12 ("..."): related tour "abc" does not exist`.
 
-## Photos still missing from WordPress
+## Importing tours from the Google Drive folders
 
-These 4 photos could not be downloaded (the file names contain "©"). Add them from the drive
-to `public/tours/photos/` and list them in the tour's `images`:
+`scripts/import-drive-tours.py` builds the tours of one destination from its Drive folders (one folder per tour: a `.docx` and photos):
 
-- `©Thibaut-Voisin-0178-1-scaled.jpg`
-- `Medium-©Thibaut-Voisin-0178-1.jpg`
-- `Medium-©Thibaut-Voisin-0178.jpg.jpg`
-- `Coupole-2-Galeries-Lafayette-Haussmann-©CarolineRichard-scaled.jpg`
+    python3 scripts/import-drive-tours.py paris ../paris-tours-drive/tours
+    python3 scripts/import-drive-tours.py galeries-lafayette ../galeries-lafayette-drive/tours
+
+- It replaces that destination's tours (including demo tours) and keeps the other destinations.
+- Hand edits to that destination's tours in `tours.json` are lost when you re-run it.
+- A tour that is already on the site under another destination (same Rezdy product) is not copied: it is added to that destination with `alsoIn`.
+- Galeries Lafayette tours also get the "Galeries Lafayette" category.
+- Main photo: a file named `main`, then `cover`, then one starting with `m`, else the first photo.
+- Skipped: folders with no document, no Rezdy link, no price, marked "Inactive", or repeating another folder's Rezdy product.
+- If you re-run the Paris import, re-run the Galeries Lafayette import afterwards so the shared tours are linked again.

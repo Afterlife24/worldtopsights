@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Navigate, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ArrowRight, BookOpen, ChevronDown, ChevronRight, Clock, Compass, Footprints, Globe, Heart, MapPin, Search, SlidersHorizontal, Star, Ticket, User, Wine, X } from 'lucide-react';
 import {
-  byPopularity, categoryBySlug, categoryList, durationFilters, formatHours, inDestination, mainImage, priceFilters, sortOptions, tourPath, tours, toursIn,
+  byPopularity, categoryBySlug, categoryList, durationFilters, euro, formatHours, hasRating, inDestination, mainImage, priceFilters, sortOptions, tourPath, tours, toursIn,
   usedCategories, type Category, type SortId, type Tour,
 } from '@/data/tours';
 import { destinationBySlug, destinationList, destinationPath, toursPath, type Destination } from '@/data/destinations';
@@ -52,7 +52,7 @@ function applyFilters(list: Tour[], f: Filters, sort: SortId) {
     recommended: byPopularity,
     'price-asc': (a, b) => a.price - b.price,
     'price-desc': (a, b) => b.price - a.price,
-    rating: (a, b) => b.rating - a.rating || b.reviews - a.reviews,
+    rating: (a, b) => (b.rating ?? 0) - (a.rating ?? 0) || (b.reviews ?? 0) - (a.reviews ?? 0),
     duration: (a, b) => (a.duration ?? Infinity) - (b.duration ?? Infinity), // tours with no time last
   };
   return [...out].sort(by[sort]);
@@ -62,7 +62,7 @@ function Meta({ tour }: { tour: Tour }) {
   return (
     <p className="tp-meta">
       {tour.duration !== null && <span><Clock size={13} className="tp-ic" /> {formatHours(tour.duration)}</span>}
-      <span><Star size={13} className="tp-ic" fill="currentColor" strokeWidth={0} /> {tour.rating.toFixed(1)} ({tour.reviews.toLocaleString('en')})</span>
+      {hasRating(tour) && <span><Star size={13} className="tp-ic" fill="currentColor" strokeWidth={0} /> {tour.rating.toFixed(1)}{tour.reviews ? ` (${tour.reviews.toLocaleString('en')})` : ''}</span>}
     </p>
   );
 }
@@ -188,10 +188,10 @@ export function TourCard({ tour, saved, onSave }: { tour: Tour; saved: boolean; 
       <div className="tp-card-body">
         <h3><A to={tourPath(tour)}>{tour.title}</A></h3>
         <p className="tp-card-text">{tour.summary}</p>
-        {tour.childPrice !== null && <p className="tp-kids">{tour.childPrice === 'Free' ? 'Kids go free' : `Kids from €${tour.childPrice}`}</p>}
+        {tour.childPrice != null && <p className="tp-kids">{tour.childPrice === 'Free' ? 'Kids go free' : `Kids from ${euro(tour.childPrice)}`}</p>}
         <Meta tour={tour} />
         <div className="tp-card-foot">
-          <p className="pl-price"><small>From</small> €{tour.price}</p>
+          <p className="pl-price"><small>From</small> {euro(tour.price)}</p>
           <A to={tourPath(tour)} className="pl-btn pl-btn-sm" aria-label={`View tour: ${tour.title}`}>View Tour <ArrowRight size={13} /></A>
         </div>
       </div>
@@ -221,7 +221,7 @@ export function TourCategory() {
 
   const list = useMemo(() => toursIn(category?.slug).filter((t) => inDestination(t, dest?.slug)), [category, dest]);
   const visible = useMemo(() => applyFilters(list, filters, sort), [list, filters, sort]);
-  const top = useMemo(() => list.filter((t) => t.topTour).sort((a, b) => b.reviews - a.reviews).slice(0, 3), [list]);
+  const top = useMemo(() => list.filter((t) => t.topTour).sort(byPopularity).slice(0, 3), [list]);
   const others = usedCategories(dest?.slug).filter((c) => c.slug !== category?.slug);
   const activeCount = filters.duration.length + filters.price.length + (filters.q.trim() ? 1 : 0);
 

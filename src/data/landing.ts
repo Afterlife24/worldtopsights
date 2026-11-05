@@ -66,7 +66,7 @@ export const reviews = [
 export const faqs = [
   { q: 'Do I need to book my Paris tour in advance?', a: 'We recommend booking at least a few days ahead, especially from April to October, as small-group tours fill up quickly.' },
   { q: 'Do you offer private tours in Paris?', a: 'Yes. Contact us and we can build a private tour around your interests, from photography and fashion to literature and history.' },
-  { q: 'Are your tours suitable for children?', a: 'Many of our tours are family-friendly, and on several of them kids go free. Each tour page shows the child price where there is one.' },
+  { q: 'Are your tours suitable for children?', a: 'Many of our tours are family-friendly. Each tour page shows the child price where there is one.' },
   { q: 'What should I wear or bring on the tour?', a: 'Comfortable walking shoes, a bottle of water and weather-appropriate clothing. For churches, shoulders and knees should be covered.' },
   { q: 'What is your cancellation policy?', a: 'The cancellation terms for each tour are shown on the booking page before you pay.' },
   { q: 'Where do the tours start?', a: 'Each tour has its own meeting point in central Paris. You’ll receive the exact location in your booking confirmation.' },

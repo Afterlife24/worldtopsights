@@ -92,7 +92,9 @@
 .td-assure li { display: flex; align-items: center; gap: 8px; }
 .td-assure svg { color: #3F7D4E; }
 .td-child { display: flex; align-items: center; gap: 7px; margin-top: 10px; font-size: 13px; color: var(--pl-text); }
-.td-child svg { color: #3F7D4E; }
+.td-child svg { flex-shrink: 0; color: #3F7D4E; }
+.td-times { align-items: flex-start; line-height: 1.45; }
+.td-times svg { margin-top: 2px; color: var(--pl-gold); }
 .td-book .td-book-btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; margin-top: 16px; }
 .td-book-note { margin-top: 10px; font-size: 12px; line-height: 1.45; color: var(--pl-muted); }
 
@@ -112,7 +114,6 @@
 .td-prose li + li { margin-top: 4px; }
 .td-prose strong { font-weight: 600; color: var(--pl-ink); }
 .td-prose a { color: var(--pl-gold-dark); text-decoration: underline; text-underline-offset: 2px; }
-.td-prose .td-ta-logo { display: block; width: auto; max-width: 220px; max-height: 60px; }
 .td-bottom.td-bottom-single { grid-template-columns: 1fr; }
 @media (max-width: 960px) {
   .td-main { grid-template-columns: 1fr; gap: 24px; }

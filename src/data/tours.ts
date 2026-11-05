@@ -25,16 +25,19 @@ export type Category = {
 export type Tour = {
   slug: string; // web address: /tour/<slug>
   title: string;
-  destination: DestinationSlug;
+  destination: DestinationSlug; // main destination (used in the breadcrumb)
+  alsoIn?: DestinationSlug[]; // also listed on these destination pages
   demo: boolean; // sample tour, not a real listing yet
   categories: string[]; // category slugs from categories.json
   topTour: boolean; // shown under "Top Tours"
   price: number; // adult price in €
   priceNote: string | null; // e.g. "159 per person for groups of 8."
   childPrice: number | 'Free' | null;
+  youthPrice?: number | null; // youth / teenager price in €
   duration: number | null; // hours; null = not shown
-  rating: number;
-  reviews: number;
+  startTimes?: string | null; // e.g. "09:30, 10:00, 11:00"
+  rating: number | null; // null = stars hidden
+  reviews: number | null;
   bookingUrl: string; // Rezdy booking page
   summary: string;
   highlights: string[];
@@ -60,8 +63,10 @@ function checkContent(tourList: Tour[], cats: Category[]) {
     seen.add(t.slug);
     if (!t.title) problems.push(`${name}: "title" is empty`);
     if (!destinationSlugs.includes(t.destination)) problems.push(`${name}: "destination" must be one of ${destinationSlugs.join(', ')}`);
+    (t.alsoIn ?? []).forEach((d) => !destinationSlugs.includes(d) && problems.push(`${name}: "alsoIn" has unknown destination "${d}"`));
     if (typeof t.price !== 'number') problems.push(`${name}: "price" must be a number, like 50`);
     if (t.duration !== null && typeof t.duration !== 'number') problems.push(`${name}: "duration" must be a number of hours, or null`);
+    if (t.rating !== null && typeof t.rating !== 'number') problems.push(`${name}: "rating" must be a number like 4.8, or null`);
     if (!Array.isArray(t.images) || t.images.length === 0) problems.push(`${name}: "images" needs at least one photo`);
     (t.categories ?? []).forEach((c) => !catSlugs.has(c) && problems.push(`${name}: unknown category "${c}" (see categories.json)`));
     (t.relatedTours ?? []).forEach((r) => !slugs.has(r) && problems.push(`${name}: related tour "${r}" does not exist`));
@@ -82,21 +87,24 @@ export const categoryBySlug = (slug?: string) => categoryList.find((c) => c.slug
 export const tourBySlug = (slug?: string) => tours.find((t) => t.slug === slug);
 export const tourPath = (t: Tour) => tourHref(t.slug);
 
-export const inDestination = (t: Tour, d?: DestinationSlug) => !d || t.destination === d;
+export const inDestination = (t: Tour, d?: DestinationSlug) => !d || t.destination === d || !!t.alsoIn?.includes(d);
 export const toursIn = (category?: string) => (category ? tours.filter((t) => t.categories.includes(category)) : tours);
 
 /**
- * Categories to show. Paris (and "all destinations") shows all 7 WordPress categories,
- * like the old website, even empty ones. Other destinations show only categories with tours.
+/**
+ * Categories that have at least one tour (in the destination, if given).
  */
 export const usedCategories = (dest?: DestinationSlug) =>
-  !dest || dest === 'paris'
-    ? categoryList
-    : categoryList.filter((c) => tours.some((t) => t.categories.includes(c.slug) && inDestination(t, dest)));
+  categoryList.filter((c) => tours.some((t) => t.categories.includes(c.slug) && inDestination(t, dest)));
 
 /** Top tours first, then the most reviewed. */
-export const byPopularity = (a: Tour, b: Tour) => Number(b.topTour) - Number(a.topTour) || b.reviews - a.reviews;
-export const topTours = () => tours.filter((t) => t.topTour).sort((a, b) => b.reviews - a.reviews);
+const reviewCount = (t: Tour) => t.reviews ?? 0;
+export const byPopularity = (a: Tour, b: Tour) => Number(b.topTour) - Number(a.topTour) || reviewCount(b) - reviewCount(a);
+export const topTours = () => tours.filter((t) => t.topTour).sort((a, b) => reviewCount(b) - reviewCount(a));
+
+/** True when the tour has a rating to show. */
+export const hasRating = (t: Tour): t is Tour & { rating: number } => typeof t.rating === 'number';
+export const euro = (n: number) => `€${Number.isInteger(n) ? n : n.toFixed(2)}`;
 
 export const formatHours = (h: number) => `${h} hour${h === 1 ? '' : 's'}`;
 

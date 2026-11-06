@@ -76,5 +76,31 @@
     "hero": "/tours/paris-30-sights-opera-perfume-workshop-galeries-lafayette/01.jpg",
     "heroAlt": "Paris: 30+ Sights, Opéra, Perfume Workshop & Galeries Lafayette",
     "tile": "/tours/paris-30-sights-opera-perfume-workshop-galeries-lafayette/01.jpg"
+  },
+  {
+    "slug": "cruise",
+    "label": "Cruise",
+    "title": "Cruise",
+    "lede": "See Paris from the Seine on tours that include a river cruise.",
+    "script": [
+      "Sur la",
+      "Seine"
+    ],
+    "hero": "/tours/paris-opera-garnier-french-dining-seine-river-cruise/01.jpg",
+    "heroAlt": "Paris: Opéra Garnier, French Dining & Seine River Cruise",
+    "tile": "/tours/paris-opera-garnier-french-dining-seine-river-cruise/01.jpg"
+  },
+  {
+    "slug": "cultural",
+    "label": "Cultural",
+    "title": "Cultural",
+    "lede": "Opera, art, history and French savoir-vivre: tours for culture lovers.",
+    "script": [
+      "Art de",
+      "vivre"
+    ],
+    "hero": "/tours/paris-opera-garnier-french-dining-seine-river-cruise/01.jpg",
+    "heroAlt": "Paris: Opéra Garnier, French Dining & Seine River Cruise",
+    "tile": "/tours/paris-opera-garnier-french-dining-seine-river-cruise/01.jpg"
   }
 ]

@@ -98,7 +98,7 @@ function TopCard({ tour }: { tour: Tour }) {
         <Rating tour={tour} />
         <p className="pl-card-text">{tour.summary}</p>
         <div className="pl-card-foot">
-          <p className="pl-price"><small>From</small> {euro(tour.price)}</p>
+          <p className="pl-price"><small>{tour.priceLabel ?? 'From'}</small> {euro(tour.price)}</p>
           <A to={to} className="pl-btn pl-btn-sm" aria-label={`View tour: ${tour.title}`}>View Tour <ArrowRight size={13} /></A>
         </div>
       </div>
@@ -131,7 +131,7 @@ function AllTours() {
               <h3>{tour.title}</h3>
               <Rating tour={tour} />
               <span className="pl-card-foot">
-                <span className="pl-price"><small>From</small> {euro(tour.price)}</span>
+                <span className="pl-price"><small>{tour.priceLabel ?? 'From'}</small> {euro(tour.price)}</span>
                 <ArrowRight size={14} className="pl-card-arrow" />
               </span>
             </span>

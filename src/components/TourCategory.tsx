@@ -188,7 +188,7 @@ export function TourCard({ tour }: { tour: Tour }) {
         {tour.childPrice != null && <p className="tp-kids">{tour.childPrice === 'Free' ? 'Kids go free' : `Kids from ${euro(tour.childPrice)}`}</p>}
         <Meta tour={tour} />
         <div className="tp-card-foot">
-          <p className="pl-price"><small>From</small> {euro(tour.price)}</p>
+          <p className="pl-price"><small>{tour.priceLabel ?? 'From'}</small> {euro(tour.price)}</p>
           <A to={tourPath(tour)} className="pl-btn pl-btn-sm" aria-label={`View tour: ${tour.title}`}>View Tour <ArrowRight size={13} /></A>
         </div>
       </div>

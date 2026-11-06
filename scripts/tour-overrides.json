@@ -1,0 +1,15 @@
+{
+  "781499": {
+    "note": "Paris Dark History Walk: client asked to keep it on the website",
+    "active": true
+  },
+  "758698": {
+    "note": "French Riviera Gems: client confirmed the duration is 7 hours",
+    "duration": 7
+  },
+  "788221": {
+    "note": "Grasse French Riviera Tour of Perfume and Wine: the document lists Adult 187 / Youth 148 (EUR column \"Not verified\"); same numbers used as euros, as agreed",
+    "price": 187,
+    "youthPrice": 148
+  }
+}

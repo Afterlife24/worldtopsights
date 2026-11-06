@@ -12,6 +12,7 @@
     "topTour": true,
     "price": 28.72,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": "Free",
     "youthPrice": 17.95,
     "duration": 2,
@@ -69,6 +70,7 @@
     "topTour": true,
     "price": 99.31,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 89.73,
     "duration": 5,
@@ -171,6 +173,7 @@
     "topTour": true,
     "price": 199.81,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 191.43,
     "duration": 7,
@@ -232,6 +235,7 @@
     "topTour": true,
     "price": 160,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 5,
@@ -285,6 +289,7 @@
     "topTour": false,
     "price": 89.73,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 77.77,
     "duration": 5,
@@ -334,6 +339,7 @@
     "topTour": false,
     "price": 141,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 141,
     "duration": 4,
@@ -386,6 +392,7 @@
     "topTour": false,
     "price": 186,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 4,
@@ -430,6 +437,7 @@
     "topTour": false,
     "price": 147,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 138,
     "duration": 3,
@@ -488,6 +496,7 @@
     "topTour": false,
     "price": 23,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": 10,
     "youthPrice": 20,
     "duration": 1.5,
@@ -563,6 +572,7 @@
     "topTour": false,
     "price": 134,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 4,
@@ -609,6 +619,7 @@
     "topTour": false,
     "price": 151,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 144,
     "duration": 3,
@@ -659,6 +670,7 @@
     "topTour": false,
     "price": 69.39,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 3,
@@ -709,6 +721,7 @@
     "topTour": true,
     "price": 77.77,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 68.2,
     "duration": 4,
@@ -767,6 +780,7 @@
     "topTour": false,
     "price": 114.86,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 6,
@@ -815,11 +829,14 @@
     "alsoIn": [],
     "demo": false,
     "categories": [
+      "cruise",
+      "cultural",
       "paris-tours"
     ],
     "topTour": false,
     "price": 299,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": 195,
     "youthPrice": null,
     "duration": 3,
@@ -871,6 +888,7 @@
     "topTour": true,
     "price": 87.34,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": 25.13,
     "youthPrice": 44.27,
     "duration": 3,
@@ -930,6 +948,7 @@
     "topTour": true,
     "price": 43.07,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": 20.34,
     "youthPrice": 43.07,
     "duration": 3,
@@ -978,6 +997,7 @@
     "topTour": true,
     "price": 104.09,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 92.13,
     "duration": 3,
@@ -1029,6 +1049,7 @@
     "topTour": true,
     "price": 74.18,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": "Free",
     "youthPrice": 26.32,
     "duration": 5,
@@ -1080,6 +1101,7 @@
     "topTour": false,
     "price": 138.79,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 129.22,
     "duration": 3,
@@ -1130,6 +1152,7 @@
     "topTour": true,
     "price": 92,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 80,
     "duration": 3,
@@ -1173,6 +1196,7 @@
     "topTour": true,
     "price": 105,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": 93,
     "youthPrice": 93.32,
     "duration": 3,
@@ -1224,6 +1248,7 @@
     "topTour": true,
     "price": 118,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 106,
     "duration": 2,
@@ -1276,6 +1301,7 @@
     "topTour": false,
     "price": 160,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 153,
     "duration": 3,
@@ -1331,6 +1357,7 @@
     "topTour": false,
     "price": 187,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 161,
     "duration": 3,
@@ -1378,6 +1405,7 @@
     "topTour": false,
     "price": 153,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 144,
     "duration": 3,
@@ -1418,6 +1446,53 @@
     ]
   },
   {
+    "slug": "paris-dark-history-walk-with-wine-cheese",
+    "title": "Paris Dark History Walk with Wine & Cheese",
+    "destination": "paris",
+    "alsoIn": [],
+    "demo": false,
+    "categories": [
+      "paris-tours"
+    ],
+    "topTour": false,
+    "price": 81,
+    "priceNote": null,
+    "priceLabel": null,
+    "childPrice": null,
+    "youthPrice": 56,
+    "duration": 1,
+    "startTimes": "Inactive. Source slots: 17:00, 18:00, 19:00, 20:00.",
+    "rating": null,
+    "reviews": null,
+    "bookingUrl": "https://tstgroup.rezdy.com/781499/paris-dark-history-night-tour-with-wine-and-cheese",
+    "summary": "Uncover murders, executions, royal scandals and eerie legends with a storytelling guide, including a surprise wine & cheese taste and a French apéro finale.",
+    "highlights": [
+      "Hear stories of murders, royal scandals and revolutionary Paris.",
+      "Explore the Louvre area, Pont Neuf and Île de la Cité.",
+      "Enjoy the wine-and-cheese moments described in the published itinerary."
+    ],
+    "description": "<p>When evening falls, the City of Light reveals its darker side.</p><p>Follow a charismatic storytelling guide through the historic heart of Paris and uncover the murders, executions, royal scandals, strange characters and eerie legends hidden behind some of the city&#x27;s most beautiful landmarks.</p><p>Begin near the Louvre, where centuries of royal power, ambition and betrayal set the scene for your journey.</p><p>Continue through the streets of old Paris as your guide brings history to life through fascinating characters, humour, historical images and immersive storytelling. Hear about religious conflict, forgotten places of punishment, medieval justice, notorious prisoners and the darker events that shaped Paris.</p><p>But this isn&#x27;t an ordinary ghost walk.</p><p>Somewhere along the way, your guide has a little surprise waiting.</p><p>Pause together for a taste of French wine and cheese — a relaxed Parisian moment shared with your group before heading back into the darker chapters of the city&#x27;s past.</p><p>Then cross the Seine over historic Pont Neuf and enter Île de la Cité, where kings ruled, prisoners waited and revolutionary justice changed France forever.</p><p>Discover the stories surrounding the Conciergerie and hear about Marie Antoinette&#x27;s final days before finishing the walking chapter beneath magnificent Notre-Dame, surrounded by medieval imagery, legends and centuries of Parisian folklore.</p><p>But the evening isn&#x27;t over.</p><p>Leave the shadows behind and finish your experience the French way.</p><p>Settle into a local venue for a relaxed French wine and cheese apéro. Taste carefully selected French wines accompanied by artisan cheeses and bread while sharing stories and raising a glass with your fellow travellers.</p><p>Part dark history, part immersive storytelling and part French gastronomy, this isn&#x27;t simply another walking tour.</p><p>It&#x27;s a complete Paris night out.</p>",
+    "images": [
+      "/tours/paris-dark-history-walk-with-wine-cheese/01.jpg",
+      "/tours/paris-dark-history-walk-with-wine-cheese/02.jpg",
+      "/tours/paris-dark-history-walk-with-wine-cheese/03.jpg",
+      "/tours/paris-dark-history-walk-with-wine-cheese/04.jpg",
+      "/tours/paris-dark-history-walk-with-wine-cheese/05.jpg",
+      "/tours/paris-dark-history-walk-with-wine-cheese/06.jpg",
+      "/tours/paris-dark-history-walk-with-wine-cheese/07.jpg",
+      "/tours/paris-dark-history-walk-with-wine-cheese/08.jpg",
+      "/tours/paris-dark-history-walk-with-wine-cheese/09.jpg",
+      "/tours/paris-dark-history-walk-with-wine-cheese/10.jpg",
+      "/tours/paris-dark-history-walk-with-wine-cheese/11.jpg"
+    ],
+    "relatedTours": [
+      "paris-10-sights-montmartre-sacre-coeur-walking-tour",
+      "paris-15-highlights-eiffel-tower-louvre-museum-entry",
+      "paris-30-sights-opera-perfume-workshop-galeries-lafayette",
+      "paris-40-must-see-sights-french-food-experience"
+    ]
+  },
+  {
     "slug": "paris-family-challenge-secret-passages-macarons-gourmet",
     "title": "Paris Family Challenge: Secret Passages, Macarons & Gourmet",
     "destination": "paris",
@@ -1432,6 +1507,7 @@
     "topTour": false,
     "price": 232,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 208,
     "duration": 5,
@@ -1486,6 +1562,7 @@
     "topTour": false,
     "price": 130,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 3,
@@ -1532,6 +1609,7 @@
     "topTour": true,
     "price": 65.81,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": 11.96,
     "youthPrice": 29.91,
     "duration": 5,
@@ -1615,6 +1693,7 @@
     "topTour": false,
     "price": 119.65,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 113.66,
     "duration": 7,
@@ -1675,6 +1754,7 @@
     "topTour": true,
     "price": 335.01,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 323.04,
     "duration": 8,
@@ -1735,6 +1815,7 @@
     "topTour": false,
     "price": 147.16,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": 50.25,
     "youthPrice": 101.7,
     "duration": 5,
@@ -1781,6 +1862,7 @@
     "topTour": false,
     "price": 71,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 2,
@@ -1869,6 +1951,7 @@
     "topTour": false,
     "price": 309,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 4,
@@ -1915,6 +1998,7 @@
     "topTour": false,
     "price": 171,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 4,
@@ -1975,6 +2059,7 @@
     "topTour": false,
     "price": 111,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 98,
     "duration": 3,
@@ -2020,6 +2105,7 @@
     "topTour": true,
     "price": 122,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 88,
     "duration": 3,
@@ -2073,6 +2159,7 @@
     "topTour": true,
     "price": 69,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 3,
@@ -2124,6 +2211,7 @@
     "topTour": true,
     "price": 119.65,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": 99.31,
     "youthPrice": null,
     "duration": 5,
@@ -2183,6 +2271,7 @@
     "topTour": true,
     "price": 119.65,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 99.31,
     "duration": 6,
@@ -2228,6 +2317,7 @@
     "topTour": true,
     "price": 35,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": 25,
     "youthPrice": null,
     "duration": 3,
@@ -2286,6 +2376,7 @@
     "topTour": false,
     "price": 232,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 4,
@@ -2338,6 +2429,7 @@
     "topTour": true,
     "price": 35,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": 13,
     "youthPrice": 19,
     "duration": 2,
@@ -2382,6 +2474,7 @@
     "topTour": false,
     "price": 95,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": 87,
     "youthPrice": null,
     "duration": 2,
@@ -2429,6 +2522,7 @@
     "topTour": false,
     "price": 142,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": 68,
     "youthPrice": null,
     "duration": 4,
@@ -2488,6 +2582,7 @@
     "topTour": false,
     "price": 137.59,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 122.04,
     "duration": 2,
@@ -2538,6 +2633,7 @@
     "topTour": false,
     "price": 140,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": 131,
     "youthPrice": null,
     "duration": 6,
@@ -2592,6 +2688,7 @@
     "topTour": true,
     "price": 118,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 106,
     "duration": 5,
@@ -2644,6 +2741,7 @@
     "topTour": true,
     "price": 211.77,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 118.45,
     "duration": 3,
@@ -2694,6 +2792,7 @@
     "topTour": false,
     "price": 196.22,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 7,
@@ -2746,6 +2845,7 @@
     "topTour": false,
     "price": 159.13,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 148.36,
     "duration": 4,
@@ -2801,6 +2901,7 @@
     "topTour": false,
     "price": 139.96,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 119.77,
     "duration": 4,
@@ -2850,6 +2951,7 @@
     "topTour": false,
     "price": 202.2,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 4,
@@ -2906,7 +3008,8 @@
     ],
     "topTour": false,
     "price": 441.85,
-    "priceNote": "per participant",
+    "priceNote": "per person",
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 6,
@@ -2914,7 +3017,7 @@
     "rating": null,
     "reviews": null,
     "bookingUrl": "https://tstgroup.rezdy.com/756420/5-cities-in-one-day-a-private-french-riviera-adventure",
-    "summary": "Explore the best of the French Riviera in one day by train. Visit Antibes, Cannes, Eze and the artistic village of St-Paul-de-Vence with stunning views, history and local stories.",
+    "summary": "Explore the best of the French Riviera in one day. Visit Antibes, Cannes, Eze and the artistic village of St-Paul-de-Vence with stunning views, history and local stories.",
     "highlights": [
       "Antibes Old Town and harbor",
       "Cannes and La Croisette",
@@ -2940,9 +3043,9 @@
     ],
     "relatedTours": [
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery",
-      "french-riviera-gems-eze-grasse-saint-paul-de-vence"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "cote-dazur-explorer-3-cities-in-one-day"
     ]
   },
   {
@@ -2956,7 +3059,8 @@
     ],
     "topTour": false,
     "price": 78.97,
-    "priceNote": "per person in a group of 12 · €180.67 per person for 1",
+    "priceNote": "per person, in a group of 12",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 3,
@@ -3005,7 +3109,8 @@
     ],
     "topTour": false,
     "price": 52.64,
-    "priceNote": "per person in a group of 12 · €111.27 per person for 1",
+    "priceNote": "per person, in a group of 12",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 2,
@@ -3059,6 +3164,7 @@
     "topTour": false,
     "price": 113.66,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 2,
@@ -3108,7 +3214,8 @@
     ],
     "topTour": false,
     "price": 147.16,
-    "priceNote": "per person in a group of 10 · €278.77 per person for 2",
+    "priceNote": "per person, in a group of 10",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 5,
@@ -3122,7 +3229,7 @@
       "Lérins Islands guided hike",
       "Pine forests and coastal trails"
     ],
-    "description": "<p>Discover the best of the French Riviera with this unique kayaking and hiking experience in Cannes, combining sea exploration and island adventure in one unforgettable day.</p><p>Start your journey with a guided kayak activity along Cap Croisette, where you’ll paddle through crystal-clear Mediterranean waters, admire hidden coves, and enjoy stunning coastal views. This relaxing yet energizing activity is suitable for beginners and offers a fresh perspective of Cannes بعيد from the crowds.</p><p>After your kayak experience, continue your adventure with a guided hiking experience on the Lérins Islands. Walk through peaceful pine forests, coastal trails, and historic paths while your expert guide shares local stories, nature insights, and hidden gems of the islands. The hike is accessible and designed to balance discovery and comfort.</p><p>For an enhanced experience, you can opt for a breakfast or aperitif, perfect for enjoying the natural surroundings in a relaxed atmosphere.</p><p>Led by a professional, diplomed, and experienced sports monitor, this experience ensures safety, local expertise, and an authentic connection to the environment.</p><p>This tour is ideal for travelers seeking an active day in Cannes that blends kayaking, hiking, nature, and local knowledge into one seamless adventure.</p>",
+    "description": "<p>Discover the best of the French Riviera with this unique kayaking and hiking experience in Cannes, combining sea exploration and island adventure in one unforgettable day.</p><p>Start your journey with a guided kayak activity along Cap Croisette, where you’ll paddle through crystal-clear Mediterranean waters, admire hidden coves, and enjoy stunning coastal views. This relaxing yet energizing activity is suitable for beginners and offers a fresh perspective of Cannes from the crowds.</p><p>After your kayak experience, continue your adventure with a guided hiking experience on the Lérins Islands. Walk through peaceful pine forests, coastal trails, and historic paths while your expert guide shares local stories, nature insights, and hidden gems of the islands. The hike is accessible and designed to balance discovery and comfort.</p><p>For an enhanced experience, you can opt for a breakfast or aperitif, perfect for enjoying the natural surroundings in a relaxed atmosphere.</p><p>Led by a professional, diplomed, and experienced sports monitor, this experience ensures safety, local expertise, and an authentic connection to the environment.</p><p>This tour is ideal for travelers seeking an active day in Cannes that blends kayaking, hiking, nature, and local knowledge into one seamless adventure.</p>",
     "images": [
       "/tours/best-lerins-islands-kayak-and-hiking-adventure-with-pro-guide/01.jpg",
       "/tours/best-lerins-islands-kayak-and-hiking-adventure-with-pro-guide/02.jpg",
@@ -3150,9 +3257,10 @@
     "categories": [
       "french-riviera-tours"
     ],
-    "topTour": false,
+    "topTour": true,
     "price": 40.68,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 4,
@@ -3179,10 +3287,10 @@
       "/tours/best-of-nice-30-sights-food-tastings/09.jpg"
     ],
     "relatedTours": [
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
       "5-cities-in-one-day-a-private-french-riviera-adventure",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery",
-      "french-riviera-gems-eze-grasse-saint-paul-de-vence"
+      "cote-dazur-explorer-3-cities-in-one-day"
     ]
   },
   {
@@ -3197,6 +3305,7 @@
     "topTour": false,
     "price": 147.16,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 3,
@@ -3237,7 +3346,8 @@
     ],
     "topTour": false,
     "price": 211.77,
-    "priceNote": "per participant",
+    "priceNote": "per person",
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 4,
@@ -3292,7 +3402,8 @@
     ],
     "topTour": false,
     "price": 51.45,
-    "priceNote": "per person in a group of 12 · €116.06 per person for 1",
+    "priceNote": "per person, in a group of 12",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 2,
@@ -3337,7 +3448,8 @@
     ],
     "topTour": false,
     "price": 113.66,
-    "priceNote": "per person in a group of 10 · €269.20 per person for 2",
+    "priceNote": "per person, in a group of 10",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 4,
@@ -3393,7 +3505,8 @@
     ],
     "topTour": false,
     "price": 71.79,
-    "priceNote": "per person in a group of 12 · €126.82 per person for 1",
+    "priceNote": "per person, in a group of 12",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 2,
@@ -3407,7 +3520,7 @@
       "All-level yoga session",
       "Local aperitif and optional swim"
     ],
-    "description": "<p>Hosted at the peaceful Port Gallice, this experience takes place in a beautiful seaside setting, perfect for enjoying the golden-hour light and calming atmosphere.</p><p>Begin with a guided yoga session suitable for all levels, combining gentle movement, breathwork, and relaxation to release tension and reset after the day.</p><p>After your practice, stay and enjoy a local aperitif by the sea, soaking in the views and laid-back Riviera ambiance.</p><p>You are also welcome to take a refreshing swim in the Mediterranean or simply relax by the water.</p><p>Led by a professional, certified instructor, sessions are available in English or French, depending on the group.</p><p>This experience is the perfect way to combine wellness, nature, and lifestyle in one unforgettable evening in Antibes.</p>",
+    "description": "<p>Hosted at the peaceful Cannes this experience takes place in a beautiful seaside setting, perfect for enjoying the golden-hour light and calming atmosphere.</p><p>Begin with a guided yoga session suitable for all levels, combining gentle movement, breathwork, and relaxation to release tension and reset after the day.</p><p>After your practice, stay and enjoy a local aperitif by the sea, soaking in the views and laid-back Riviera ambiance.</p><p>You are also welcome to take a refreshing swim in the Mediterranean or simply relax by the water.</p><p>Led by a professional, certified instructor, sessions are available in English or French, depending on the group.</p><p>This experience is the perfect way to combine wellness, nature, and lifestyle in one unforgettable evening in Cannes.</p>",
     "images": [
       "/tours/cannes-sunset-beach-yoga-unforgettable-riviera-apero/01.jpg",
       "/tours/cannes-sunset-beach-yoga-unforgettable-riviera-apero/02.jpg",
@@ -3437,10 +3550,10 @@
       "/tours/cannes-sunset-beach-yoga-unforgettable-riviera-apero/26.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
-      "antibes-serenity-flow-pilates-coastal-brunch",
-      "antibes-yoga-with-swimming-experience",
-      "antibes-zen-escape-yoga-meditation-riviera-stroll"
+      "best-of-nice-30-sights-food-tastings",
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -3455,6 +3568,7 @@
     "topTour": false,
     "price": 83.75,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 71.79,
     "duration": 3,
@@ -3509,6 +3623,7 @@
     "topTour": false,
     "price": 185.45,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 173.49,
     "duration": 4,
@@ -3559,6 +3674,7 @@
     "topTour": false,
     "price": 160.33,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 153.15,
     "duration": 6,
@@ -3585,10 +3701,10 @@
       "/tours/cote-dazur-explorer-3-cities-in-one-day/09.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "french-riviera-fairytale-villages-and-perfume-discovery",
-      "french-riviera-gems-eze-grasse-saint-paul-de-vence"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -3602,7 +3718,8 @@
     ],
     "topTour": false,
     "price": 239.29,
-    "priceNote": "per participant",
+    "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 3,
@@ -3646,7 +3763,8 @@
     ],
     "topTour": false,
     "price": 247.67,
-    "priceNote": "per participant",
+    "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 3,
@@ -3676,10 +3794,10 @@
       "/tours/esterel-summit-hike-les-balcons-dazur/12.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
-      "antibes-serenity-flow-pilates-coastal-brunch",
-      "antibes-yoga-with-swimming-experience",
-      "antibes-zen-escape-yoga-meditation-riviera-stroll"
+      "best-of-nice-30-sights-food-tastings",
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -3692,8 +3810,9 @@
       "french-riviera-tours"
     ],
     "topTour": false,
-    "price": 1252.69,
-    "priceNote": "for a group of 1",
+    "price": 167.5,
+    "priceNote": "per person, in a group of 10",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 4,
@@ -3736,6 +3855,7 @@
     "topTour": false,
     "price": 179.47,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 179.47,
     "duration": 3,
@@ -3783,7 +3903,8 @@
     ],
     "topTour": false,
     "price": 87.34,
-    "priceNote": "per person in a group of 8 · €215.36 per person for 1",
+    "priceNote": "per person, in a group of 8",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 5,
@@ -3812,10 +3933,10 @@
       "/tours/french-riviera-fairytale-villages-and-perfume-discovery/11.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-gems-eze-grasse-saint-paul-de-vence"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -3829,10 +3950,11 @@
     ],
     "topTour": false,
     "price": 86.15,
-    "priceNote": "per person in a group of 12 · €166.31 per person for 2",
+    "priceNote": "per person, in a group of 12",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
-    "duration": 24,
+    "duration": 7,
     "startTimes": "08:00, 09:00, 10:00",
     "rating": null,
     "reviews": null,
@@ -3860,10 +3982,10 @@
       "/tours/french-riviera-gems-eze-grasse-saint-paul-de-vence/13.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -3877,7 +3999,8 @@
     ],
     "topTour": false,
     "price": 471.4,
-    "priceNote": "per participant",
+    "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 6,
@@ -3929,7 +4052,8 @@
     ],
     "topTour": false,
     "price": 86.15,
-    "priceNote": "per person in a group of 12 · €396.03 per person for 1",
+    "priceNote": "per person, in a group of 12",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 5,
@@ -3958,7 +4082,7 @@
       "monaco-bites-royal-secrets-a-historic-food-walk",
       "monacos-most-exclusive-palace-museums-champagne",
       "the-ultimate-monaco-walking-experience",
-      "5-cities-in-one-day-a-private-french-riviera-adventure"
+      "best-of-nice-30-sights-food-tastings"
     ]
   },
   {
@@ -3972,7 +4096,8 @@
     ],
     "topTour": false,
     "price": 93.32,
-    "priceNote": "per person in a group of 12 · €299.11 per person for 1",
+    "priceNote": "per person, in a group of 12",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 6,
@@ -4005,10 +4130,10 @@
       "/tours/from-nices-riviera-charm-to-monaco-majesty/15.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -4023,6 +4148,7 @@
     "topTour": false,
     "price": 62.22,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 5,
@@ -4064,10 +4190,55 @@
       "/tours/from-nice-cannes-old-town-walk-riviera-views/24.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
+    ]
+  },
+  {
+    "slug": "grasse-french-riviera-tour-of-perfume-and-wine",
+    "title": "Grasse French Riviera Tour of Perfume and Wine",
+    "destination": "south-of-france",
+    "alsoIn": [],
+    "demo": false,
+    "categories": [
+      "french-riviera-tours"
+    ],
+    "topTour": false,
+    "price": 187,
+    "priceNote": null,
+    "priceLabel": null,
+    "childPrice": null,
+    "youthPrice": 148,
+    "duration": null,
+    "startTimes": "Monday–Saturday: 09:00, 10:00, 11:00, 12:00, 13:00",
+    "rating": null,
+    "reviews": null,
+    "bookingUrl": "https://tstgroup.rezdy.com/788221/grasse-french-riviera-tour-of-perfume-and-wine",
+    "summary": "Discover the French Riviera on a full-day sensory journey featuring fine wines, local cuisine, perfume, charming villages, and breathtaking Mediterranean views, guided by a local expert.",
+    "highlights": [
+      "Tour within Nice",
+      "Enjoy a tour on Grasse Fragonard",
+      "Enjoy a tour on Grasse"
+    ],
+    "description": "<p>Step into a true sensory masterpiece, where the French Riviera reveals its most refined &amp; authentic side.From the sparkling blues of the Mediterranean coastline to hidden hilltop vineyards and the world capital of perfume,this carefully crafted fullday experience weaves together wine,food,fragrance,culture and breathtaking scenery into one seamless and unforgettable journey.This is an immersive travel, designed for curious, discerning travellers who want to feel the Riviera rather than simply pass through it.Every stop has been chosen for its authenticity,elegance &amp; connection to the region’s identity.Led by an expert guide,the day unfolds naturally,with time to savour flavours, ask questions, take photos, and truly absorb the atmosphere. Stories,local insight and sensory discoveries bring each place to life, creating a relaxed yet deeply enriching experience.If you’re looking for the most complete, memorable, and beautifully balanced Riviera experience available online,this is it.</p>",
+    "images": [
+      "/tours/grasse-french-riviera-tour-of-perfume-and-wine/01.jpg",
+      "/tours/grasse-french-riviera-tour-of-perfume-and-wine/02.jpg",
+      "/tours/grasse-french-riviera-tour-of-perfume-and-wine/03.jpg",
+      "/tours/grasse-french-riviera-tour-of-perfume-and-wine/04.jpg",
+      "/tours/grasse-french-riviera-tour-of-perfume-and-wine/05.jpg",
+      "/tours/grasse-french-riviera-tour-of-perfume-and-wine/06.jpg",
+      "/tours/grasse-french-riviera-tour-of-perfume-and-wine/07.jpg",
+      "/tours/grasse-french-riviera-tour-of-perfume-and-wine/08.jpg",
+      "/tours/grasse-french-riviera-tour-of-perfume-and-wine/09.jpg"
+    ],
+    "relatedTours": [
+      "best-of-nice-30-sights-food-tastings",
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -4082,6 +4253,7 @@
     "topTour": false,
     "price": 166.31,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 137.59,
     "duration": 3,
@@ -4128,6 +4300,7 @@
     "topTour": false,
     "price": 250.06,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 8,
@@ -4161,10 +4334,10 @@
       "/tours/italian-riviera-escape-san-remo-dolceacqua-menton/16.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -4179,6 +4352,7 @@
     "topTour": false,
     "price": 214.17,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 4,
@@ -4224,7 +4398,8 @@
     ],
     "topTour": false,
     "price": 76.57,
-    "priceNote": "per person in a group of 12 · €197.42 per person for 1",
+    "priceNote": "per person, in a group of 12",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 4,
@@ -4265,6 +4440,7 @@
     "topTour": false,
     "price": 134,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 126.82,
     "duration": 3,
@@ -4303,7 +4479,7 @@
       "from-monaco-eze-perfume-factory-tour-with-local-guide",
       "monacos-most-exclusive-palace-museums-champagne",
       "the-ultimate-monaco-walking-experience",
-      "5-cities-in-one-day-a-private-french-riviera-adventure"
+      "best-of-nice-30-sights-food-tastings"
     ]
   },
   {
@@ -4318,6 +4494,7 @@
     "topTour": false,
     "price": 385.26,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 7,
@@ -4331,7 +4508,7 @@
       "Oceanographic Museum",
       "Artisan chocolate and champagne"
     ],
-    "description": "<p>Experience Monaco&#x27;s most complete luxury walking tour with all major admission tickets included, exclusive interior visits, gourmet experiences, and expert storytelling. Step inside Monaco&#x27;s most iconic landmarks, discover the glamour of Formula One, enjoy artisan chocolate crafted by Monaco&#x27;s historic chocolatiers, visit the seasonal Gucci-inspired La Rose des Vents Beach Club, and finish with a cocktail overlooking the Mediterranean. Designed for travelers seeking far more than a sightseeing tour, this carefully curated experience showcases the very best of the Principality.</p><p>Begin in the legendary Casino Square before stepping inside the iconic Casino de Monte-Carlo (subject to opening hours). When available, admire the magnificent Salle Garnier Opera House, Charles Garnier&#x27;s architectural masterpiece. Access to the opera house depends on rehearsals, performances, and private events.</p><p>Continue along Monaco&#x27;s famous Formula One Grand Prix circuit, including the legendary Fairmont Hairpin, one of the world&#x27;s most recognizable racing corners. Explore the magnificent Prince&#x27;s Palace State Apartments, witness the Changing of the Guard (schedule permitting), stroll through Monaco-Ville, and visit Monaco Cathedral, the resting place of Princess Grace Kelly and Prince Rainier III.</p><p>Discover the spectacular Oceanographic Museum before visiting Monaco&#x27;s legendary luxury hotels, including Hôtel de Paris Monte-Carlo, Hôtel Hermitage Monte-Carlo, and Hôtel Métropole Monte-Carlo.</p><p>Enjoy an exclusive artisan chocolate tasting at Chocolaterie de Monaco, founded in 1920 and proudly serving as an Official Supplier to the Prince&#x27;s Palace since 1999. Learn how over a century of craftsmanship, tradition, and excellence continues to shape every handmade creation.</p><p>Complete your day at the seasonal Gucci-inspired La Rose des Vents Beach Club before relaxing with a premium champagne overlooking the sparkling Mediterranean.</p><p>With every major attraction included, this luxury experience blends royal history,</p>",
+    "description": "<p>Step beyond the ordinary and discover Monaco as very few visitors ever do. This is the ultimate luxury experience, combining royal history, world-famous architecture, spectacular museums, breathtaking Mediterranean views, and an unforgettable champagne finale.</p><p>Your exclusive journey takes you inside Monaco&#x27;s most iconic landmarks, where you&#x27;ll uncover the fascinating stories of the Grimaldi dynasty, explore magnificent royal residences, admire the elegance of the legendary opera house, and visit some of the Principality&#x27;s finest museums. From hidden treasures and centuries of history to masterpieces of art, science, and culture, every stop has been carefully selected to showcase the very best of Monaco.</p><p>As you stroll through the glamorous streets of Monte Carlo, you&#x27;ll discover the elegance that has made Monaco the playground of royalty, celebrities, Formula 1 champions, and the world&#x27;s elite. Along the way, your expert guide will reveal secret stories, remarkable scandals, royal traditions, and fascinating local insights that most visitors never hear.</p><p>The experience concludes in unforgettable style at one of Monaco&#x27;s most exclusive beachfront destinations. Relax with a glass of premium champagne while overlooking the sparkling Mediterranean, surrounded by the chic atmosphere of the Riviera. To complete your journey, indulge in an exquisite tasting from one of Monaco&#x27;s finest artisan chocolatiers, where exceptional craftsmanship meets unforgettable flavor.</p><p>This is far more than a sightseeing tour—it&#x27;s an immersive journey into the luxury, elegance, history, and timeless glamour that have made Monaco one of the world&#x27;s most extraordinary destinations.</p>",
     "images": [
       "/tours/monacos-most-exclusive-palace-museums-champagne/01.jpg",
       "/tours/monacos-most-exclusive-palace-museums-champagne/02.jpg",
@@ -4344,7 +4521,7 @@
       "from-monaco-eze-perfume-factory-tour-with-local-guide",
       "monaco-bites-royal-secrets-a-historic-food-walk",
       "the-ultimate-monaco-walking-experience",
-      "5-cities-in-one-day-a-private-french-riviera-adventure"
+      "best-of-nice-30-sights-food-tastings"
     ]
   },
   {
@@ -4359,6 +4536,7 @@
     "topTour": false,
     "price": 168.7,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 5,
@@ -4382,10 +4560,10 @@
       "/tours/nice-eze-perfume-panoramas-best-french-riviera-experience/06.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -4397,9 +4575,10 @@
     "categories": [
       "french-riviera-tours"
     ],
-    "topTour": false,
+    "topTour": true,
     "price": 167.5,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 145.97,
     "duration": 6,
@@ -4436,10 +4615,10 @@
       "/tours/nice-countryside-wine-tour-with-chateau-de-cremat-tasting/19.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure",
+      "cote-dazur-explorer-3-cities-in-one-day"
     ]
   },
   {
@@ -4453,7 +4632,8 @@
     ],
     "topTour": false,
     "price": 95.72,
-    "priceNote": "per person in a group of 12 · €254.85 per person for 1",
+    "priceNote": "per person, in a group of 12",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 6,
@@ -4484,10 +4664,10 @@
       "/tours/nice-grand-museum-tour-matisse-chagall-2000-yrs-of-art/13.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -4502,6 +4682,7 @@
     "topTour": false,
     "price": 118.45,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": 11.96,
     "youthPrice": 46.66,
     "duration": 3,
@@ -4535,10 +4716,10 @@
       "/tours/nice-old-town-scavenger-hunt-and-castle-hill-exploration-game/16.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -4553,6 +4734,7 @@
     "topTour": false,
     "price": 186.65,
     "priceNote": "Brunch €186.65",
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 3,
@@ -4581,10 +4763,10 @@
       "/tours/nice-old-town-secrets-and-beach-brunch-tour/11.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -4596,9 +4778,10 @@
     "categories": [
       "french-riviera-tours"
     ],
-    "topTour": false,
+    "topTour": true,
     "price": 296.72,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 284.76,
     "duration": 6,
@@ -4633,10 +4816,10 @@
       "/tours/nice-to-grasse-french-riviera-tour-perfume-wine-picnic/17.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "5-cities-in-one-day-a-private-french-riviera-adventure",
+      "cote-dazur-explorer-3-cities-in-one-day"
     ]
   },
   {
@@ -4650,7 +4833,8 @@
     ],
     "topTour": false,
     "price": 167.5,
-    "priceNote": "per person in a group of 12 · €372.10 per person for 1",
+    "priceNote": "per person, in a group of 12",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 6,
@@ -4684,10 +4868,10 @@
       "/tours/nice-five-senses-tour-with-eze-and-wine-tasting/16.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -4701,7 +4885,8 @@
     ],
     "topTour": false,
     "price": 257.24,
-    "priceNote": "per participant",
+    "priceNote": "per person",
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 5,
@@ -4729,10 +4914,10 @@
       "/tours/perfume-princes-panoramas-eze-monaco-fragonard-from-nice/10.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -4747,6 +4932,7 @@
     "topTour": false,
     "price": 153.15,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 3,
@@ -4785,10 +4971,10 @@
       "/tours/premium-nice-food-tour-with-exclusive-chocolate-box/21.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -4802,7 +4988,8 @@
     ],
     "topTour": false,
     "price": 117.25,
-    "priceNote": "per person in a group of 12 · €233.31 per person for 2",
+    "priceNote": "per person, in a group of 12",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 8,
@@ -4829,10 +5016,10 @@
       "/tours/riviera-elite-5-cities-discovery/09.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -4846,10 +5033,11 @@
     ],
     "topTour": false,
     "price": 84.95,
-    "priceNote": "per person in a group of 12 · €289.54 per person for 1",
+    "priceNote": "per person, in a group of 12",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
-    "duration": 3,
+    "duration": 8,
     "startTimes": "08:00, 09:00, 10:00, 11:00, 12:00, 13:00, 14:00, 15:00",
     "rating": null,
     "reviews": null,
@@ -4873,10 +5061,10 @@
       "/tours/riviera-prestige-journey-nice-eze-monaco/09.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -4890,7 +5078,8 @@
     ],
     "topTour": false,
     "price": 76.57,
-    "priceNote": "per person in a group of 12 · €197.42 per person for 1",
+    "priceNote": "per person, in a group of 12",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 6,
@@ -4934,6 +5123,7 @@
     "topTour": false,
     "price": 273.99,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 8,
@@ -4959,10 +5149,10 @@
       "/tours/saint-tropez-glamour-port-grimaud-riviera-adventure/08.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -4976,7 +5166,8 @@
     ],
     "topTour": false,
     "price": 137.59,
-    "priceNote": "per person in a group of 8 · €860.25 per person for 1",
+    "priceNote": "per person, in a group of 8",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 8,
@@ -5008,10 +5199,10 @@
       "/tours/scenic-journey-nice-to-monaco-explorer/14.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -5026,6 +5217,7 @@
     "topTour": false,
     "price": 212.97,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 5,
@@ -5052,10 +5244,10 @@
       "/tours/scents-secrets-the-riviera-nice-to-grasse-perfume-experience/09.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -5070,6 +5262,7 @@
     "topTour": false,
     "price": 245.27,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 203.4,
     "duration": 6,
@@ -5103,10 +5296,10 @@
       "/tours/seaside-treasures-timeless-villages-sanremo-dolceacqua-menton/16.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -5121,6 +5314,7 @@
     "topTour": false,
     "price": 51.45,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": 7.18,
     "youthPrice": 40.68,
     "duration": 3,
@@ -5171,6 +5365,7 @@
     "topTour": false,
     "price": 101.7,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 101.7,
     "duration": 3,
@@ -5211,7 +5406,8 @@
     ],
     "topTour": false,
     "price": 105.29,
-    "priceNote": "per person in a group of 10 · €330.22 per person for 1",
+    "priceNote": "per person, in a group of 10",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 6,
@@ -5247,10 +5443,10 @@
       "/tours/the-riviera-masterpiece-art-perfume-in-nice-eze-saint-paul/18.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -5264,7 +5460,8 @@
     ],
     "topTour": false,
     "price": 95.72,
-    "priceNote": "per person in a group of 8 · €568.32 per person for 1",
+    "priceNote": "per person, in a group of 8",
+    "priceLabel": "As low as",
     "childPrice": null,
     "youthPrice": null,
     "duration": 5,
@@ -5288,10 +5485,10 @@
       "/tours/the-soul-of-the-riviera-villages-fragrance-journey/06.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -5306,6 +5503,7 @@
     "topTour": false,
     "price": 128.02,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 120.84,
     "duration": 3,
@@ -5331,7 +5529,7 @@
       "from-monaco-eze-perfume-factory-tour-with-local-guide",
       "monaco-bites-royal-secrets-a-historic-food-walk",
       "monacos-most-exclusive-palace-museums-champagne",
-      "5-cities-in-one-day-a-private-french-riviera-adventure"
+      "best-of-nice-30-sights-food-tastings"
     ]
   },
   {
@@ -5346,6 +5544,7 @@
     "topTour": false,
     "price": 186.65,
     "priceNote": "Dinner €201.01 · Brunch €186.65",
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 3,
@@ -5374,10 +5573,10 @@
       "/tours/tipsy-in-nice-old-town-secrets-sunset-beach-apero-delivery/11.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -5392,6 +5591,7 @@
     "topTour": false,
     "price": 178.27,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 171.09,
     "duration": 6,
@@ -5419,10 +5619,10 @@
       "/tours/top-sights-of-the-french-riviera-cannes-antibes-saint-paul/10.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -5436,7 +5636,8 @@
     ],
     "topTour": false,
     "price": 214.17,
-    "priceNote": "per participant",
+    "priceNote": "per person",
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 3,
@@ -5484,6 +5685,7 @@
     "topTour": false,
     "price": 112.47,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": null,
     "duration": 3,
@@ -5523,10 +5725,10 @@
       "/tours/walk-taste-the-riviera-alain-ducasse-hidden-gems/22.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   },
   {
@@ -5541,6 +5743,7 @@
     "topTour": false,
     "price": 159.13,
     "priceNote": null,
+    "priceLabel": null,
     "childPrice": null,
     "youthPrice": 151.95,
     "duration": 3,
@@ -5581,10 +5784,10 @@
       "/tours/eze-walking-tour-of-medieval-village-and-exotic-garden-from-nice/23.jpg"
     ],
     "relatedTours": [
-      "5-cities-in-one-day-a-private-french-riviera-adventure",
       "best-of-nice-30-sights-food-tastings",
-      "cote-dazur-explorer-3-cities-in-one-day",
-      "french-riviera-fairytale-villages-and-perfume-discovery"
+      "nice-countryside-wine-tour-with-chateau-de-cremat-tasting",
+      "nice-to-grasse-french-riviera-tour-perfume-wine-picnic",
+      "5-cities-in-one-day-a-private-french-riviera-adventure"
     ]
   }
 ]

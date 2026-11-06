@@ -31,7 +31,8 @@ export type Tour = {
   categories: string[]; // category slugs from categories.json
   topTour: boolean; // shown under "Top Tours"
   price: number; // adult price in €
-  priceNote: string | null; // e.g. "159 per person for groups of 8."
+  priceNote: string | null; // e.g. "per person, in a group of 12"
+  priceLabel?: string | null; // "As low as" for tiered group prices; default "From"
   childPrice: number | 'Free' | null;
   youthPrice?: number | null; // youth / teenager price in €
   duration: number | null; // hours; null = not shown

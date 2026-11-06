@@ -112,7 +112,7 @@ function BookingCard({ tour }: { tour: Tour }) {
   const child = childPriceText(tour);
   return (
     <aside className="td-book" aria-label="Book this tour">
-      <p className="td-from">From <strong>{euro(tour.price)}</strong></p>
+      <p className="td-from">{tour.priceLabel ?? 'From'} <strong>{euro(tour.price)}</strong></p>
       <p className="td-per">{tour.priceNote ?? 'per adult'}</p>
       {child && <p className="td-child"><Check size={14} /> {child}</p>}
       {tour.youthPrice != null && <p className="td-child"><Check size={14} /> Youth / teenager from {euro(tour.youthPrice)}</p>}
@@ -183,7 +183,7 @@ function Related({ tour }: { tour: Tour }) {
                 {hasRating(t) && <span><Star size={12} fill="currentColor" strokeWidth={0} className="td-star" /> {t.rating.toFixed(1)}{t.reviews ? ` (${t.reviews.toLocaleString('en')})` : ''}</span>}
               </p>
               <div className="td-rel-foot">
-                <p className="pl-price"><small>From</small> {euro(t.price)}</p>
+                <p className="pl-price"><small>{t.priceLabel ?? 'From'}</small> {euro(t.price)}</p>
                 <A to={tourPath(t)} className="pl-btn pl-btn-sm" aria-label={`View tour: ${t.title}`}>View Tour <ArrowRight size={13} /></A>
               </div>
             </div>
@@ -274,7 +274,7 @@ export function TourPage() {
       <Related tour={tour} />
 
       <div className="td-mbar">
-        <p><small>From</small> <strong>{euro(tour.price)}</strong> <small>{tour.priceNote ? tour.priceNote.split(" · ")[0] : "per adult"}</small></p>
+        <p><small>{tour.priceLabel ?? 'From'}</small> <strong>{euro(tour.price)}</strong> <small>{tour.priceNote ? tour.priceNote.split(" · ")[0] : "per adult"}</small></p>
         <A to={tour.bookingUrl} sameTab className="pl-btn pl-btn-sm">Book Now <ArrowRight size={13} /></A>
       </div>
     </div>

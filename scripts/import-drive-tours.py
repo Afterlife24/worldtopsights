@@ -39,11 +39,16 @@ CATEGORY_TEXT = {
     'Opera Garnier': ('Step inside the Palais Garnier, one of the most beautiful opera houses in the world, on its own or with food, perfume and sightseeing.', ['Bravo', 'Garnier']),
     'Perfume Paris': ('Discover the art of French perfume and create your own fragrance to take home.', ['L’art du', 'parfum']),
     'French Riviera Tours': ('Nice, Cannes, Antibes, Monaco, Èze and Grasse: walking tours, food and wine, perfume, yoga, islands and day trips on the Côte d’Azur.', ['Bienvenue', 'dans le Sud']),
+    'Cruise': ('See Paris from the Seine on tours that include a river cruise.', ['Sur la', 'Seine']),
+    'Cultural': ('Opera, art, history and French savoir-vivre: tours for culture lovers.', ['Art de', 'vivre']),
     'Galeries Lafayette': ('Fashion shows, perfume, chocolate, macarons and Christmas lights at Paris’s most famous department store.', ['Très', 'chic']),
 }
 
 # Only these categories are used. Others written in a document are reported and left out.
-KNOWN_CATEGORIES = ['Paris Tours', 'Top Selling Tours', 'Opera Garnier', 'Perfume Paris', 'Galeries Lafayette', 'French Riviera Tours']
+KNOWN_CATEGORIES = ['Paris Tours', 'Top Selling Tours', 'Opera Garnier', 'Perfume Paris', 'Galeries Lafayette', 'French Riviera Tours', 'Cruise', 'Cultural']
+
+# Client answers per Rezdy product ID (scripts/tour-overrides.json): "active": true keeps a tour marked Inactive; other keys replace tour fields.
+OVERRIDES = json.loads((Path(__file__).resolve().parent / 'tour-overrides.json').read_text(encoding='utf-8'))
 
 # Per destination: categories every tour of that destination gets.
 DESTINATIONS = {
@@ -205,31 +210,27 @@ def euro_text(n):
 
 
 def table_prices(rows):
-    """South of France price table -> (price, priceNote, child, youth). Rules:
-    Adult row -> adult price. Group of N -> lowest per-person price with a note. Participants -> per participant.
-    Group amounts not marked 'per person' are group totals -> smallest group's total. Other rows (Brunch, Dinner) -> lowest, listed."""
+    """South of France price table -> (price, priceNote, child, youth, priceLabel). Client rules:
+    Adult row -> adult price. Tiered "Group of N" prices -> lowest per-person rate (group totals are divided by N),
+    shown as "As low as €X per person". A single "Participants" price is per person. Other rows (Brunch, Dinner) -> lowest, listed."""
     eur = [(k.strip(), number(v), 'per person' in v) for k, v in rows if re.search(r'€\s*\d', v)]
     get = lambda name: next((v for k, v, _ in eur if k.lower().rstrip('s') == name), None)
     adult = get('adult')
     if adult is not None:
-        return adult, None, get('child'), get('youth')
-    groups = [(int(re.search(r'\d+', k).group()), v, pp) for k, v, pp in eur if k.startswith('Group of')]
+        return adult, None, get('child'), get('youth'), None
+    groups = [(int(re.search(r'\d+', k).group()), v if pp else round(v / int(re.search(r'\d+', k).group()), 2))
+              for k, v, pp in eur if k.startswith('Group of')]
     if groups:
-        if all(pp for _, _, pp in groups):
-            n, low, _ = min(groups, key=lambda g: (g[1], -g[0]))
-            first_n, first, _ = min(groups)
-            note = f'per person in a group of {n}' + (f' · {euro_text(first)} per person for {first_n}' if first_n != n else '')
-            return low, note, None, None
-        n, total, _ = min(groups)
-        return total, f'for a group of {n}', None, None
+        n, low = min(groups, key=lambda g: (g[1], -g[0]))
+        return low, f'per person, in a group of {n}', None, None, 'As low as'
     part = get('participant')
     if part is not None:
-        return part, 'per participant', None, None
+        return part, 'per person', None, None, None
     other = [(k, v) for k, v, _ in eur if k.lower() not in ('infant', 'senior') and v]
     if other:
         low = min(v for _, v in other)
-        return low, ' · '.join(f'{k} {euro_text(v)}' for k, v in other), None, None
-    return None, None, None, None
+        return low, ' · '.join(f'{k} {euro_text(v)}' for k, v in other), None, None, None
+    return None, None, None, None, None
 
 
 def build_tour(folder, d, sec, slug, destination, jobs):
@@ -238,9 +239,9 @@ def build_tour(folder, d, sec, slug, destination, jobs):
     child_raw = d.get('child price (€)', '')
     child = number(child_raw) if re.search(r'\d', child_raw.split('//')[0]) else price_from_line(line, 'Child')
     youth = number(d.get('youth price (€)')) or price_from_line(line, 'Youth') or price_from_line(child_raw, 'Youth')
-    note = None
+    note = label = None
     if adult is None and d.get('price rows'):
-        adult, note, child, youth = table_prices(d['price rows'])
+        adult, note, child, youth, label = table_prices(d['price rows'])
     photos = order_photos([f.name for f in folder.iterdir() if f.is_file() and IMG.search(f.name)])
     out_dir = PHOTOS / slug
     shutil.rmtree(out_dir, ignore_errors=True)
@@ -260,6 +261,7 @@ def build_tour(folder, d, sec, slug, destination, jobs):
         'topTour': d.get('top tour', '').strip().lower().startswith('y'),
         'price': adult,
         'priceNote': note,
+        'priceLabel': label,
         'childPrice': child_value(child),
         'youthPrice': youth,
         'duration': hours(d.get('duration', '')),
@@ -312,9 +314,12 @@ def main():
         if not re.match(r'^https://tstgroup\.rezdy\.com/\d+/', link):
             skipped.append(f'{folder.name}: no Rezdy link')
             continue
+        ov = OVERRIDES.get(link.split('/')[3], {})
         if re.search(r'\binactive\b', d['title'], re.I):
-            skipped.append(f'{folder.name}: marked Inactive')
-            continue
+            if not ov.get('active'):
+                skipped.append(f'{folder.name}: marked Inactive')
+                continue
+            d['title'] = re.sub(r'\s*[—–-]\s*Inactive\s*$', '', d['title'], flags=re.I).strip()
         pid = link.split('/')[3]
         if pid in seen:
             skipped.append(f'{folder.name}: same Rezdy product as "{seen[pid]}"')
@@ -334,6 +339,7 @@ def main():
             slug, n = f'{base}-{n}', n + 1
         used.add(slug)
         t = build_tour(folder, d, sec, slug, destination, jobs)
+        t.update({k: v for k, v in ov.items() if k not in ('note', 'active')})
         if t['price'] is None:
             skipped.append(f'{folder.name}: no adult price')
             used.discard(slug)

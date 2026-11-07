@@ -339,7 +339,11 @@ def main():
             slug, n = f'{base}-{n}', n + 1
         used.add(slug)
         t = build_tour(folder, d, sec, slug, destination, jobs)
-        t.update({k: v for k, v in ov.items() if k not in ('note', 'active')})
+        t.update({k: v for k, v in ov.items() if k not in ('note', 'active', 'mainPhoto')})
+        if ov.get('mainPhoto'):  # e.g. "21": that photo becomes the main one (01.jpg)
+            want = f"/tours/{slug}/{int(ov['mainPhoto']):02d}.jpg"
+            if want in t['images']:
+                t['images'] = [want] + [i for i in t['images'] if i != want]
         if t['price'] is None:
             skipped.append(f'{folder.name}: no adult price')
             used.discard(slug)

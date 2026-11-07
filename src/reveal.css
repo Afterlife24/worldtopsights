@@ -1,0 +1,39 @@
+/* ---------- text and block reveal animations, whole site ---------- */
+
+/* Headings: words appear one after another (src/components/WordReveal.tsx) */
+.wr-line { display: block; }
+.wr-word {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(8px);
+  translate: 0 0.35em;
+}
+.wr.is-in .wr-word {
+  animation: wr-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation-delay: calc(var(--wr-delay, 0s) + var(--w) * 0.07s);
+}
+@keyframes wr-in { to { opacity: 1; filter: blur(0); translate: 0 0; } }
+
+/* Paragraphs, cards and lists fade up as they scroll into view (browsers with scroll-driven animations).
+   Uses `translate`, not `transform`, so card hover effects keep working. Other browsers just show the content. */
+@supports (animation-timeline: view()) {
+  .pl-head p, .tp-lede, .td-lede, .ph-lede, .ph-card, .pl-cat, .pl-card, .pl-reason, .pl-review, .pl-faq-item,
+  .tp-fcard, .tp-card, .tp-tile, .tp-empty,
+  .dp-cat, .dp-feature, .dp-about p, .dp-facts > div, .dp-other, .td-faq,
+  .td-text, .td-prose > *, .td-ticks li, .td-rel, .td-box {
+    animation: rv-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+}
+@keyframes rv-up { from { opacity: 0; translate: 0 28px; } to { opacity: 1; translate: 0 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .wr-word, .wr.is-in .wr-word { animation: none; opacity: 1; filter: none; translate: none; }
+  @supports (animation-timeline: view()) {
+    .pl-head p, .tp-lede, .td-lede, .ph-lede, .ph-card, .pl-cat, .pl-card, .pl-reason, .pl-review, .pl-faq-item,
+    .tp-fcard, .tp-card, .tp-tile, .tp-empty,
+    .dp-cat, .dp-feature, .dp-about p, .dp-facts > div, .dp-other, .td-faq,
+    .td-text, .td-prose > *, .td-ticks li, .td-rel, .td-box { animation: none; }
+  }
+}

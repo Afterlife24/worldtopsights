@@ -11,5 +11,9 @@
     "note": "Grasse French Riviera Tour of Perfume and Wine: the document lists Adult 187 / Youth 148 (EUR column \"Not verified\"); same numbers used as euros, as agreed",
     "price": 187,
     "youthPrice": 148
+  },
+  "753371": {
+    "note": "Paris Natural Wine & Cheese: client asked for a better main photo; photo 21 (cheese board and wine) chosen",
+    "mainPhoto": "21"
   }
 }

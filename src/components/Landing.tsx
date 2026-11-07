@@ -3,7 +3,6 @@ import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Clock, Gem, Heart, 
 import { destinationCards, faqs, reasons, reviews, siteImages } from '@/data/landing';
 import { byPopularity, euro, formatHours, hasRating, mainImage, topTours, tourPath, tours, usedCategories, type Tour } from '@/data/tours';
 import { toursPath } from '@/data/destinations';
-import { WordReveal } from './WordReveal';
 import { A } from './Chrome';
 import '@/landing.css';
 
@@ -26,7 +25,7 @@ const homeMore = [...parisTours].filter((t) => !homeTop.includes(t)).sort(byPopu
 function SectionTitle({ title, link }: { title: string; link?: { label: string; to: string } }) {
   return (
     <div className="pl-head">
-      <h2><WordReveal text={title} /></h2>
+      <h2>{title}</h2>
       {link && <A to={link.to} className="pl-more">{link.label} <ArrowRight size={13} /></A>}
     </div>
   );
@@ -41,7 +40,7 @@ function Hero() {
       <img className="ph-img" src={siteImages.homeHero} alt="The Eiffel Tower and a bridge over the Seine" fetchPriority="high" />
       <div className="pl-wrap ph-inner">
         <p className="ph-eyebrow">Iconic places. Authentic experiences.</p>
-        <h1><WordReveal lines={['Discover France,', 'Beyond the Ordinary']} play delay={0.1} /></h1>
+        <h1>Discover France,<br />Beyond the Ordinary</h1>
         <p className="ph-lede">Curated tours and exclusive experiences in Paris, the South of France and Galeries Lafayette, designed for curious travellers.</p>
         <A to="/tours" className="pl-btn pl-btn-caps">Explore Tours <ArrowRight size={14} /></A>
         <p className="ph-script" aria-hidden="true">“More than a trip,<br />a deeper connection<br />to France.”</p>
@@ -52,7 +51,7 @@ function Hero() {
           <article key={d.title} className="ph-card">
             <img src={d.image} alt={d.alt} loading="lazy" />
             <div>
-              <h2><WordReveal text={d.title} /></h2>
+              <h2>{d.title}</h2>
               <p>{d.text}</p>
               <A to={d.to} className="ph-link">{d.cta} <ArrowRight size={14} /></A>
             </div>
@@ -69,7 +68,7 @@ function Categories() {
   return (
     <section id="categories" className="pl-wrap pl-section">
       <div className="pl-head">
-        <h2><WordReveal text="Browse by Category" /></h2>
+        <h2>Browse by Category</h2>
         <p className="pl-head-note">Find the perfect Paris experience for your interests.</p>
       </div>
       <div className={`pl-cats ${[4, 7, 8].includes(usedCategories('paris').length) ? 'is-seven' : ''}`}>
@@ -217,7 +216,7 @@ function Faq() {
   return (
     <section id="faq" className="pl-wrap pl-section pl-faq-section">
       <div className="pl-head">
-        <h2><WordReveal text="Frequently Asked Questions" /></h2>
+        <h2>Frequently Asked Questions</h2>
         <button type="button" className="pl-more" onClick={() => setOpen(faqs.map(() => !allOpen))}>
           {allOpen ? 'Collapse All' : 'Expand All'} {allOpen ? <Minus size={14} /> : <Plus size={14} />}
         </button>
@@ -282,7 +281,7 @@ function Newsletter() {
       <SketchLeft />
       <div className="pl-wrap pl-news-inner">
         <div>
-          <h2><WordReveal text="Be the First to Know" /></h2>
+          <h2>Be the First to Know</h2>
           <p>Get exclusive access to new tours, special offers and travel inspiration from Paris.</p>
         </div>
         {state === 'done' ? (

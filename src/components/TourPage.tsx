@@ -5,7 +5,6 @@ import { categoryBySlug, euro, formatHours, hasRating, mainImage, tourBySlug, to
 import { relatedTours, tourReviews } from '@/data/tourDetails';
 import { destinationBySlug, destinationPath, toursPath } from '@/data/destinations';
 import { useLockBody } from '@/hooks/useLockBody';
-import { WordReveal } from './WordReveal';
 import { A } from './Chrome';
 import '@/tour.css';
 
@@ -77,7 +76,7 @@ function Summary({ tour, label }: { tour: Tour; label: string }) {
   return (
     <div className="td-summary">
       <p className="td-eyebrow">{label}</p>
-      <h1><WordReveal key={tour.slug} text={tour.title} play delay={0.1} /></h1>
+      <h1>{tour.title}</h1>
       <p className="td-lede">{tour.summary}</p>
       {hasRating(tour) && (
         <a href="#reviews" className="td-rating">
@@ -136,7 +135,7 @@ function Reviews({ tour }: { tour: Tour & { rating: number } }) {
   return (
     <section id="reviews" className="td-reviews" aria-labelledby="td-rev-h">
       <div className="td-row-head">
-        <h2 id="td-rev-h"><WordReveal text="Customer Reviews" /></h2>
+        <h2 id="td-rev-h">Customer Reviews</h2>
         <A to="/#reviews" className="pl-more">Read All Reviews <ArrowRight size={13} /></A>
       </div>
       <div className="td-rev-body">
@@ -165,7 +164,7 @@ function Related({ tour }: { tour: Tour }) {
   return (
     <section id="related" className="pl-wrap td-related" aria-labelledby="td-rel-h">
       <div className="td-row-head">
-        <h2 id="td-rel-h"><WordReveal key={tour.slug} text={`Similar ${dest?.name ?? ''} Tours`} /></h2>
+        <h2 id="td-rel-h">Similar {dest?.name ?? ''} Tours</h2>
         <A to={toursPath(dest?.slug, category?.slug)} className="pl-more">View All {category?.label ?? `${dest?.name ?? ''} Tours`} <ArrowRight size={13} /></A>
       </div>
       <div className="td-rel-grid">
@@ -242,7 +241,7 @@ export function TourPage() {
         <div>
           {/* The short description is shown once, under the title. The overview is the long description. */}
           <section id="overview" aria-labelledby="td-ov-h">
-            <h2 id="td-ov-h"><WordReveal key={tour.slug} text="Tour Overview" /></h2>
+            <h2 id="td-ov-h">Tour Overview</h2>
             {/* Simple HTML from src/content/tours.json ("description"). */}
             <div className="td-prose" dangerouslySetInnerHTML={{ __html: tour.description }} />
           </section>
@@ -250,7 +249,7 @@ export function TourPage() {
 
         {tour.highlights.length > 0 && (
           <aside id="highlights" className="td-box td-hl" aria-labelledby="td-hl-h">
-            <h2 id="td-hl-h"><WordReveal key={tour.slug} text="Tour Highlights" /></h2>
+            <h2 id="td-hl-h">Tour Highlights</h2>
             <Ticks items={tour.highlights} />
             <A to={tour.bookingUrl} sameTab className="pl-btn pl-btn-sm td-hl-btn">Book Now <ArrowRight size={13} /></A>
           </aside>

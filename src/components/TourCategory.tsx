@@ -7,7 +7,6 @@ import {
 } from '@/data/tours';
 import { destinationBySlug, destinationList, destinationPath, toursPath, type Destination } from '@/data/destinations';
 import { BOOKING } from '@/data/landing';
-import { WordReveal } from './WordReveal';
 import { A } from './Chrome';
 import '@/tours.css';
 
@@ -249,7 +248,7 @@ export function TourCategory() {
             {!dest && category && <><A to="/tours">Tours</A><ChevronRight size={11} /></>}
             <span aria-current="page">{category ? category.label : 'All Tours'}</span>
           </nav>
-          <h1><WordReveal key={info.title} text={info.title} play delay={0.1} /></h1>
+          <h1>{info.title}</h1>
           <p className="tp-lede">{info.lede}</p>
           <p className="tp-count">
             <Icon size={18} className="tp-ic" />
@@ -269,7 +268,7 @@ export function TourCategory() {
             <section className="tp-featured" aria-labelledby="tp-top">
               <div className="tp-head">
                 <div>
-                  <h2 id="tp-top"><WordReveal key={info.title} text={`Top ${category || dest ? info.title : 'Tours'}`} /></h2>
+                  <h2 id="tp-top">Top {category || dest ? info.title : 'Tours'}</h2>
                   <p>Our most popular {info.noun}, chosen by travellers for their unforgettable experiences.</p>
                 </div>
                 <a href="#all" className="pl-more">View All {short} <ArrowRight size={13} /></a>
@@ -327,7 +326,7 @@ export function TourCategory() {
       {others.length > 0 && (
         <section className="pl-wrap tp-others" aria-labelledby="tp-others-h">
           <div className="tp-head">
-            <h2 id="tp-others-h"><WordReveal key={`${category?.slug}-${dest?.slug}`} text={`${category ? 'Explore Other Categories' : 'Browse by Category'}${dest ? ` in ${dest.name}` : ''}`} /></h2>
+            <h2 id="tp-others-h">{category ? 'Explore Other Categories' : 'Browse by Category'}{dest ? ` in ${dest.name}` : ''}</h2>
             {(category || dest) && <A to="/tours" className="pl-more">View All {tours.length} Tours <ArrowRight size={13} /></A>}
           </div>
           <div className={`tp-tiles ${others.length === 6 ? 'is-six' : ''}`}>

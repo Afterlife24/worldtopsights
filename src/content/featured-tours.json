@@ -1,0 +1,8 @@
+{
+  "_note": "Tours shown in the 'Top Tours' box at the top of the tours pages, in this order (tour slugs). 'paris' is used for Paris and for All Tours.",
+  "paris": [
+    "best-of-paris-guided-tour-of-30-attractions",
+    "harry-potter-inspired-paris-walking-tour-treasure-hunt",
+    "paris-secret-covered-passages-walking-tour"
+  ]
+}

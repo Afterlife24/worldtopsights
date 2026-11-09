@@ -7,6 +7,8 @@ import {
 } from '@/data/tours';
 import { destinationBySlug, destinationList, destinationPath, toursPath, type Destination } from '@/data/destinations';
 import { BOOKING } from '@/data/landing';
+import featuredTours from '@/content/featured-tours.json';
+import { WordReveal } from './WordReveal';
 import { A } from './Chrome';
 import '@/tours.css';
 
@@ -166,11 +168,13 @@ function TopCard({ tour }: { tour: Tour }) {
     <article className="tp-fcard">
       <img src={mainImage(tour)} alt="" loading="lazy" />
       <div className="tp-fcard-body">
-        <div>
-          <h3><A to={tourPath(tour)}>{tour.title}</A></h3>
-          <Meta tour={tour} />
+        <h3><A to={tourPath(tour)}>{tour.title}</A></h3>
+        {tour.childPrice != null && <p className="tp-kids">{tour.childPrice === 'Free' ? 'Kids go free' : `Kids from ${euro(tour.childPrice)}`}</p>}
+        <Meta tour={tour} />
+        <div className="tp-card-foot">
+          <p className="pl-price"><small>{tour.priceLabel ?? 'From'}</small> {euro(tour.price)}</p>
+          <A to={tourPath(tour)} className="pl-btn pl-btn-sm" aria-label={`View tour: ${tour.title}`}>View Tour <ArrowRight size={13} /></A>
         </div>
-        <A to={tourPath(tour)} className="tp-go" aria-label={`View tour: ${tour.title}`}><ArrowRight size={16} /></A>
       </div>
     </article>
   );
@@ -217,7 +221,12 @@ export function TourCategory() {
 
   const list = useMemo(() => toursIn(category?.slug).filter((t) => inDestination(t, dest?.slug)), [category, dest]);
   const visible = useMemo(() => applyFilters(list, filters, sort), [list, filters, sort]);
-  const top = useMemo(() => list.filter((t) => t.topTour).sort(byPopularity).slice(0, 3), [list]);
+  const top = useMemo(() => {
+    // Paris and All Tours: the tours listed in src/content/featured-tours.json. Other pages: their top tours.
+    const picks = !category && (!dest || dest.slug === 'paris') ? featuredTours.paris : [];
+    const chosen = picks.map((s) => list.find((t) => t.slug === s)).filter((t): t is Tour => !!t);
+    return chosen.length ? chosen : list.filter((t) => t.topTour).sort(byPopularity).slice(0, 3);
+  }, [list, category, dest]);
   const others = usedCategories(dest?.slug).filter((c) => c.slug !== category?.slug);
   const activeCount = filters.duration.length + filters.price.length + (filters.q.trim() ? 1 : 0);
 
@@ -248,7 +257,7 @@ export function TourCategory() {
             {!dest && category && <><A to="/tours">Tours</A><ChevronRight size={11} /></>}
             <span aria-current="page">{category ? category.label : 'All Tours'}</span>
           </nav>
-          <h1>{info.title}</h1>
+          <h1><WordReveal key={info.title} text={info.title} play delay={0.1} /></h1>
           <p className="tp-lede">{info.lede}</p>
           <p className="tp-count">
             <Icon size={18} className="tp-ic" />
@@ -268,7 +277,7 @@ export function TourCategory() {
             <section className="tp-featured" aria-labelledby="tp-top">
               <div className="tp-head">
                 <div>
-                  <h2 id="tp-top">Top {category || dest ? info.title : 'Tours'}</h2>
+                  <h2 id="tp-top"><WordReveal key={info.title} text={`Top ${category || dest ? info.title : 'Tours'}`} /></h2>
                   <p>Our most popular {info.noun}, chosen by travellers for their unforgettable experiences.</p>
                 </div>
                 <a href="#all" className="pl-more">View All {short} <ArrowRight size={13} /></a>
@@ -326,7 +335,7 @@ export function TourCategory() {
       {others.length > 0 && (
         <section className="pl-wrap tp-others" aria-labelledby="tp-others-h">
           <div className="tp-head">
-            <h2 id="tp-others-h">{category ? 'Explore Other Categories' : 'Browse by Category'}{dest ? ` in ${dest.name}` : ''}</h2>
+            <h2 id="tp-others-h"><WordReveal key={`${category?.slug}-${dest?.slug}`} text={`${category ? 'Explore Other Categories' : 'Browse by Category'}${dest ? ` in ${dest.name}` : ''}`} /></h2>
             {(category || dest) && <A to="/tours" className="pl-more">View All {tours.length} Tours <ArrowRight size={13} /></A>}
           </div>
           <div className={`tp-tiles ${others.length === 6 ? 'is-six' : ''}`}>

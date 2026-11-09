@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { SiteFooter, SiteHeader } from '@/components/Chrome';
 import { Landing } from '@/components/Landing';
 import { TourCategory } from '@/components/TourCategory';
 import { TourPage } from '@/components/TourPage';
 import { DestinationPage } from '@/components/DestinationPage';
+import { Intro } from '@/components/Intro';
 
 /** On navigation: scroll to the "#hash" target if there is one, otherwise to the top. */
 function ScrollManager() {
@@ -24,8 +25,11 @@ function OldTourLink() {
 }
 
 function App() {
+  // The intro plays on every load or refresh of the home page only; direct links to other pages skip it.
+  const [showIntro] = useState(() => window.location.pathname === '/');
   return (
     <BrowserRouter>
+      {showIntro && <Intro />}
       <ScrollManager />
       <a href="#main" className="skip-link">Skip to content</a>
       <SiteHeader />

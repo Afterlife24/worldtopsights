@@ -1,4 +1,5 @@
 import siteImages from '@/content/site-images.json';
+import reviewsContent from '@/content/reviews.json';
 
 /*
   Home page text, menus and footer. Tours come from src/content/tours.json,
@@ -46,23 +47,9 @@ export const reasons = [
   { icon: 'heart', title: 'Unforgettable Memories', text: ['Carefully curated experiences', 'you’ll treasure forever.'] },
 ] as const;
 
-// Placeholder reviews: replace with real guest reviews before going live.
-const r = siteImages.homeReviews;
-export const reviews = [
-  {
-    quote: 'Our guide made Paris come alive! The perfect blend of history, culture and local stories. This was the highlight of our trip.',
-    name: 'Emily R.', place: 'New York, USA', image: r[0],
-  },
-  {
-    quote: 'Skipping the queues at the Louvre was worth every euro, and our guide knew a story for every painting we stopped at.',
-    name: 'James T.', place: 'London, UK', image: r[1],
-  },
-  {
-    quote: 'Small group, warm guide and the best crêpes in Montmartre. We felt like locals for an afternoon.',
-    name: 'Sofia M.', place: 'Madrid, Spain', image: r[2],
-  },
-];
-
+// Home page reviews, video and traveler photos: edit src/content/reviews.json.
+// The sample quotes are placeholders: replace them with real guest reviews before going live.
+export const reviews = reviewsContent;
 export const faqs = [
   { q: 'Do I need to book my Paris tour in advance?', a: 'We recommend booking at least a few days ahead, especially from April to October, as small-group tours fill up quickly.' },
   { q: 'Do you offer private tours in Paris?', a: 'Yes. Contact us and we can build a private tour around your interests, from photography and fashion to literature and history.' },

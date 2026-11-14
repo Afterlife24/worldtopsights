@@ -1,0 +1,88 @@
+{
+  "_help": "Home page reviews. stories: one customer video plus their review each; the dots switch between them. For each video, put an .mp4 in public/site-images/ and set \"video\" (e.g. \"/site-images/review-1.mp4\"), or set \"youtube\" to a YouTube video ID. \"poster\" is the image shown before playing. The sample names and quotes are placeholders: replace them with real guests. travelerPhotos: fill names, from and caption for real guest photos.",
+  "stories": [
+    {
+      "video": "",
+      "youtube": "",
+      "poster": "/tours/paris-10-sights-montmartre-sacre-coeur-walking-tour/01.jpg",
+      "name": "Emily R.",
+      "from": "New York, USA",
+      "photo": "",
+      "quote": "Our guide made Paris come alive! The perfect blend of history, culture and local stories. This was the highlight of our trip."
+    },
+    {
+      "video": "",
+      "youtube": "",
+      "poster": "/tours/the-ultimate-monaco-walking-experience/01.jpg",
+      "name": "James T.",
+      "from": "London, UK",
+      "photo": "",
+      "quote": "Skipping the queues at the Louvre was worth every euro, and our guide knew a story for every painting we stopped at."
+    },
+    {
+      "video": "",
+      "youtube": "",
+      "poster": "/tours/paris-natural-wine-cheese-tasting-in-a-hidden-wine-bar/01.jpg",
+      "name": "Sofia M.",
+      "from": "Madrid, Spain",
+      "photo": "",
+      "quote": "Small group, warm guide and the best crêpes in Montmartre. We felt like locals for an afternoon."
+    }
+  ],
+  "travelerPhotos": [
+    {
+      "photo": "/tours/paris-family-challenge-secret-passages-macarons-gourmet/01.jpg",
+      "names": "",
+      "from": "Paris",
+      "caption": "Secret passages & macarons"
+    },
+    {
+      "photo": "/tours/cannes-signature-escape-yoga-kayaking-to-lerins-islands/01.jpg",
+      "names": "",
+      "from": "Cannes",
+      "caption": "Yoga & kayaking to the Lérins Islands"
+    },
+    {
+      "photo": "/tours/paris-natural-wine-cheese-tasting-in-a-hidden-wine-bar/01.jpg",
+      "names": "",
+      "from": "Paris",
+      "caption": "Natural wine & cheese in a hidden bar"
+    },
+    {
+      "photo": "/tours/the-ultimate-monaco-walking-experience/01.jpg",
+      "names": "",
+      "from": "Monaco",
+      "caption": "Walking the Rock of Monaco"
+    },
+    {
+      "photo": "/tours/paris-fashion-show-macaron-class-with-wine-tasting-option/01.jpg",
+      "names": "",
+      "from": "Galeries Lafayette",
+      "caption": "Fashion show & macaron class"
+    },
+    {
+      "photo": "/tours/esterel-summit-hike-les-balcons-dazur/01.jpg",
+      "names": "",
+      "from": "Esterel",
+      "caption": "Summit hike above the Riviera"
+    },
+    {
+      "photo": "/tours/premium-nice-food-tour-with-exclusive-chocolate-box/01.jpg",
+      "names": "",
+      "from": "Nice",
+      "caption": "Food tour through Old Nice"
+    },
+    {
+      "photo": "/tours/paris-perfume-workshop-palais-garnier-lunch-tour/01.jpg",
+      "names": "",
+      "from": "Paris",
+      "caption": "Perfume workshop & Palais Garnier"
+    },
+    {
+      "photo": "/tours/grasse-french-riviera-tour-of-perfume-and-wine/01.jpg",
+      "names": "",
+      "from": "Grasse",
+      "caption": "Perfume & wine in Grasse"
+    }
+  ]
+}

@@ -13,10 +13,5 @@
       "hero": "https://images.pexels.com/photos/37392050/pexels-photo-37392050.jpeg?auto=compress&cs=tinysrgb&w=1600",
       "tile": "https://images.pexels.com/photos/37392050/pexels-photo-37392050.jpeg?auto=compress&cs=tinysrgb&w=1600"
     }
-  },
-  "homeReviews": [
-    "https://images.unsplash.com/photo-1431274172761-fca41d930114?w=1200&q=75&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=1200&q=75&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1550340499-a6c60fc8287c?w=1200&q=75&auto=format&fit=crop"
-  ]
+  }
 }

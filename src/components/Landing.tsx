@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from 'react';
-import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Clock, Gem, Heart, Minus, Plus, Star, Users } from 'lucide-react';
+import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Clock, Gem, Heart, Minus, Play, Plus, Star, Users } from 'lucide-react';
 import { destinationCards, faqs, reasons, reviews, siteImages } from '@/data/landing';
 import { byPopularity, euro, formatHours, hasRating, mainImage, topTours, tourPath, tours, usedCategories, type Tour } from '@/data/tours';
 import { toursPath } from '@/data/destinations';
@@ -43,7 +43,11 @@ function Hero() {
         <p className="ph-eyebrow">Iconic places. Authentic experiences.</p>
         <h1><WordReveal lines={['Discover France,', 'Beyond the Ordinary']} play delay={0.1} /></h1>
         <p className="ph-lede">Curated tours and exclusive experiences in Paris, the South of France and Galeries Lafayette, designed for curious travellers.</p>
-        <A to="/tours" className="pl-btn pl-btn-caps">Explore Tours <ArrowRight size={14} /></A>
+        <div className="ph-actions">
+          <A to="/tours" className="pl-btn pl-btn-caps">Explore Tours <ArrowRight size={14} /></A>
+          {/* Tripadvisor badge: public/site-images/tripadvisor-badge.png */}
+          <img className="ph-badge" src="/site-images/tripadvisor-badge.png" alt="Tripadvisor 5 star reviews" width={92} height={91} />
+        </div>
         <p className="ph-script" aria-hidden="true">“More than a trip,<br />a deeper connection<br />to France.”</p>
       </div>
       </div>
@@ -58,6 +62,28 @@ function Hero() {
             </div>
           </article>
         ))}
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- Go City partnership (same text and affiliate link as the old website) ---------------- */
+
+const GO_CITY_URL = 'https://gocity.com/en/paris?utm_medium=affiliate&utm_source=partnerize&utm_campaign=gocity&utm_adcampaigngroup=gocity&utm_publisher=paristopsights&utm_referrer=https%3A%2F%2Fwww.paristopsightstours.com%2F&utm_content=Subaffiliate&utm_creative=0';
+
+function GoCity() {
+  return (
+    <section className="pl-wrap pl-section pl-gocity" aria-labelledby="gocity-h">
+      <A to={GO_CITY_URL} rel="sponsored noopener noreferrer" className="pl-gocity-img" aria-label="Go City Paris Pass: save up to 50% at 45+ attractions">
+        <img src="/site-images/gocity-paris-pass.jpg" alt="Go City Paris Pass: save up to 50% at 45+ attractions, including the Big Bus, a Seine River cruise and an Eiffel Tower guided climb" width={600} height={400} loading="lazy" />
+      </A>
+      <div className="pl-gocity-text">
+        <p className="ph-eyebrow">In partnership with Go City</p>
+        <h2 id="gocity-h"><WordReveal text="Get the Go City Paris Pass" /></h2>
+        <p>Discover Paris and save up to 50%* at over 45 attractions, tours and experiences with one single pass.</p>
+        <p>Choose between the All-Inclusive or Explorer pass, enjoy great savings and get ready to explore Paris. Climb the Eiffel Tower, cruise the River Seine, discover the famous Mona Lisa and more at the Louvre Museum, enjoy a Parisian breakfast and wander the streets of Montmartre on a walking tour. The choice is yours!</p>
+        <A to={GO_CITY_URL} rel="sponsored noopener noreferrer" className="pl-btn pl-btn-caps">Get the Paris Pass <ArrowRight size={14} /></A>
+        <p className="pl-gocity-note">*Savings depend on the attractions you visit. Details on the Go City website.</p>
       </div>
     </section>
   );
@@ -175,34 +201,109 @@ function WhyUs() {
 
 /* ---------------- reviews ---------------- */
 
-function Reviews() {
-  const [index, setIndex] = useState(0);
-  const total = reviews.length;
-  const go = (step: number) => setIndex((i) => (i + step + total) % total);
+type Story = (typeof reviews.stories)[number];
 
-  useEffect(() => {
-    const id = window.setInterval(() => setIndex((i) => (i + 1) % total), 8000);
-    return () => window.clearInterval(id);
-  }, [index, total]);
-
-  const review = reviews[index];
+function StoryVideo({ story, playing, onPlay }: { story: Story; playing: boolean; onPlay: () => void }) {
+  const label = `Play ${story.name}’s video`;
+  if (playing && story.youtube) {
+    return <iframe src={`https://www.youtube-nocookie.com/embed/${encodeURIComponent(story.youtube)}?autoplay=1&rel=0`} title={`${story.name}’s video`} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen />;
+  }
+  if (playing && story.video) return <video src={story.video} poster={story.poster} controls autoPlay playsInline />;
   return (
-    <section id="reviews" className="pl-wrap pl-section">
-      <SectionTitle title="What Our Guests Say" link={{ label: 'Read All Reviews', to: '#reviews' }} />
-      <div className="pl-review">
-        <button type="button" className="pl-arrow pl-arrow-l" aria-label="Previous review" onClick={() => go(-1)}><ChevronLeft size={16} /></button>
-        <div className="pl-review-card" aria-live="polite">
-          <blockquote key={index} className="pl-review-text">
-            <p>“{review.quote}”</p>
-            <span className="pl-stars" aria-label="5 out of 5 stars">
-              {Array.from({ length: 5 }, (_, i) => <Star key={i} size={15} fill="currentColor" strokeWidth={0} />)}
-            </span>
-            <footer><strong>{review.name}</strong> <span>{review.place}</span></footer>
-          </blockquote>
-          <div className="pl-review-media"><img key={review.image} src={review.image} alt="" loading="lazy" /></div>
-        </div>
-        <button type="button" className="pl-arrow pl-arrow-r" aria-label="Next review" onClick={() => go(1)}><ChevronRight size={16} /></button>
+    <>
+      <img key={story.poster} src={story.poster} alt="" loading="lazy" />
+      <button type="button" className="pl-rv-play" aria-label={label} onClick={onPlay}>
+        <span className="pl-rv-play-tip">{playing ? 'Video coming soon' : 'Play video'}</span>
+        <Play size={30} fill="currentColor" strokeWidth={0} />
+      </button>
+    </>
+  );
+}
+
+function ReviewStories() {
+  const list = reviews.stories;
+  const [index, setIndex] = useState(0);
+  const [playing, setPlaying] = useState(false);
+  const [paused, setPaused] = useState(false);
+  const show = (i: number) => { setPlaying(false); setIndex((i + list.length) % list.length); };
+  useEffect(() => {
+    if (paused || playing || list.length < 2) return;
+    const id = window.setInterval(() => setIndex((i) => (i + 1) % list.length), 7000);
+    return () => window.clearInterval(id);
+  }, [paused, playing, index, list.length]);
+  const story = list[index];
+  const hasVideo = Boolean(story.video || story.youtube);
+  return (
+    <div className="pl-rv-top" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
+      <div className={`pl-rv-video ${playing && !hasVideo ? 'is-soon' : ''}`}>
+        <StoryVideo key={index} story={story} playing={playing} onPlay={() => setPlaying(true)} />
+        {list.length > 1 && (
+          <>
+            <button type="button" className="pl-rv-arrow pl-rv-arrow-l" aria-label="Previous video" onClick={() => show(index - 1)}><ChevronLeft size={18} /></button>
+            <button type="button" className="pl-rv-arrow pl-rv-arrow-r" aria-label="Next video" onClick={() => show(index + 1)}><ChevronRight size={18} /></button>
+          </>
+        )}
       </div>
+      <div className="pl-rv-card">
+        <div key={index} className="pl-rv-card-body" aria-live="polite">
+          <div className="pl-rv-avatar">
+            <img src={story.photo || story.poster} alt="" loading="lazy" />
+          </div>
+          <h3>{story.name}</h3>
+          <p className="pl-rv-from">{story.from}</p>
+          <span className="pl-stars" aria-label="5 out of 5 stars">
+            {Array.from({ length: 5 }, (_, i) => <Star key={i} size={14} fill="currentColor" strokeWidth={0} />)}
+          </span>
+          <blockquote>“{story.quote}”</blockquote>
+        </div>
+        {list.length > 1 && (
+          <div className="pl-rv-dots">
+            {list.map((q, i) => (
+              <button key={q.name} type="button" aria-label={`Show ${q.name}’s review`} aria-current={i === index} className={i === index ? 'is-on' : ''} onClick={() => show(i)} />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function TravelerPhoto({ item }: { item: (typeof reviews.travelerPhotos)[number] }) {
+  return (
+    <figure className="pl-polaroid">
+      <img src={item.photo} alt={item.caption} loading="lazy" />
+      <figcaption>
+        <strong>{item.names || item.caption}</strong>
+        <span>{item.names ? `From ${item.from}` : item.from}</span>
+        {item.names && <em>{item.caption}</em>}
+      </figcaption>
+    </figure>
+  );
+}
+
+function Reviews() {
+  const photos = reviews.travelerPhotos;
+  return (
+    <section id="reviews" className="pl-section pl-rv">
+      <div className="pl-wrap">
+        <SectionTitle title="What Our Guests Say" />
+        <ReviewStories />
+      </div>
+      {photos.length > 0 && (
+        <div className="pl-rv-photos">
+          <div className="pl-wrap"><h3 className="pl-rv-sub"><WordReveal text="Our Travelers’ Photos" /></h3></div>
+          <div className="pl-marquee">
+            <div className="pl-marquee-track">
+              <div className="pl-marquee-set">
+                {photos.map((item) => <TravelerPhoto key={item.photo} item={item} />)}
+              </div>
+              <div className="pl-marquee-set" aria-hidden="true">
+                {photos.map((item) => <TravelerPhoto key={item.photo} item={item} />)}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
@@ -313,6 +414,7 @@ export function Landing() {
   return (
     <div className="pl">
       <Hero />
+      <GoCity />
       <Categories />
       <TopTours />
       <AllTours />

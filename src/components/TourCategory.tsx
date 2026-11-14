@@ -6,7 +6,6 @@ import {
   usedCategories, type Category, type SortId, type Tour,
 } from '@/data/tours';
 import { destinationBySlug, destinationList, destinationPath, toursPath, type Destination } from '@/data/destinations';
-import { BOOKING } from '@/data/landing';
 import featuredTours from '@/content/featured-tours.json';
 import { WordReveal } from './WordReveal';
 import { A } from './Chrome';
@@ -319,7 +318,7 @@ export function TourCategory() {
                 // A category with no tours yet, e.g. Private Paris Tours: tours are planned on request.
                 <div className="tp-empty">
                   <p>{category.lede}</p>
-                  <A to={BOOKING} className="pl-btn pl-btn-sm">Contact Us <ArrowRight size={13} /></A>
+                  <A to="/contact" className="pl-btn pl-btn-sm">Contact Us <ArrowRight size={13} /></A>
                 </div>
               ) : (
                 <div className="tp-empty">

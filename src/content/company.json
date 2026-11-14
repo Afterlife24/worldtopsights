@@ -1,0 +1,35 @@
+{
+  "_help": "Company details and the About Us text, taken from paristopsightstours.com. Used by the About Us and Contact pages and the footer.",
+  "name": "Paris Top Sights Tours",
+  "legalName": "Top Sights Group LLC",
+  "email": "hello@paristopsightstours.com",
+  "phone": "+442035386404",
+  "phoneDisplay": "+44 20 3538 6404",
+  "socials": {
+    "instagram": "https://www.instagram.com/paris_top_sights_tours/",
+    "facebook": "https://www.facebook.com/londontop.sightstours",
+    "youtube": "https://www.youtube.com/channel/UCy3pLcVO7pbLa75DZNv6C7g",
+    "x": "https://twitter.com/sights_top"
+  },
+  "about": {
+    "lede": "Our founder has traveled all over the globe and wanted to bring all the best parts of the tours that he experienced to Paris. Welcome to Paris Top Sights, your premier tour company for unforgettable experiences in the City of Light!",
+    "sections": [
+      {
+        "title": "A Unique Experience",
+        "text": "Whether you’re a first-time visitor or a seasoned traveler, we offer a wide range of meticulously crafted tours designed to cater to your interests and preferences. Expert guides, fluent in multiple languages, are passionate about Paris and are committed to providing you with an immersive and informative experience.",
+        "image": "/tours/paris-10-sights-montmartre-sacre-coeur-walking-tour/01.jpg"
+      },
+      {
+        "title": "A Comprehensive View of Paris",
+        "text": "To ensure a seamless and hassle-free visit, we take care of all the logistics, including transportation and reservations, so you can focus on making lasting memories. From iconic landmarks like the Eiffel Tower, Louvre Museum, and Notre-Dame Cathedral to off-the-beaten-path neighborhoods and charming cafés, our tours encompass the essence of Paris.",
+        "image": "/tours/paris-covered-passages-walk-opera-garnier-visit/01.jpg"
+      },
+      {
+        "title": "Driven by Service",
+        "text": "Our mission is to provide you with exceptional service and personalized itineraries that showcase the best of Paris. With our in-depth knowledge of the city’s rich history, vibrant culture, and hidden gems, we guarantee a truly remarkable journey.",
+        "image": "/tours/paris-natural-wine-cheese-tasting-in-a-hidden-wine-bar/01.jpg"
+      }
+    ]
+  },
+  "contactIntro": "Your journey with us begins from the moment you contact us. Our dedicated customer service team is available to answer your questions, assist with any special requests, and ensure that your trip exceeds your expectations. We pride ourselves on providing personalized attention to every detail, ensuring your time in Paris is nothing short of extraordinary."
+}

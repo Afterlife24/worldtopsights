@@ -1,5 +1,6 @@
 import siteImages from '@/content/site-images.json';
 import reviewsContent from '@/content/reviews.json';
+import company from '@/content/company.json';
 
 /*
   Home page text, menus and footer. Tours come from src/content/tours.json,
@@ -9,7 +10,7 @@ import reviewsContent from '@/content/reviews.json';
 /** Main website: contact and policy links go here until those pages exist. */
 export const BOOKING = 'https://www.paristopsightstours.com/';
 
-export { siteImages };
+export { siteImages, company };
 
 /** Attribution required by the CC BY-SA licences of the Wikimedia photos used on category tiles. */
 export const photoCredits = [
@@ -29,8 +30,8 @@ export const landingNav: NavItem[] = [
     ],
   },
   { label: 'Our Tours', to: '/tours' },
-  { label: 'About Us', to: '/#why' },
-  { label: 'Contact', to: BOOKING },
+  { label: 'About Us', to: '/about' },
+  { label: 'Contact', to: '/contact' },
 ];
 
 const d = siteImages.destinations;
@@ -62,6 +63,6 @@ export const faqs = [
 export const footerCols = [
   { title: 'Destinations', links: [{ label: 'Paris', to: '/destinations/paris' }, { label: 'South of France', to: '/destinations/south-of-france' }, { label: 'Galeries Lafayette', to: '/destinations/galeries-lafayette' }] },
   { title: 'Our Tours', links: [{ label: 'All Tours', to: '/tours' }, { label: 'Top Tours', to: '/#top-tours' }, { label: 'Gift Vouchers', to: BOOKING }] },
-  { title: 'About Us', links: [{ label: 'Our Story', to: BOOKING }, { label: 'Why Travel With Us', to: '/#why' }, { label: 'Reviews', to: '/#reviews' }] },
-  { title: 'Help', links: [{ label: 'Contact Us', to: BOOKING }, { label: 'FAQs', to: '/#faq' }, { label: 'Booking Information', to: BOOKING }] },
+  { title: 'About Us', links: [{ label: 'Our Story', to: '/about' }, { label: 'Why Travel With Us', to: '/#why' }, { label: 'Reviews', to: '/#reviews' }] },
+  { title: 'Help', links: [{ label: 'Contact Us', to: '/contact' }, { label: 'FAQs', to: '/#faq' }, { label: 'Booking Information', to: BOOKING }] },
 ];

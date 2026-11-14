@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type AnchorHTMLAttributes } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, ChevronDown, Facebook, Globe, Heart, Instagram, Menu, Search, X, Youtube } from 'lucide-react';
-import { BOOKING, footerCols, landingNav, photoCredits, type NavItem } from '@/data/landing';
+import { BOOKING, company, footerCols, landingNav, photoCredits, type NavItem } from '@/data/landing';
 import { useLockBody } from '@/hooks/useLockBody';
 import '@/landing.css';
 
@@ -114,22 +114,21 @@ export function SiteHeader() {
   );
 }
 
-function Pinterest() {
+function XLogo() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M10.5 9.5c.4-1.6 3.6-2 4.4-.1.8 2-1 4.6-2.6 4.1-1-.3-.9-1.4-.6-2.4M11.7 11.1 9.6 19.5" />
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M18.2 2.5h3.3l-7.2 8.3 8.5 10.7h-6.6l-5.2-6.6-6 6.6H1.7l7.7-8.8L1.3 2.5H8l4.7 6 5.5-6Zm-1.2 17h1.8L7.1 4.4H5.2l11.8 15.1Z" />
     </svg>
   );
 }
 
-// Replace "#" with your real social profile URLs.
+// Social profiles: edit them in src/content/company.json.
 const socials = [
-  { label: 'Instagram', icon: <Instagram size={16} strokeWidth={1.6} /> },
-  { label: 'Facebook', icon: <Facebook size={16} strokeWidth={1.6} /> },
-  { label: 'YouTube', icon: <Youtube size={17} strokeWidth={1.6} /> },
-  { label: 'Pinterest', icon: <Pinterest /> },
-];
+  { label: 'Instagram', to: company.socials.instagram, icon: <Instagram size={16} strokeWidth={1.6} /> },
+  { label: 'Facebook', to: company.socials.facebook, icon: <Facebook size={16} strokeWidth={1.6} /> },
+  { label: 'YouTube', to: company.socials.youtube, icon: <Youtube size={17} strokeWidth={1.6} /> },
+  { label: 'X (Twitter)', to: company.socials.x, icon: <XLogo /> },
+].filter((s) => s.to);
 
 export function SiteFooter() {
   return (
@@ -138,7 +137,7 @@ export function SiteFooter() {
         <div className="pl-footer-brand">
           <Logo light />
           <div className="pl-socials">
-            {socials.map((s) => <a key={s.label} href="#" aria-label={s.label}>{s.icon}</a>)}
+            {socials.map((s) => <A key={s.label} to={s.to} aria-label={s.label}>{s.icon}</A>)}
           </div>
         </div>
         {footerCols.map((col) => (

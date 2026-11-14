@@ -6,6 +6,7 @@ import { TourCategory } from '@/components/TourCategory';
 import { TourPage } from '@/components/TourPage';
 import { DestinationPage } from '@/components/DestinationPage';
 import { Intro } from '@/components/Intro';
+import { AboutPage, ContactPage } from '@/components/InfoPages';
 
 /** On navigation: scroll to the "#hash" target if there is one, otherwise to the top. */
 function ScrollManager() {
@@ -41,6 +42,11 @@ function App() {
           <Route path="/tour/:tour" element={<TourPage />} />
           <Route path="/tours/:category/:tour" element={<OldTourLink />} />
           <Route path="/destinations/:destination" element={<DestinationPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          {/* Old paristopsightstours.com addresses */}
+          <Route path="/about-paris-top-sights-tours" element={<Navigate to="/about" replace />} />
+          <Route path="/get-in-touch" element={<Navigate to="/contact" replace />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

@@ -14,6 +14,10 @@
 </head>
   <body>
     <div id="root"></div>
+    <!-- Registers the Contact page form with Netlify Forms at deploy time (the real form is rendered by React). -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input name="bot-field" /><input name="name" /><input name="email" /><input name="phone" /><textarea name="message"></textarea>
+    </form>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
